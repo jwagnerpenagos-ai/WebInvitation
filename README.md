@@ -14,28 +14,44 @@ Abre `http://localhost:4173`.
 
 ## Personalizar datos
 
-Edita únicamente `src/config.js` para cambiar:
+Edita `src/config.js` para cambiar:
 
 - nombre de la quinceañera;
 - fecha y hora;
 - fecha límite de confirmación;
 - enlace de Google Maps;
-- número y mensaje de WhatsApp.
+- número de WhatsApp;
+- máximo de asistentes seleccionable en la confirmación.
 
 El número de WhatsApp debe ir con indicativo de país, sin `+`, espacios ni guiones. El valor actual (`573000000000`) es de ejemplo.
 
-## Invitaciones personalizadas
-
-La página admite nombre y número de cupos por URL:
-
-```text
-/?invitado=Familia%20Gómez&cupos=4
+```js
+rsvp: {
+  phone: '573000000000',
+  maxGuests: 6,
+},
 ```
 
-El nombre aparece en la portada y el mensaje de confirmación se genera con esos datos. Los parámetros disponibles son:
+## Portada cerrada
 
-- `invitado`: nombre de la persona o familia;
-- `cupos`: número entero entre 1 y 20.
+Al cargar la web, el contenido de la invitación permanece oculto. La portada solo muestra el emblema de los quince años y el botón **Abrir invitación**. Al abrirla:
+
+- se revela el contenido;
+- comienza la música cuando el navegador lo permite;
+- se habilitan las animaciones de entrada.
+
+## Confirmación y cupos
+
+La invitación ya no utiliza nombres ni cupos personalizados en la URL.
+
+Al tocar **Confirmar asistencia**, se abre un formulario que solicita:
+
+- nombre de quien confirma;
+- si asistirá o no;
+- número total de asistentes;
+- mensaje adicional opcional.
+
+Al continuar, se abre WhatsApp con el mensaje organizado y listo para enviar. Este flujo no necesita base de datos.
 
 ## Desplegar en Vercel
 
@@ -50,9 +66,9 @@ También puedes ejecutar `vercel --prod` desde esta carpeta.
 ## Estructura
 
 ```text
-assets/          Imágenes y música optimizadas
+assets/          Imágenes, marco y música optimizados
 src/config.js    Datos editables de la invitación
-src/main.js      Interacciones, personalización, música y contador
+src/main.js      Apertura, confirmación, música y contador
 src/styles.css   Diseño responsive y animaciones
 index.html       Estructura semántica de la página
 vercel.json      Caché y cabeceras de seguridad

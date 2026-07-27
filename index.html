@@ -30,48 +30,24 @@
     <a class="skip-link" href="#contenido">Saltar a la invitación</a>
 
     <section class="intro" id="intro" aria-labelledby="intro-title">
-      <div class="intro__wash" aria-hidden="true"></div>
-      <img class="intro__leaf intro__leaf--one" src="./assets/intro-leaf-1.webp" alt="" />
-      <img class="intro__leaf intro__leaf--two" src="./assets/intro-leaf-2.webp" alt="" />
-      <img class="intro__flower" src="./assets/intro-rosebouquet.webp" alt="" />
-      <img class="intro__butterfly intro__butterfly--one" src="./assets/intro-bfly-1.webp" alt="" />
-      <img class="intro__butterfly intro__butterfly--two" src="./assets/intro-bfly-4.webp" alt="" />
+      <div class="intro__backdrop" aria-hidden="true"></div>
+      <div class="intro__veil intro__veil--left" aria-hidden="true"></div>
+      <div class="intro__veil intro__veil--right" aria-hidden="true"></div>
 
-      <div class="intro__layout">
-        <div class="intro__art" aria-hidden="true">
-          <div class="intro__halo"></div>
-          <div class="intro__monogram">
-            <span>MF</span>
-          </div>
+      <div class="intro__closed-card">
+        <p class="sr-only" id="intro-title">Invitación a los quince años de María Fernanda</p>
+        <div class="intro__emblem" aria-hidden="true">
+          <img class="intro__frame" src="./assets/marco-letrero.png" alt="" />
           <img class="intro__fifteen" src="./assets/letrero-15.webp" alt="" />
         </div>
 
-        <div class="intro__copy">
-          <p class="eyebrow">Una noche para recordar</p>
-          <h1 id="intro-title">
-            Mis XV años
-            <span data-event-name>María Fernanda</span>
-          </h1>
-          <p class="intro__date">
-            <span data-event-date-label>Sábado, 3 de octubre de 2026</span>
-            <span aria-hidden="true">·</span>
-            <span data-event-time>6:00 p. m.</span>
-          </p>
-
-          <div class="intro__guest" id="guest-card">
-            <span>Invitación especial para</span>
-            <strong data-guest-name>ti y tu familia</strong>
-            <small data-guest-seats hidden></small>
-          </div>
-
-          <button class="button button--primary intro__button" id="open-invitation" type="button">
-            <span>Abrir invitación</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M5 12h13M14 7l5 5-5 5" />
-            </svg>
-          </button>
-          <p class="intro__sound-note">La música comenzará al abrirla.</p>
-        </div>
+        <button class="intro__open" id="open-invitation" type="button">
+          <span>Abrir invitación</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+        <p class="intro__sound-note">Activa el sonido y descubre la invitación.</p>
       </div>
     </section>
 
@@ -264,14 +240,54 @@
           <p>
             Por favor confirma antes del <strong data-rsvp-deadline>20 de septiembre de 2026</strong>.
           </p>
-          <p class="rsvp__guest" id="rsvp-guest" hidden></p>
-          <a class="button button--light" id="rsvp-link" href="#" target="_blank" rel="noopener noreferrer">
-            Confirmar por WhatsApp
+          <button class="button button--light" id="open-rsvp" type="button">
+            Confirmar asistencia
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z" /><path d="M8.5 8.5c.5 3 2 4.5 5 5" /></svg>
-          </a>
-          <small>WhatsApp se abrirá con el mensaje listo para enviar.</small>
+          </button>
+          <small>Podrás indicar tu nombre y cuántas personas asistirán.</small>
         </div>
       </section>
+
+      <dialog class="rsvp-dialog" id="rsvp-dialog" aria-labelledby="rsvp-dialog-title">
+        <form class="rsvp-form" id="rsvp-form" method="dialog">
+          <button class="rsvp-dialog__close" id="close-rsvp" type="button" aria-label="Cerrar confirmación">×</button>
+          <p class="eyebrow">Confirmación</p>
+          <h2 id="rsvp-dialog-title">¿Nos acompañas?</h2>
+          <p class="rsvp-form__intro">Completa estos datos y abriremos WhatsApp con el mensaje listo.</p>
+
+          <label class="field">
+            <span>Nombre de quien confirma</span>
+            <input id="rsvp-name" name="name" type="text" autocomplete="name" maxlength="80" required placeholder="Ej. Familia Gómez" />
+          </label>
+
+          <fieldset class="attendance-fieldset">
+            <legend>¿Podrás asistir?</legend>
+            <label class="attendance-option">
+              <input type="radio" name="attendance" value="yes" checked />
+              <span>Sí, asistiré</span>
+            </label>
+            <label class="attendance-option">
+              <input type="radio" name="attendance" value="no" />
+              <span>No podré asistir</span>
+            </label>
+          </fieldset>
+
+          <label class="field" id="guest-count-field">
+            <span>Número total de asistentes</span>
+            <select id="rsvp-guests" name="guests" aria-label="Número total de asistentes"></select>
+          </label>
+
+          <label class="field">
+            <span>Mensaje adicional <small>(opcional)</small></span>
+            <textarea id="rsvp-note" name="note" rows="3" maxlength="180" placeholder="Algo que quieras contarle a María Fernanda"></textarea>
+          </label>
+
+          <button class="button button--primary rsvp-form__submit" type="submit">
+            Continuar en WhatsApp
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M14 7l5 5-5 5" /></svg>
+          </button>
+        </form>
+      </dialog>
 
       <footer class="footer">
         <div class="footer__mark">MF</div>

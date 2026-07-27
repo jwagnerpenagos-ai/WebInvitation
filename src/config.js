@@ -13,12 +13,6 @@ export const invitationConfig = Object.freeze({
   rsvp: {
     // Reemplaza este número por el real, sin +, espacios ni guiones.
     phone: '573000000000',
-    message:
-      '¡Hola! Confirmo mi asistencia a los XV años de María Fernanda. ✨',
-  },
-  personalization: {
-    defaultGuest: 'ti y tu familia',
-    guestQueryParam: 'invitado',
-    seatsQueryParam: 'cupos',
+    maxGuests: 6,
   },
 });

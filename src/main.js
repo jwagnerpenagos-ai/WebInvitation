@@ -4,8 +4,6 @@ const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
 
 const state = {
-  guestName: config.personalization.defaultGuest,
-  seats: null,
   musicPlaying: false,
 };
 
@@ -30,45 +28,8 @@ function bindInvitationData() {
     element.href = config.venue.mapsUrl;
   });
 
-  $('[data-current-year]').textContent = new Date().getFullYear();
-}
-
-function applyPersonalization() {
-  const query = new URLSearchParams(window.location.search);
-  const guest = query.get(config.personalization.guestQueryParam)?.trim();
-  const seatsValue = Number.parseInt(query.get(config.personalization.seatsQueryParam) ?? '', 10);
-
-  if (guest) state.guestName = guest.slice(0, 80);
-  if (Number.isInteger(seatsValue) && seatsValue > 0 && seatsValue <= 20) {
-    state.seats = seatsValue;
-  }
-
-  $('[data-guest-name]').textContent = state.guestName;
-
-  const seatsLabel = $('[data-guest-seats]');
-  if (state.seats) {
-    seatsLabel.hidden = false;
-    seatsLabel.textContent = `${state.seats} ${state.seats === 1 ? 'cupo reservado' : 'cupos reservados'}`;
-  }
-
-  const rsvpGuest = $('#rsvp-guest');
-  if (guest || state.seats) {
-    rsvpGuest.hidden = false;
-    rsvpGuest.textContent = state.seats
-      ? `${state.guestName} · ${state.seats} ${state.seats === 1 ? 'cupo' : 'cupos'}`
-      : state.guestName;
-  }
-}
-
-function buildRsvpLink() {
-  const guestLine = state.guestName !== config.personalization.defaultGuest
-    ? ` Invitación a nombre de ${state.guestName}.`
-    : '';
-  const seatsLine = state.seats
-    ? ` Confirmo ${state.seats} ${state.seats === 1 ? 'persona' : 'personas'}.`
-    : '';
-  const message = `${config.rsvp.message}${guestLine}${seatsLine}`;
-  $('#rsvp-link').href = `https://wa.me/${config.rsvp.phone}?text=${encodeURIComponent(message)}`;
+  const currentYear = $('[data-current-year]');
+  if (currentYear) currentYear.textContent = new Date().getFullYear();
 }
 
 function setupIntro() {
@@ -97,17 +58,18 @@ function setupIntro() {
   openButton.addEventListener('click', async () => {
     site.hidden = false;
     musicControl.hidden = false;
-    document.body.classList.remove('intro-visible');
-    document.body.classList.add('invitation-open');
+    document.body.classList.add('invitation-opening');
     intro.setAttribute('aria-hidden', 'true');
 
     await playMusic();
 
     window.setTimeout(() => {
+      document.body.classList.remove('intro-visible', 'invitation-opening');
+      document.body.classList.add('invitation-open');
       intro.hidden = true;
       window.scrollTo({ top: 0, behavior: 'instant' });
       initRevealAnimations();
-    }, 850);
+    }, 1100);
   });
 
   musicControl.addEventListener('click', async () => {
@@ -120,6 +82,77 @@ function setupIntro() {
     state.musicPlaying = false;
     updateMusicControl();
   });
+}
+
+function setupRsvp() {
+  const dialog = $('#rsvp-dialog');
+  const openButton = $('#open-rsvp');
+  const closeButton = $('#close-rsvp');
+  const form = $('#rsvp-form');
+  const nameInput = $('#rsvp-name');
+  const guestCountField = $('#guest-count-field');
+  const guestSelect = $('#rsvp-guests');
+
+  if (!dialog || !openButton || !form) return;
+
+  const closeDialog = () => {
+    if (dialog.open) dialog.close();
+  };
+
+  for (let guests = 1; guests <= config.rsvp.maxGuests; guests += 1) {
+    const option = document.createElement('option');
+    option.value = String(guests);
+    option.textContent = `${guests} ${guests === 1 ? 'persona' : 'personas'}`;
+    guestSelect.append(option);
+  }
+
+  const syncAttendance = () => {
+    const attendance = $('input[name="attendance"]:checked', form)?.value ?? 'yes';
+    const attending = attendance === 'yes';
+    guestCountField.hidden = !attending;
+    guestSelect.disabled = !attending;
+  };
+
+  openButton.addEventListener('click', () => {
+    dialog.showModal();
+    window.setTimeout(() => nameInput.focus(), 80);
+  });
+
+  closeButton.addEventListener('click', closeDialog);
+
+  dialog.addEventListener('click', (event) => {
+    if (event.target === dialog) closeDialog();
+  });
+
+  $$('input[name="attendance"]', form).forEach((radio) => {
+    radio.addEventListener('change', syncAttendance);
+  });
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    if (!form.reportValidity()) return;
+
+    const name = nameInput.value.trim();
+    const attendance = $('input[name="attendance"]:checked', form)?.value ?? 'yes';
+    const note = $('#rsvp-note').value.trim();
+
+    let message;
+    if (attendance === 'yes') {
+      const guests = Number.parseInt(guestSelect.value, 10);
+      message = `¡Hola! Soy ${name}. Confirmo nuestra asistencia a los XV años de ${config.celebrant}. Asistiremos ${guests} ${guests === 1 ? 'persona' : 'personas'}.`;
+    } else {
+      message = `¡Hola! Soy ${name}. Muchas gracias por la invitación a los XV años de ${config.celebrant}. Lamentablemente no podré asistir.`;
+    }
+
+    if (note) message += ` Mensaje: ${note}`;
+
+    const whatsappUrl = `https://wa.me/${config.rsvp.phone}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    closeDialog();
+  });
+
+  syncAttendance();
 }
 
 function setupCountdown() {
@@ -194,8 +227,7 @@ function setupSmoothAnchors() {
 }
 
 bindInvitationData();
-applyPersonalization();
-buildRsvpLink();
 setupIntro();
+setupRsvp();
 setupCountdown();
 setupSmoothAnchors();
