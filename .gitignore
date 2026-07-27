@@ -1,15 +1,5 @@
-# Reference/source files not needed for the deployed site
-source-canva/
-corregir/
-reel/
-fallos/
-source-video/
-source-images/
-*.zip
-
-# OS
-Thumbs.db
 .DS_Store
-
-# Local tooling config
-.claude/
+Thumbs.db
+.vscode/
+.idea/
+.vercel/

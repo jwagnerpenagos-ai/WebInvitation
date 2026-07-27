@@ -2,42 +2,37 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## What this is
+## Project
 
-A single-page HTML/CSS/JS invitation site (no frameworks, no build step) for María Fernanda's XV años. Romantic floral style in lilac/pink/wine/gold tones. Flow: intro screen (animated floral frame + gold "Mis 15 años" sign, no video) → tap-to-continue arrow (also starts background music) → continuous-scroll content (hero, location/map, dress code, "lluvia de sobres" gift note, RSVP via WhatsApp, footer).
-
-The site is in Spanish and built for a real client; content and copy changes should preserve the client's wording and tone unless asked to change it.
+A static, single-page invitation website (Spanish) for a "XV años" (quinceañera) celebration for María Fernanda. No framework, no build step, no package.json — plain HTML/CSS/JS served as-is, deployed to Vercel.
 
 ## Commands
 
-No build, lint, or test tooling — this is plain HTML/CSS/JS. To preview locally:
+Run locally from the project root:
 
-```sh
-npx serve .
+```bash
+python -m http.server 4173
 ```
 
-or just open `index.html` directly in a browser.
+Then open `http://localhost:4173`. There is no build, lint, or test tooling in this repo.
 
-Deployed on Vercel (config in `vercel.json` — security headers only, no build command needed since this is static). `netlify.toml` is left over from a previous Netlify deploy and is unused/ignored by Vercel; safe to delete once Vercel is confirmed working.
+Deploy with `vercel --prod` from this folder (Framework Preset: Other, empty build command/output directory).
 
-## Structure
+## Architecture
 
-- `index.html` — all markup: intro screen, then `<main id="invitation" hidden>` with sections in scroll order (hero → `#ubicacion` → dress code → envelopes → RSVP → footer).
-- `css/style.css` — single stylesheet. Color palette and fonts are CSS custom properties at the top of `:root` (`--wine`, `--gold`, `--lilac-dark`, `--pink`, etc.) — change colors there, not by hunting for hardcoded hex values elsewhere.
-- `js/main.js` — vanilla JS IIFE, no modules/bundler. Handles: intro→invitation transition, background music start/mute, sparkle particle scattering, countdown to `EVENT_DATE`, envelope-rain animation, scroll-reveal via `IntersectionObserver`.
-- `assets/` — all images (`.webp`) and audio (`musica-fondo.mp3`). Deployed as-is.
+- `index.html` — single page, semantic sections in order: intro/cover overlay (`#intro`) → main content (`#contenido`, hidden until intro is dismissed) with hero, date/countdown, location/map, details, RSVP, footer. Data-bound elements use `data-*` attributes (e.g. `data-event-name`, `data-event-date-label`, `data-countdown`, `data-guest-name`) that `src/main.js` populates at runtime — the HTML itself has no hardcoded event data beyond fallback text.
+- `src/config.js` — the single source of truth for editable content: celebrant name, event date/time, RSVP deadline, venue + Google Maps URL, WhatsApp number/message template, and personalization query-param names. Exports one frozen `invitationConfig` object. **This is the file to edit when customizing the invitation for a new event/recipient** — do not hardcode event data into HTML or JS elsewhere.
+- `src/main.js` — vanilla JS, no dependencies, ES module imported directly via `<script type="module">`. Organized as small init functions called at the bottom of the file (`bindInvitationData`, `applyPersonalization`, `buildRsvpLink`, `setupIntro`, `setupCountdown`, `setupSmoothAnchors`). Key behaviors:
+  - **Personalization via URL query params**: `?invitado=<name>&cupos=<n>` (param names configurable in `config.js`) customize the greeted guest name and seat count shown on the page and folded into the generated WhatsApp message. `cupos` is validated as an integer 1–20.
+  - **Intro/reveal flow**: the page loads with `body.intro-visible` and `#contenido` hidden; clicking `#open-invitation` reveals the main content, starts background music (best-effort — autoplay failures are caught silently), and after a timeout triggers `initRevealAnimations()` which wires an `IntersectionObserver` to fade in `.reveal` elements as they scroll into view (skipped/instant if `prefers-reduced-motion` is set).
+  - **RSVP link**: built dynamically as a `wa.me` deep link with a URL-encoded message assembled from the config template plus guest name/seat count.
+  - **Countdown**: computed client-side from `config.eventDate`, updates every second, swaps to a "today" message when it elapses.
+- `src/styles.css` — single stylesheet (~1500 lines), organized by section with comment headers (`/* Intro */`, `/* Hero */`, `/* Event */`, `/* Location */`, `/* Details */`, `/* RSVP */`, `/* Motion */`) followed by responsive breakpoints at the bottom (`/* Tablet */`, `/* Mobile */`). No CSS framework or preprocessor.
+- `assets/` — pre-optimized `.webp` images and one `.mp3` (background music). Reference new assets the same way (webp, relative path from repo root).
+- `vercel.json` — sets immutable long-lived caching for `/assets/*` and baseline security headers (`X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`) for all routes. `cleanUrls: true`, no trailing slash.
 
-## Key architecture notes
+## Customizing for a new event/recipient
 
-- **Everything is hand-wired by element ID/class**, not componentized — `main.js` grabs elements by `getElementById`/`querySelector` and wires listeners directly. When adding a new interactive section, follow this same pattern rather than introducing a framework or module system.
-- **Intro screen and invitation are mutually exclusive**: `#intro-screen` is visible first with `body.style.overflow = 'hidden'`; `#invitation` starts `hidden`. `enterInvitation()` in `main.js` flips both, restores scroll, and kicks off `startEnvelopeRain()` + `initScrollReveal()`. Both of those are idempotent (guarded by `rainStarted`/`revealStarted`) since they must only run once.
-- **Background music autoplay**: browsers block audio-with-sound before a user gesture, so `bgMusic.play()` is only called inside the same click handler as the intro-continue button. The mute toggle button (`#music-toggle`) stays `hidden` until that point.
-- **Scroll-reveal animation**: any element with class `.reveal` fades in via `IntersectionObserver` (threshold 0.2) the first time it enters the viewport, adding `.is-visible`. New sections/content that should animate in on scroll must get the `.reveal` class; the corresponding visible state is styled in `style.css`.
-- **Butterfly recoloring trick**: only two butterfly source images exist (`butterfly-a.webp`, `butterfly-b.webp`); different color variants are produced purely via CSS `filter: hue-rotate(...)` through the `.hue-pink` / `.hue-lilac` / `.hue-gold` classes in `style.css`. Prefer adding a new `.hue-*` class over adding new image assets.
-- **Responsive approach**: mobile is edge-to-edge (primary case — links opened from WhatsApp); tablet/desktop keep each section at full viewport width (including backgrounds/corner decorations), only the text block is constrained to a readable max-width. Don't shrink sections to a narrow mobile-width card centered with empty space on larger screens.
-- **RSVP section is intentionally the odd one out**: it uses a red/wine contrast background instead of the pastel tones used elsewhere, per client request — this is a deliberate design choice, not an inconsistency to "fix".
+Edit only `src/config.js`. Do not put event-specific data (names, dates, phone numbers, venue) directly into `index.html` or `main.js` — the binding functions in `main.js` read from `config.js` exclusively, and hardcoding elsewhere will drift out of sync with the personalization/RSVP logic.
 
-## Known pending items (see README.md for full detail)
-
-- The RSVP WhatsApp button (`#rsvp-button` in `index.html`) currently uses a placeholder number (`573000000000`) — needs the real number before launch.
-- `EVENT_DATE` in `js/main.js` and the map/location details in the `#ubicacion` section are the source of truth for event date/venue — update both together if either changes.
+The WhatsApp `phone` in `config.js` is a placeholder (`573000000000`, country code + number, no `+`/spaces/dashes) — check whether it has been set to a real number before treating the RSVP flow as production-ready.
