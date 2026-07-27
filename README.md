@@ -81,3 +81,13 @@ vercel.json      Caché y cabeceras de seguridad
 - Confirmar que el número de WhatsApp sea el definitivo.
 - Confirmar mapa, hora, fecha y texto de vestimenta.
 - Verificar la canción y su volumen.
+
+## Ajustes visuales V3
+
+- Portada con composición ampliada y centrado óptico de los PNG transparentes.
+- Botón de apertura premium con borde champagne, brillo animado e icono independiente.
+- Se eliminó el texto secundario sobre activar el sonido.
+- Fecha rediseñada para mostrar siempre día, mes, año y hora de forma explícita.
+- Navegación flotante responsive con accesos a información, ubicación y confirmación.
+- En celular el dock permanece en la parte inferior y respeta el área segura del dispositivo.
+- El control de música se mueve a la parte superior en móvil para no chocar con el dock.

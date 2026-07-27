@@ -86,14 +86,14 @@ function setupIntro() {
 
 function setupRsvp() {
   const dialog = $('#rsvp-dialog');
-  const openButton = $('#open-rsvp');
+  const openButtons = $$('#open-rsvp, #quick-rsvp');
   const closeButton = $('#close-rsvp');
   const form = $('#rsvp-form');
   const nameInput = $('#rsvp-name');
   const guestCountField = $('#guest-count-field');
   const guestSelect = $('#rsvp-guests');
 
-  if (!dialog || !openButton || !form) return;
+  if (!dialog || openButtons.length === 0 || !form) return;
 
   const closeDialog = () => {
     if (dialog.open) dialog.close();
@@ -113,10 +113,12 @@ function setupRsvp() {
     guestSelect.disabled = !attending;
   };
 
-  openButton.addEventListener('click', () => {
+  const openDialog = () => {
     dialog.showModal();
     window.setTimeout(() => nameInput.focus(), 80);
-  });
+  };
+
+  openButtons.forEach((button) => button.addEventListener('click', openDialog));
 
   closeButton.addEventListener('click', closeDialog);
 
@@ -215,6 +217,36 @@ function initRevealAnimations() {
   });
 }
 
+function setupQuickNav() {
+  const items = $$('[data-nav-section]');
+  const confirmItem = $('#quick-rsvp');
+  const sections = ['detalles', 'ubicacion', 'confirmacion']
+    .map((id) => document.getElementById(id))
+    .filter(Boolean);
+
+  if (items.length === 0 || sections.length === 0 || !('IntersectionObserver' in window)) return;
+
+  const setActive = (id) => {
+    items.forEach((item) => item.classList.toggle('is-active', item.dataset.navSection === id));
+    if (confirmItem) confirmItem.classList.toggle('is-active', id === 'confirmacion');
+  };
+
+  const visible = new Map();
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        visible.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
+      });
+
+      const active = [...visible.entries()].sort((a, b) => b[1] - a[1])[0];
+      if (active && active[1] > 0) setActive(active[0]);
+    },
+    { rootMargin: '-28% 0px -45% 0px', threshold: [0, 0.15, 0.35, 0.6] },
+  );
+
+  sections.forEach((section) => observer.observe(section));
+}
+
 function setupSmoothAnchors() {
   $$('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', (event) => {
@@ -231,3 +263,4 @@ setupIntro();
 setupRsvp();
 setupCountdown();
 setupSmoothAnchors();
+setupQuickNav();

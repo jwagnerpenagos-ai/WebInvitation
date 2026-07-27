@@ -42,12 +42,14 @@
         </div>
 
         <button class="intro__open" id="open-invitation" type="button">
-          <span>Abrir invitación</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M6 9l6 6 6-6" />
-          </svg>
+          <span class="intro__open-shine" aria-hidden="true"></span>
+          <span class="intro__open-label">Abrir invitación</span>
+          <span class="intro__open-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M5 12h13M14 7l5 5-5 5" />
+            </svg>
+          </span>
         </button>
-        <p class="intro__sound-note">Activa el sonido y descubre la invitación.</p>
       </div>
     </section>
 
@@ -85,6 +87,30 @@
         </div>
       </nav>
 
+      <nav class="quick-nav" id="quick-nav" aria-label="Accesos rápidos">
+        <a class="quick-nav__item" href="#detalles" data-nav-section="detalles" aria-label="Ir a información y detalles">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 10v6M12 7.2h.01" />
+          </svg>
+          <span>Info</span>
+        </a>
+        <a class="quick-nav__item" href="#ubicacion" data-nav-section="ubicacion" aria-label="Ir a la ubicación">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
+            <circle cx="12" cy="10" r="2.5" />
+          </svg>
+          <span>Ubicación</span>
+        </a>
+        <button class="quick-nav__item quick-nav__item--primary" id="quick-rsvp" type="button" aria-label="Confirmar asistencia">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z" />
+            <path d="m8.5 11.5 2.2 2.2 4.8-5" />
+          </svg>
+          <span>Confirmar</span>
+        </button>
+      </nav>
+
       <section class="hero" id="inicio">
         <img class="hero__butterflies" src="./assets/conjunto-mariposas.webp" alt="" aria-hidden="true" />
         <div class="hero__glow" aria-hidden="true"></div>
@@ -116,13 +142,24 @@
             </p>
           </div>
 
-          <article class="date-card reveal">
-            <div class="date-card__month">Octubre</div>
-            <div class="date-card__main">
-              <span class="date-card__weekday">Sábado</span>
-              <strong>03</strong>
-              <span class="date-card__year">2026</span>
+          <article class="date-card reveal" aria-label="Sábado 3 de octubre de 2026 a las 6 de la tarde">
+            <div class="date-card__header">
+              <span>Fecha del evento</span>
+              <span>2026</span>
             </div>
+
+            <div class="date-card__calendar">
+              <span class="date-card__weekday">Sábado</span>
+              <div class="date-card__date-row">
+                <strong class="date-card__day">03</strong>
+                <div class="date-card__month-year">
+                  <span class="date-card__month">Octubre</span>
+                  <span class="date-card__year">2026</span>
+                </div>
+              </div>
+              <p class="date-card__full-date">Sábado, 3 de octubre de 2026</p>
+            </div>
+
             <div class="date-card__time">
               <span>Recepción</span>
               <strong data-event-time>6:00 p. m.</strong>
