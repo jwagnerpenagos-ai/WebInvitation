@@ -1,0 +1,921 @@
+/* =========================================================
+   Invitación XV Años · María Fernanda
+   Paleta: lila / rosa / vinotinto / dorado · Romántico floral
+   ========================================================= */
+
+:root {
+  --lilac-dark: #5B2E86;
+  --lilac: #9B59B5;
+  --lilac-light: #E8D5F2;
+  --pink: #F4B6C2;
+  --pink-light: #FCE4EC;
+  --wine: #7A1F3D;
+  --wine-light: #A83A5C;
+  --gold: #C9973B;
+  --gold-light: #E8C877;
+  --cream: #FFF8FB;
+  --text-dark: #3D2647;
+  --text-soft: #6E5A75;
+
+  --font-script: 'Great Vibes', cursive;
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-sans: 'Montserrat', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-serif);
+  background: var(--cream);
+  color: var(--text-dark);
+  overflow-x: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+img {
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* ============ FILTROS DE COLOR PARA MARIPOSAS ============ */
+/* Las mariposas base (butterfly-a/b.webp, recortadas del set de
+   mariposas del Canva) ya son rosa/vinotinto; se ajusta el matiz
+   apenas para lograr una variante lila y una dorada sutiles sin
+   necesitar más archivos. */
+.hue-pink   { filter: saturate(1.05) drop-shadow(0 6px 10px rgba(91, 46, 134, 0.2)); }
+.hue-lilac  { filter: hue-rotate(-55deg) saturate(1.25) brightness(0.98) drop-shadow(0 6px 10px rgba(91, 46, 134, 0.25)); }
+.hue-gold   { filter: hue-rotate(45deg)  saturate(1.05) brightness(1.15) drop-shadow(0 6px 10px rgba(91, 46, 134, 0.2)); }
+
+.deco-butterfly {
+  position: absolute;
+  width: 60px;
+  pointer-events: none;
+}
+
+/* ============ DESTELLOS MÁGICOS ============ */
+.sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.sparkle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold-light);
+  box-shadow: 0 0 6px 2px rgba(232, 200, 119, 0.9);
+  animation-name: twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ============ PORTADA (fondo + marco + letrero animados juntos) ============ */
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: url('../assets/portada-bg.webp') center / cover no-repeat,
+    var(--pink-light);
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.intro-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.intro-screen.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Acentos sueltos alrededor del marco — piezas pequeñas e individuales
+   (no un panorama gigante), así que ninguna necesita `cover`/recorte:
+   se posicionan y escalan solas, sin el riesgo de la nota de abajo. */
+.intro-leaf {
+  position: absolute;
+  z-index: 0;
+  width: clamp(130px, 32vw, 260px);
+  opacity: 0;
+  pointer-events: none;
+  animation: introFadeIn 1s ease forwards 0.15s;
+}
+
+.intro-leaf-tl { top: 4%; left: -3%; transform: rotate(-6deg); }
+.intro-leaf-br { bottom: 5%; right: -3%; transform: rotate(178deg); }
+
+/* Ramo suelto — llena el espacio vacío de abajo (queja del cliente: "se
+   ve blanco abajo del todo"), esquina opuesta al leaf-br para no
+   amontonarse contra el marco. Recortado del mismo sheet que los demás
+   acentos sueltos, ver Media assets en CLAUDE.md. */
+.intro-rose {
+  position: absolute;
+  z-index: 0;
+  width: clamp(150px, 34vw, 280px);
+  bottom: -1%;
+  left: -4%;
+  transform: rotate(-4deg);
+  opacity: 0;
+  pointer-events: none;
+  animation: introFadeIn 1s ease forwards 0.2s;
+}
+
+@keyframes introFadeIn {
+  from { opacity: 0; }
+  to { opacity: 0.9; }
+}
+
+/* Nota: `animation` (shorthand) no se combina entre reglas distintas
+   sobre el mismo elemento — la última gana entera, no se fusionan (igual
+   que el gotcha de `filter`/`transform` documentado más abajo). Por eso
+   cada `.bfly-N` mete el fade-in Y el vuelo flotante en una sola
+   declaración, en vez de depender de `.float-a/b/c` en el HTML. */
+.intro-loose-bfly {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.bfly-1 { top: 9%; left: 9%; width: 70px; animation: introBFadeIn 0.8s ease forwards 0.9s, flyPath1 9s ease-in-out infinite; }
+.bfly-2 { top: 19%; right: 12%; width: 54px; animation: introBFadeIn 0.8s ease forwards 1.05s, flyPath2 11s ease-in-out infinite; }
+.bfly-3 { bottom: 16%; left: 7%; width: 62px; animation: introBFadeIn 0.8s ease forwards 1s, flyPath3 8s ease-in-out infinite; }
+.bfly-4 { bottom: 8%; right: 9%; width: 64px; animation: introBFadeIn 0.8s ease forwards 1.15s, flyPath1 10s ease-in-out infinite; }
+
+@keyframes introBFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-leaf, .intro-rose, .intro-loose-bfly {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* IMPORTANTE — leer antes de tocar esto: se probó `object-fit: cover` /
+   `background: cover` para el marco (mostrar solo una franja vertical
+   recortada del PNG panorámico 2:1, para que "llenara" la pantalla en
+   celular) y en un celular real se veía descentrado/cortado de forma
+   visible, aunque en emulador (Chrome DevTools, Playwright) se veía bien
+   centrado — la diferencia real-vs-emulado nunca quedó 100% explicada
+   (¿toolbar dinámico? ¿zoom de página? ¿redondeo de subpíxeles?), pero
+   con un recorte tan agresivo (en un celular angosto solo se ve ~20-25%
+   del ancho de la imagen) cualquier error mínimo de cálculo del viewport
+   se nota muchísimo. La solución robusta: **no recortar el marco en
+   absoluto.** `.intro-emblem` lo muestra completo (`width:100%` dentro
+   de un contenedor con el ancho real de la imagen), así que sin importar
+   el navegador/dispositivo, las 2 esquinas y el óvalo siempre se ven
+   enteros — nunca puede quedar cortado. El costo es que en celular queda
+   como una franja horizontal centrada verticalmente (con el fondo
+   `portada-bg.webp` de relleno arriba/abajo) en vez de pantalla completa
+   — but `portada-bg.webp` sí puede seguir usando `cover` sin problema,
+   porque es una textura suave sin líneas duras que deban verse completas
+   (un recorte imperfecto ahí no se nota). No volver a poner
+   `object-fit:cover`/`background:cover` en `.intro-marco` sin probar en
+   un celular real primero. */
+.intro-emblem {
+  position: relative;
+  z-index: 1;
+  width: min(99vw, 1050px);
+}
+
+.intro-marco {
+  display: block;
+  width: 100%;
+  opacity: 0;
+  transform: scale(0.96);
+  animation: introEmblemIn 0.9s cubic-bezier(0.2, 0.7, 0.3, 1) forwards 0.2s;
+}
+
+.intro-letrero {
+  position: absolute;
+  top: 51%;
+  left: 50%;
+  width: 38%;
+  z-index: 2;
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0;
+  animation: introLetreroIn 0.9s cubic-bezier(0.2, 0.7, 0.3, 1) forwards 0.5s;
+}
+
+@keyframes introEmblemIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes introLetreroIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-marco, .intro-letrero {
+    animation: none;
+    opacity: 1;
+  }
+  .intro-marco { transform: scale(1); }
+  .intro-letrero { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Subtítulo "máquina de escribir" — pedido explícitamente por la
+   cliente (antes estaba deferido, "la letra la dejaremos para
+   después"); el texto se revela carácter por carácter desde js/main.js
+   (empieza en el mismo timing que el botón de continuar, ~1.9s, para
+   que se sienta parte de la misma secuencia de entrada). El markup ya
+   trae el texto completo en `data-text` — si JS no corre, simplemente
+   no aparece (igual que el botón de continuar, que también depende
+   de JS para funcionar). */
+.intro-subtitle {
+  margin-top: clamp(0.9rem, 3vh, 1.6rem);
+  padding: 0 1.5rem;
+  max-width: 480px;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(0.95rem, 3.6vw, 1.2rem);
+  line-height: 1.5;
+  color: var(--wine);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.intro-subtitle.is-visible { opacity: 1; }
+
+.intro-subtitle.is-typing::after {
+  content: '|';
+  margin-left: 2px;
+  animation: cursorBlink 0.8s steps(1) infinite;
+}
+
+@keyframes cursorBlink {
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-subtitle { transition: none; }
+  .intro-subtitle.is-typing::after { animation: none; }
+}
+
+.intro-continue {
+  position: absolute;
+  left: 50%;
+  bottom: 7%;
+  margin-left: -23px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: background 0.25s ease, border-color 0.25s ease;
+  animation:
+    introButtonIn 0.6s ease forwards 1.5s,
+    bounce 2.2s ease-in-out infinite 2.1s;
+}
+
+.intro-continue:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.75);
+}
+
+.intro-continue svg {
+  display: block;
+}
+
+@keyframes introButtonIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-continue {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* ============ BOTÓN DE MÚSICA ============ */
+.music-toggle {
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: var(--wine);
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(201, 151, 59, 0.4);
+  box-shadow: 0 8px 20px rgba(91, 46, 134, 0.2);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.music-toggle:hover {
+  transform: translateY(-2px);
+}
+
+.music-toggle .icon-muted { display: none; }
+.music-toggle[aria-pressed="true"] .icon-sound { display: none; }
+.music-toggle[aria-pressed="true"] .icon-muted { display: block; }
+
+/* ============ INVITACIÓN (flujo continuo) ============ */
+.invitation {
+  position: relative;
+}
+
+.section {
+  position: relative;
+  padding: 4.5rem 1.5rem;
+  overflow: hidden;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 244, 214, 0.6) 0%, transparent 55%),
+    linear-gradient(180deg, #f9e9d9 0%, var(--pink-light) 45%, var(--lilac-light) 100%);
+}
+
+.section:nth-of-type(even) {
+  background:
+    radial-gradient(circle at 50% 100%, rgba(232, 200, 119, 0.2) 0%, transparent 55%),
+    linear-gradient(180deg, var(--lilac-light) 0%, var(--pink-light) 55%, #fdf1e7 100%);
+}
+
+.section-content {
+  position: relative;
+  z-index: 3;
+  max-width: 620px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+/* ---- Animación de aparición al hacer scroll ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- HERO ---- */
+.hero {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.card-b1 { top: 6%; left: 8%; width: 56px; z-index: 2; }
+.card-b2 { top: 12%; right: 10%; width: 48px; z-index: 2; }
+.card-b3 { top: 15%; right: 2%; width: 34px; z-index: 2; }
+.card-b4 { bottom: 14%; left: 6%; width: 40px; z-index: 2; }
+
+/* ---- Decoración reutilizable de esquina/fondo por sección ---- */
+.section-bg-butterflies {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(130vw, 1000px);
+  transform: translate(-50%, -50%);
+  opacity: 0.35;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.section-corner {
+  position: absolute;
+  width: clamp(130px, 20vw, 300px);
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 18px rgba(91, 46, 134, 0.15));
+}
+
+.section-corner.corner-tr { top: -3%; right: -3%; }
+.section-corner.corner-bl { bottom: -3%; left: -3%; }
+
+/* Esquinas pequeñas opuestas — mismos dos archivos que .section-corner
+   (flores-esquina-1/2.webp), volteados con scale(-1,1) y reducidos, para
+   que las 4 esquinas de una sección tengan flores sin nuevos assets. */
+.section-corner-sm {
+  position: absolute;
+  width: clamp(80px, 12vw, 160px);
+  z-index: 1;
+  opacity: 0.85;
+  pointer-events: none;
+  filter: drop-shadow(0 6px 14px rgba(91, 46, 134, 0.12));
+}
+
+.section-corner-sm.corner-tl { top: -2%; left: -2%; transform: scale(-1, 1); }
+.section-corner-sm.corner-br { bottom: -2%; right: -2%; transform: scale(-1, 1); }
+
+.footer-corner {
+  top: -8%;
+  right: -4%;
+  width: clamp(90px, 16vw, 190px);
+  opacity: 0.9;
+}
+
+.float-a { animation: flyPath1 9s ease-in-out infinite; }
+.float-b { animation: flyPath2 11s ease-in-out infinite; }
+.float-c { animation: flyPath3 8s ease-in-out infinite; }
+
+@keyframes flyPath1 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(14px, -18px) rotate(10deg); }
+  50% { transform: translate(-6px, -28px) rotate(-6deg); }
+  75% { transform: translate(-16px, -10px) rotate(4deg); }
+}
+
+@keyframes flyPath2 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  30% { transform: translate(-18px, -14px) rotate(-10deg); }
+  60% { transform: translate(-4px, -26px) rotate(8deg); }
+}
+
+@keyframes flyPath3 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  50% { transform: translate(10px, -20px) rotate(12deg) scale(1.08); }
+}
+
+.card-eyebrow {
+  font-family: var(--font-sans);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--lilac-dark);
+}
+
+.card-name {
+  font-family: var(--font-script);
+  font-size: clamp(2.6rem, 11vw, 4rem);
+  color: var(--lilac-dark);
+  line-height: 1.05;
+  text-shadow: 0 0 24px rgba(232, 200, 119, 0.5), 0 2px 14px rgba(255,255,255,0.65);
+}
+
+.card-quote {
+  font-style: italic;
+  color: var(--text-soft);
+  font-size: 1.05rem;
+  max-width: 360px;
+  margin-bottom: 0.4rem;
+}
+
+.card-datetime {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  color: var(--wine);
+  margin: 0.6rem 0;
+}
+
+.dt-time {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--lilac-dark);
+}
+
+.dt-heart {
+  color: var(--gold);
+  font-size: 0.9rem;
+}
+
+.dt-day {
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--wine);
+  text-shadow: 0 0 16px rgba(201, 151, 59, 0.35);
+}
+
+.dt-month-year {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--lilac-dark);
+}
+
+.card-countdown {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(201, 151, 59, 0.35);
+  padding: 0.4rem 1.1rem;
+  border-radius: 999px;
+  margin: 0.4rem 0 0.8rem;
+}
+
+.card-countdown strong {
+  color: var(--wine);
+  font-size: 1.1rem;
+}
+
+.scroll-down {
+  margin-top: 1.2rem;
+  font-size: 1.6rem;
+  color: var(--gold);
+  text-decoration: none;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+/* ---- TÍTULOS DE SECCIÓN ---- */
+.section-title {
+  font-family: var(--font-script);
+  font-size: 2.2rem;
+  color: var(--lilac-dark);
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.venue-name {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--wine);
+  font-size: 1.1rem;
+  margin-top: -0.4rem;
+}
+
+.venue-address {
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+
+/* ---- MAPA ---- */
+.map-wrapper {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(91,46,134,0.2);
+}
+
+.map-wrapper iframe {
+  width: 100%;
+  height: 300px;
+  border: 0;
+  display: block;
+}
+
+/* ---- BOTONES ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.9rem 2rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btn-outline {
+  border: 2px solid var(--gold);
+  color: var(--wine);
+  background: rgba(255,255,255,0.5);
+}
+
+.btn-outline:hover {
+  background: var(--gold-light);
+}
+
+.btn-whatsapp {
+  background: linear-gradient(135deg, var(--wine) 0%, var(--gold) 100%);
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(122,31,61,0.35);
+}
+
+.rsvp-hint {
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  opacity: 0.85;
+  max-width: 320px;
+}
+
+/* ---- VESTIMENTA ---- */
+.dresscode-text {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  color: var(--text-soft);
+}
+
+.dresscode-palette {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.swatch {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 10px rgba(91,46,134,0.25);
+}
+
+.dresscode-note {
+  color: var(--text-soft);
+  font-size: 1rem;
+  max-width: 380px;
+}
+
+/* ---- LLUVIA DE SOBRES ---- */
+.envelopes-section {
+  position: relative;
+}
+
+.envelope-rain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.envelope-rain span {
+  position: absolute;
+  top: -10%;
+  font-size: 1.6rem;
+  animation-name: envfall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  opacity: 0.9;
+}
+
+@keyframes envfall {
+  0% { transform: translateY(-10vh) rotate(-5deg); }
+  100% { transform: translateY(120vh) rotate(8deg); }
+}
+
+.envelopes-text {
+  max-width: 400px;
+  color: var(--text-soft);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* ---- RSVP ---- */
+/* Fondo de contraste rojo/coral (tono de referencia de la cliente,
+   ejemploColorFondo.png) en vez del degradado pastel del resto de
+   secciones — mismo peso visual que el cierre "todo pastel" pedía romper. */
+.section.rsvp-section {
+  background:
+    radial-gradient(circle at 50% 110%, rgba(255, 214, 153, 0.25) 0%, transparent 60%),
+    linear-gradient(160deg, #D9536A 0%, var(--wine) 55%, var(--lilac-dark) 100%);
+}
+
+.rsvp-luces {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(140vw, 900px);
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.rsvp-decoracion {
+  position: absolute;
+  top: 6%;
+  right: 4%;
+  width: clamp(70px, 12vw, 130px);
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 16px rgba(61, 20, 33, 0.35));
+}
+
+.rsvp-section .section-title {
+  color: var(--gold-light);
+}
+
+.rsvp-section .section-title::after {
+  background: linear-gradient(90deg, transparent, #fff, transparent);
+}
+
+.rsvp-text {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.rsvp-hint {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ---- FOOTER ---- */
+.footer {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 2.5rem 1.5rem 2.8rem;
+  background: linear-gradient(135deg, var(--wine) 0%, var(--lilac-dark) 100%);
+}
+
+.footer-name {
+  font-family: var(--font-script);
+  font-size: 2rem;
+  color: var(--gold-light);
+}
+
+.footer-note {
+  color: rgba(255,255,255,0.9);
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 380px) {
+  .card-name { font-size: 2.3rem; }
+  .dt-day { font-size: 2.2rem; }
+}
+
+/* A partir de tablet/desktop cada sección sigue ocupando el ancho real
+   del viewport (fondo y esquinas florales incluidos) en vez de encogerse
+   a una tarjeta de ancho de teléfono flotando sobre un fondo suelto —
+   solo la columna de texto (.section-content/.hero-content, más arriba)
+   tiene un max-width fijo para que la lectura no se estire feo. */
+@media (min-width: 700px) {
+  .section { padding: 6rem 3rem; }
+  .footer { padding: 3rem 2rem 3.5rem; }
+}
+
+/* =========================================================
+   PORTADA FINAL: desktop original + fondo vertical móvil.
+   El marco es un PNG/WebP con transparencia real superpuesto.
+   ========================================================= */
+#intro-screen > .section-corner,
+#intro-screen > .section-corner-sm,
+#intro-screen > .intro-leaf,
+#intro-screen > .intro-rose,
+#intro-screen > .intro-loose-bfly {
+  display: none !important;
+}
+
+.intro-screen {
+  background-image: url('../assets/portada-bg.webp');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 0;
+}
+
+.intro-content {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.intro-emblem {
+  position: relative;
+  width: min(92vw, 1420px);
+  aspect-ratio: 2 / 1;
+  z-index: 2;
+  flex: none;
+}
+
+.intro-marco {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  max-width: none;
+}
+
+.intro-letrero {
+  top: 50.5%;
+  left: 50%;
+  width: 27%;
+}
+
+.intro-subtitle {
+  display: none !important;
+}
+
+.intro-continue {
+  bottom: max(4.5%, env(safe-area-inset-bottom));
+}
+
+@media (max-width: 700px), (orientation: portrait) {
+  .intro-screen {
+    background-image: url('../assets/portada-mobile.webp');
+    background-position: center;
+    background-size: cover;
+  }
+
+  .intro-emblem {
+    width: auto;
+    height: min(58dvh, 620px);
+    aspect-ratio: 2 / 1;
+    max-width: none;
+  }
+
+  .intro-marco {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .intro-letrero {
+    top: 51%;
+    left: 50%;
+    width: 29%;
+  }
+
+  .intro-continue {
+    bottom: calc(max(18px, env(safe-area-inset-bottom)) + 10px);
+  }
+}
+
+@media (max-width: 390px) and (max-height: 700px) {
+  .intro-emblem { height: 53dvh; }
+}

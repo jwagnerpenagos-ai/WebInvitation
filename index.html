@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Mis XV Años · María Fernanda</title>
+<meta name="description" content="Invitación a los XV años de María Fernanda - 3 de octubre de 2026">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦋</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===================== PORTADA (fondo + marco + letrero animados juntos) ===================== -->
+<div id="intro-screen" class="intro-screen">
+  <img class="section-corner corner-tr" src="assets/flores-esquina-1.webp" alt="" aria-hidden="true">
+  <img class="section-corner corner-bl" src="assets/flores-esquina-2.webp" alt="" aria-hidden="true">
+  <img class="section-corner-sm corner-tl" src="assets/flores-esquina-2.webp" alt="" aria-hidden="true">
+  <img class="section-corner-sm corner-br" src="assets/flores-esquina-1.webp" alt="" aria-hidden="true">
+  <div class="sparkles" id="sparkles-intro" aria-hidden="true"></div>
+
+  <img class="intro-leaf intro-leaf-tl" src="assets/intro-leaf-1.webp" alt="" aria-hidden="true">
+  <img class="intro-leaf intro-leaf-br" src="assets/intro-leaf-2.webp" alt="" aria-hidden="true">
+  <img class="intro-rose" src="assets/intro-rosebouquet.webp" alt="" aria-hidden="true">
+
+  <img class="intro-loose-bfly bfly-1" src="assets/intro-bfly-1.webp" alt="" aria-hidden="true">
+  <img class="intro-loose-bfly bfly-2" src="assets/intro-bfly-2.webp" alt="" aria-hidden="true">
+  <img class="intro-loose-bfly bfly-3" src="assets/intro-bfly-3.webp" alt="" aria-hidden="true">
+  <img class="intro-loose-bfly bfly-4" src="assets/intro-bfly-4.webp" alt="" aria-hidden="true">
+
+  <div class="intro-content">
+    <div class="intro-emblem" aria-hidden="true">
+      <img class="intro-marco" src="assets/marco-letrero.png" alt="">
+      <img class="intro-letrero" src="assets/letrero-15.webp" alt="">
+    </div>
+  </div>
+
+  <button id="intro-continue" class="intro-continue" type="button" aria-label="Continuar a la invitación">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+      <path d="M4 9l8 8 8-8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+</div>
+
+<audio id="bg-music" loop preload="auto">
+  <source src="assets/musica-fondo.mp3" type="audio/mpeg">
+</audio>
+<button id="music-toggle" class="music-toggle" type="button" aria-label="Silenciar música" aria-pressed="false" hidden>
+  <svg class="icon-sound" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+    <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/>
+    <path d="M16.5 8.5a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M19 6a9 9 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  </svg>
+  <svg class="icon-muted" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+    <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/>
+    <path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  </svg>
+</button>
+
+<!-- ===================== INVITACIÓN ===================== -->
+<main id="invitation" class="invitation" hidden>
+
+  <!-- HERO -->
+  <section class="section hero">
+    <img class="section-bg-butterflies" src="assets/conjunto-mariposas.webp" alt="" aria-hidden="true">
+    <img class="section-corner corner-tr" src="assets/flores-esquina-1.webp" alt="" aria-hidden="true">
+    <img class="section-corner corner-bl" src="assets/flores-esquina-2.webp" alt="" aria-hidden="true">
+    <img class="section-corner-sm corner-tl" src="assets/flores-esquina-2.webp" alt="" aria-hidden="true">
+    <img class="section-corner-sm corner-br" src="assets/flores-esquina-1.webp" alt="" aria-hidden="true">
+    <div class="sparkles" id="sparkles-hero" aria-hidden="true"></div>
+    <img class="deco-butterfly card-b1 hue-pink float-a" src="assets/butterfly-a.webp" alt="" aria-hidden="true">
+    <img class="deco-butterfly card-b2 hue-lilac float-b" src="assets/butterfly-b.webp" alt="" aria-hidden="true">
+    <img class="deco-butterfly card-b3 hue-gold float-c" src="assets/butterfly-a.webp" alt="" aria-hidden="true">
+    <img class="deco-butterfly card-b4 hue-lilac float-b" src="assets/butterfly-b.webp" alt="" aria-hidden="true">
+
+    <div class="hero-content">
+      <p class="card-eyebrow reveal">Mis XV Años</p>
+      <h1 class="card-name reveal">María Fernanda</h1>
+      <p class="card-quote reveal">
+        Ven a celebrar conmigo este momento único y especial.
+      </p>
+
+      <div class="card-datetime reveal">
+        <span class="dt-time">6:00 p.m.</span>
+        <span class="dt-heart">♥</span>
+        <span class="dt-day">3</span>
+        <span class="dt-heart">♥</span>
+        <span class="dt-month-year">
+          <span class="dt-month">Octubre</span>
+          <span class="dt-year">2026</span>
+        </span>
+      </div>
+
+      <p class="card-countdown reveal" id="card-countdown">Faltan <strong id="cd-days">--</strong> días</p>
+      <a href="#ubicacion" class="scroll-down reveal" aria-label="Ver más">↓</a>
+    </div>
+  </section>
+
+  <!-- UBICACIÓN -->
+  <section class="section" id="ubicacion">
+    <div class="section-content">
+      <h2 class="section-title reveal">Cómo llegar</h2>
+      <p class="venue-name reveal">Centro Recreacional Comfaboy</p>
+      <p class="venue-address reveal">Duitama, Boyacá</p>
+      <div class="map-wrapper reveal">
+        <iframe
+          title="Ubicación del evento - Centro Recreacional Comfaboy, Duitama"
+          src="https://maps.google.com/maps?q=Comfaboy+Centro+Recreacional+Duitama+Boyaca+Colombia&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <a class="btn btn-outline reveal"
+         href="https://www.google.com/maps/search/?api=1&query=Comfaboy+Centro+Recreacional+Duitama+Boyaca+Colombia"
+         target="_blank" rel="noopener">
+        Ver en Google Maps
+      </a>
+    </div>
+  </section>
+
+  <!-- VESTIMENTA -->
+  <section class="section">
+    <div class="section-content">
+      <h2 class="section-title reveal">Código de vestimenta</h2>
+      <p class="dresscode-text reveal">Etiqueta formal</p>
+      <div class="dresscode-palette reveal" aria-hidden="true">
+        <span class="swatch" style="background:#7A1F3D;"></span>
+        <span class="swatch" style="background:#C9973B;"></span>
+        <span class="swatch" style="background:#C9A0DC;"></span>
+        <span class="swatch" style="background:#F4B6C2;"></span>
+        <span class="swatch" style="background:#E8D5F2;"></span>
+      </div>
+      <p class="dresscode-note reveal">
+        Por favor, evitar los tonos blanco, rosa y lila, ya que son parte
+        de la decoración y del vestuario de la quinceañera. ✨
+      </p>
+    </div>
+  </section>
+
+  <!-- LLUVIA DE SOBRES -->
+  <section class="section envelopes-section">
+    <div class="envelope-rain" id="envelope-rain" aria-hidden="true"></div>
+    <div class="section-content">
+      <h2 class="section-title reveal">Lluvia de sobres</h2>
+      <p class="envelopes-text reveal">
+        Si deseas hacerme un obsequio, y en lugar de un regalo tradicional
+        prefieres contribuir con mis planes futuros, puedes traer tu detalle
+        en un sobre. ¡Se recibirá con mucho cariño! 💌
+      </p>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="section rsvp-section">
+    <div class="sparkles" id="sparkles-rsvp" aria-hidden="true"></div>
+    <img class="rsvp-luces" src="assets/luces.webp" alt="" aria-hidden="true">
+    <img class="rsvp-decoracion" src="assets/decoracion-mariposa.webp" alt="" aria-hidden="true">
+    <div class="section-content">
+      <h2 class="section-title reveal">Confirma tu asistencia</h2>
+      <p class="rsvp-text reveal">Tu presencia hará este día aún más especial.<br>Por favor confirma antes del 20 de septiembre de 2026.</p>
+      <a
+        id="rsvp-button"
+        class="btn btn-whatsapp reveal"
+        href="https://wa.me/573000000000?text=%C2%A1Hola!%20Confirmo%20mi%20asistencia%20a%20los%20XV%20a%C3%B1os%20de%20Mafe%20%F0%9F%8C%B8"
+        rel="noopener">
+        <span aria-hidden="true">💬</span> Confirmar por WhatsApp
+      </a>
+      <p class="rsvp-hint reveal">Se abrirá WhatsApp con el mensaje ya escrito, solo debes enviarlo.</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <img class="section-corner corner-tr footer-corner" src="assets/flores-esquina-1.webp" alt="" aria-hidden="true">
+    <p class="footer-name">María Fernanda</p>
+    <p class="footer-note">¡Te espero para celebrar juntos este momento tan especial!</p>
+  </footer>
+
+</main>
+
+<script src="js/main.js"></script>
+</body>
+</html>
