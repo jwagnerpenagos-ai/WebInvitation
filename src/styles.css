@@ -1642,7 +1642,7 @@ svg {
   display: inline-flex;
   min-width: 202px;
   min-height: 52px;
-  margin-top: clamp(-12px, -1.4vw, -4px);
+  margin-top: clamp(28px, -1.4vw, -4px);
   padding: 0 24px;
   align-items: center;
   justify-content: center;
@@ -2340,7 +2340,7 @@ svg {
   .intro__open {
     min-width: min(78vw, 292px);
     min-height: 64px;
-    margin-top: -20px;
+    margin-top: 18px;
     padding-left: 25px;
     gap: 15px;
     font-size: 0.76rem;
@@ -2464,7 +2464,7 @@ svg {
 
   .intro__open {
     min-height: 58px;
-    margin-top: -30px;
+    margin-top: 8px;
   }
 
   .intro__open-icon {
