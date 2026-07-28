@@ -1,10 +1,10 @@
 # Invitación XV · María Fernanda
 
-Invitación web estática, responsive y lista para desplegar en Vercel. No necesita framework ni proceso de compilación.
+Invitación web estática, responsive y lista para desplegar en Vercel. Usa HTML semántico, CSS modular y JavaScript nativo mediante ES Modules; no requiere framework ni proceso de compilación.
 
 ## Ejecutar localmente
 
-Desde esta carpeta:
+Desde la raíz del proyecto:
 
 ```bash
 python -m http.server 4173
@@ -12,18 +12,20 @@ python -m http.server 4173
 
 Abre `http://localhost:4173`.
 
-## Personalizar datos
+> No abras `index.html` directamente con doble clic. Los módulos de JavaScript deben ejecutarse desde un servidor local.
 
-Edita `src/config.js` para cambiar:
+## Configuración principal
+
+Los datos editables están centralizados en `src/config.js`:
 
 - nombre de la quinceañera;
-- fecha y hora;
+- fecha, hora y zona horaria;
 - fecha límite de confirmación;
 - enlace de Google Maps;
 - número de WhatsApp;
-- máximo de asistentes seleccionable en la confirmación.
+- máximo de asistentes seleccionable.
 
-El número de WhatsApp debe ir con indicativo de país, sin `+`, espacios ni guiones. El valor actual (`573000000000`) es de ejemplo.
+El número de WhatsApp debe ir en formato internacional, sin `+`, espacios ni guiones:
 
 ```js
 rsvp: {
@@ -32,62 +34,71 @@ rsvp: {
 },
 ```
 
-## Portada cerrada
+La fecha visible de la tarjeta y de la barra superior se genera desde `eventDate`; no es necesario editarla en varios lugares del HTML.
 
-Al cargar la web, el contenido de la invitación permanece oculto. La portada solo muestra el emblema de los quince años y el botón **Abrir invitación**. Al abrirla:
+## Confirmación de asistencia
 
-- se revela el contenido;
-- comienza la música cuando el navegador lo permite;
-- se habilitan las animaciones de entrada.
-
-## Confirmación y cupos
-
-La invitación ya no utiliza nombres ni cupos personalizados en la URL.
-
-Al tocar **Confirmar asistencia**, se abre un formulario que solicita:
+Al pulsar **Confirmar asistencia**, se abre un formulario que solicita:
 
 - nombre de quien confirma;
-- si asistirá o no;
+- asistencia o inasistencia;
 - número total de asistentes;
 - mensaje adicional opcional.
 
-Al continuar, se abre WhatsApp con el mensaje organizado y listo para enviar. Este flujo no necesita base de datos.
+El formulario prepara el mensaje y continúa en WhatsApp. No utiliza base de datos.
+
+## Código de vestimenta
+
+Solo está reservado el tono cereza usado en el vestido de María Fernanda. El color de referencia se encuentra en:
+
+```css
+.reserved-color__swatch {
+  background: #a33159;
+}
+```
+
+## Estructura
+
+```text
+assets/
+  Imágenes y música realmente utilizadas por la invitación.
+
+src/
+  config.js                 Datos editables del evento.
+  main.js                   Inicialización de la aplicación.
+  modules/
+    content.js              Textos y fecha generados desde la configuración.
+    countdown.js            Cuenta regresiva.
+    dom.js                  Utilidades pequeñas del DOM.
+    intro.js                Apertura de la portada y música.
+    navigation.js           Scroll y estado del dock flotante.
+    reveal.js               Animaciones al entrar en pantalla.
+    rsvp.js                 Formulario y mensaje de WhatsApp.
+  styles/
+    base.css                Variables, reset y componentes compartidos.
+    intro.css               Portada cerrada.
+    sections.css            Secciones y componentes principales.
+    responsive.css          Adaptaciones para tablet y celular.
+    motion.css              Animaciones y reduced motion.
+
+index.html                  Estructura semántica.
+vercel.json                 Caché y cabeceras de seguridad.
+```
 
 ## Desplegar en Vercel
 
 1. Sube esta carpeta a un repositorio de GitHub.
 2. Importa el repositorio en Vercel.
 3. Selecciona **Framework Preset: Other**.
-4. Deja vacíos Build Command y Output Directory.
+4. Deja vacíos **Build Command** y **Output Directory**.
 5. Despliega.
 
-También puedes ejecutar `vercel --prod` desde esta carpeta.
+También puedes ejecutar `vercel --prod` desde la raíz.
 
-## Estructura
-
-```text
-assets/          Imágenes, marco y música optimizados
-src/config.js    Datos editables de la invitación
-src/main.js      Apertura, confirmación, música y contador
-src/styles.css   Diseño responsive y animaciones
-index.html       Estructura semántica de la página
-vercel.json      Caché y cabeceras de seguridad
-```
-
-## Pruebas recomendadas antes de enviar
+## Pruebas antes de enviar
 
 - Chrome Android y Safari iPhone.
 - 390 × 844, 430 × 932, 768 × 1024 y 1440 × 900.
-- Confirmar que el número de WhatsApp sea el definitivo.
-- Confirmar mapa, hora, fecha y texto de vestimenta.
-- Verificar la canción y su volumen.
-
-## Ajustes visuales V3
-
-- Portada con composición ampliada y centrado óptico de los PNG transparentes.
-- Botón de apertura premium con borde champagne, brillo animado e icono independiente.
-- Se eliminó el texto secundario sobre activar el sonido.
-- Fecha rediseñada para mostrar siempre día, mes, año y hora de forma explícita.
-- Navegación flotante responsive con accesos a información, ubicación y confirmación.
-- En celular el dock permanece en la parte inferior y respeta el área segura del dispositivo.
-- El control de música se mueve a la parte superior en móvil para no chocar con el dock.
+- Número definitivo de WhatsApp.
+- Ubicación, fecha, hora y límite de confirmación.
+- Reproducción y volumen de la canción.

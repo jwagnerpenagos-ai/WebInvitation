@@ -1,0 +1,386 @@
+@media (max-width: 960px) {
+  :root {
+    --container: min(100% - 32px, 760px);
+  }
+
+  .intro__emblem {
+    width: min(112vw, 820px);
+  }
+
+  .event__grid,
+  .location__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .event__grid {
+    gap: 48px;
+  }
+
+  .date-card {
+    width: min(100%, 680px);
+    min-height: 480px;
+    margin-inline: auto;
+  }
+
+  .location__copy {
+    max-width: 620px;
+  }
+
+  .map-card {
+    min-height: 470px;
+  }
+
+  .details__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-card {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --container: min(100% - 28px, 560px);
+    --topbar-height: 62px;
+  }
+
+  body:not(.intro-visible) .site {
+    padding-bottom: calc(92px + env(safe-area-inset-bottom));
+  }
+
+  .section {
+    padding-block: 82px;
+  }
+
+  /* Portada */
+  .intro__backdrop {
+    background-image:
+      linear-gradient(rgba(255, 249, 244, 0.03), rgba(255, 249, 244, 0.03)),
+      url('../../assets/portada-mobile.webp');
+    background-position: center;
+  }
+
+  .intro__veil {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.018), rgba(83, 24, 48, 0.012));
+  }
+
+  .intro__closed-card {
+    min-height: 100svh;
+    padding: max(18px, env(safe-area-inset-top)) 10px max(22px, env(safe-area-inset-bottom));
+    transform: translateY(-0.5vh);
+  }
+
+  .intro__emblem {
+    width: min(146vw, 700px);
+    margin-inline: -23vw;
+  }
+
+  .intro__frame {
+    transform: translate(-0.8%, 2.2%);
+  }
+
+  .intro__fifteen {
+    top: 54.2%;
+    left: 52.3%;
+    width: 49%;
+  }
+
+  .intro__open {
+    min-width: min(78vw, 292px);
+    min-height: 64px;
+    margin-top: 18px;
+    padding-left: 25px;
+    gap: 15px;
+    font-size: 0.76rem;
+  }
+
+  .intro__open-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Barra superior */
+  .topbar {
+    padding-inline: 18px;
+  }
+
+  .topbar__brand {
+    margin: auto;
+  }
+
+  .topbar__date {
+    position: absolute;
+    right: 18px;
+    font-size: 0.62rem;
+  }
+
+  .topbar__date-full {
+    display: none;
+  }
+
+  .topbar__date-compact {
+    display: inline;
+  }
+
+  .music-control {
+    top: calc(var(--topbar-height) + 12px);
+    right: 13px;
+    bottom: auto;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .music-control span {
+    display: none;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: calc(100svh - var(--topbar-height));
+  }
+
+  .hero__content {
+    padding-block: 74px;
+  }
+
+  .hero__script {
+    font-size: clamp(3.9rem, 21vw, 6rem);
+  }
+
+  .hero__title {
+    font-size: clamp(2.3rem, 11vw, 3.7rem);
+  }
+
+  .hero__text {
+    margin-top: 22px;
+  }
+
+  .hero__butterflies {
+    right: -14%;
+    width: 62vw;
+    opacity: 0.28;
+  }
+
+  /* Fecha */
+  .event__grid,
+  .location__grid {
+    gap: 42px;
+  }
+
+  .date-card {
+    min-height: 480px;
+    padding: 27px 26px 28px;
+    border-radius: 26px;
+  }
+
+  .date-card::before {
+    inset: 11px;
+    border-radius: 20px;
+  }
+
+  .date-card__calendar {
+    min-height: 326px;
+    padding-block: 26px 18px;
+  }
+
+  .date-card__date-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .date-card__day {
+    font-size: clamp(7.25rem, 36vw, 9.2rem);
+    line-height: 0.78;
+  }
+
+  /*
+   * En Playfair Display el “3” baja bastante. El separador se dibuja como
+   * un elemento propio y se deja espacio real para que nunca lo atraviese.
+   */
+  .date-card__month-year {
+    min-width: 0;
+    align-items: center;
+    border-left: 0;
+    padding: 22px 24px 0;
+    text-align: center;
+  }
+
+  .date-card__month-year::before {
+    width: min(46vw, 170px);
+    height: 1px;
+    margin-bottom: 14px;
+    background: rgba(104, 29, 61, 0.16);
+    content: '';
+  }
+
+  .date-card__month {
+    display: block;
+    font-size: clamp(2.25rem, 11vw, 3.1rem);
+  }
+
+  .date-card__year {
+    margin-top: 5px;
+  }
+
+  .date-card__full-date {
+    margin-top: 18px;
+    font-size: 0.78rem;
+  }
+
+  .date-card__time {
+    min-height: 62px;
+    padding-top: 17px;
+  }
+
+  .date-card__time strong {
+    font-size: 1.55rem;
+  }
+
+  .countdown-wrap {
+    width: 100%;
+    margin-top: 54px;
+  }
+
+  .countdown {
+    gap: 8px;
+    border-block: 0;
+  }
+
+  .countdown > div {
+    min-width: 0;
+    padding: 18px 4px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .countdown > div + div::before {
+    display: none;
+  }
+
+  .countdown strong {
+    font-size: clamp(1.9rem, 9vw, 2.8rem);
+  }
+
+  .countdown span {
+    font-size: 0.56rem;
+    letter-spacing: 0.06em;
+  }
+
+  /* Ubicación y detalles */
+  .location__copy {
+    text-align: center;
+  }
+
+  .location__copy .button {
+    width: 100%;
+  }
+
+  .map-card {
+    min-height: 400px;
+    border-width: 8px;
+    border-radius: 24px;
+  }
+
+  .corner {
+    width: 74vw;
+    opacity: 0.48;
+  }
+
+  .detail-card {
+    padding: 34px 26px 28px;
+    border-radius: 22px;
+  }
+
+  .reserved-color {
+    align-items: flex-start;
+  }
+
+  /* Confirmación */
+  .rsvp {
+    min-height: 720px;
+  }
+
+  .rsvp__content {
+    width: min(100% - 28px, 600px);
+  }
+
+  .rsvp h2 {
+    font-size: clamp(3rem, 15vw, 4.5rem);
+  }
+
+  .rsvp .button {
+    width: 100%;
+  }
+
+  .rsvp__butterfly {
+    right: -11%;
+    width: 56vw;
+    opacity: 0.28;
+  }
+
+  .attendance-fieldset {
+    grid-template-columns: 1fr;
+  }
+
+  .rsvp-form {
+    padding: 34px 22px 24px;
+  }
+
+  /* Dock inferior */
+  .quick-nav {
+    top: auto;
+    right: 50%;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    width: min(calc(100vw - 28px), 440px);
+    flex-direction: row;
+    justify-content: stretch;
+    gap: 5px;
+    padding: 7px;
+    border-radius: 22px;
+    background: rgba(255, 250, 246, 0.9);
+    box-shadow: 0 16px 46px rgba(51, 13, 30, 0.22);
+    transform: translateX(50%);
+  }
+
+  .quick-nav__item {
+    width: auto;
+    min-width: 0;
+    min-height: 58px;
+    flex: 1 1 0;
+    border-radius: 16px;
+  }
+
+  .quick-nav__item svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .quick-nav__item span {
+    font-size: 0.59rem;
+  }
+
+  .footer {
+    min-height: 300px;
+  }
+}
+
+@media (max-height: 720px) and (max-width: 640px) {
+  .intro__emblem {
+    width: min(120vw, 580px);
+    margin-top: -18px;
+  }
+
+  .intro__open {
+    min-height: 58px;
+    margin-top: 8px;
+  }
+
+  .intro__open-icon {
+    width: 36px;
+    height: 36px;
+  }
+}

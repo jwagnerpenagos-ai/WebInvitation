@@ -22,13 +22,18 @@
       rel="stylesheet"
     />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦋</text></svg>" />
-    <link rel="stylesheet" href="./src/styles.css" />
+    <link rel="stylesheet" href="./src/styles/base.css" />
+    <link rel="stylesheet" href="./src/styles/intro.css" />
+    <link rel="stylesheet" href="./src/styles/sections.css" />
+    <link rel="stylesheet" href="./src/styles/responsive.css" />
+    <link rel="stylesheet" href="./src/styles/motion.css" />
     <script type="module" src="./src/main.js"></script>
   </head>
 
   <body class="intro-visible">
     <a class="skip-link" href="#contenido">Saltar a la invitación</a>
 
+    <!-- Portada cerrada: el contenido se revela solo después de la interacción. -->
     <section class="intro" id="intro" aria-labelledby="intro-title">
       <div class="intro__backdrop" aria-hidden="true"></div>
       <div class="intro__veil intro__veil--left" aria-hidden="true"></div>
@@ -85,8 +90,13 @@
           <a href="#detalles">Detalles</a>
           <a href="#confirmacion">Confirmar</a>
         </div>
+        <span class="topbar__date" aria-label="Fecha del evento">
+          <span class="topbar__date-full" data-event-short-date>03 · OCT · 2026</span>
+          <span class="topbar__date-compact" data-event-compact-date>03 OCT</span>
+        </span>
       </nav>
 
+      <!-- Accesos rápidos disponibles durante toda la invitación. -->
       <nav class="quick-nav" id="quick-nav" aria-label="Accesos rápidos">
         <a class="quick-nav__item" href="#detalles" data-nav-section="detalles" aria-label="Ir a información y detalles">
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -142,22 +152,22 @@
             </p>
           </div>
 
-          <article class="date-card reveal" aria-label="Sábado 3 de octubre de 2026 a las 6 de la tarde">
+          <article class="date-card reveal" data-date-card aria-label="Sábado 3 de octubre de 2026 a las 6 de la tarde">
             <div class="date-card__header">
               <span>Fecha del evento</span>
-              <span>2026</span>
+              <span data-event-year>2026</span>
             </div>
 
             <div class="date-card__calendar">
-              <span class="date-card__weekday">Sábado</span>
+              <span class="date-card__weekday" data-event-weekday>Sábado</span>
               <div class="date-card__date-row">
-                <strong class="date-card__day">03</strong>
+                <strong class="date-card__day" data-event-day>03</strong>
                 <div class="date-card__month-year">
-                  <span class="date-card__month">Octubre</span>
-                  <span class="date-card__year">2026</span>
+                  <span class="date-card__month" data-event-month>Octubre</span>
+                  <span class="date-card__year" data-event-year>2026</span>
                 </div>
               </div>
-              <p class="date-card__full-date">Sábado, 3 de octubre de 2026</p>
+              <p class="date-card__full-date" data-event-date-label>Sábado, 3 de octubre de 2026</p>
             </div>
 
             <div class="date-card__time">
@@ -230,13 +240,14 @@
               </div>
               <h3>Código de vestimenta</h3>
               <p class="detail-card__lead">Etiqueta formal</p>
-              <p>Queremos verte elegante y listo para celebrar.</p>
-              <div class="palette" aria-label="Tonos reservados para la quinceañera">
-                <span style="--swatch:#fff8f3"></span>
-                <span style="--swatch:#f5c8d6"></span>
-                <span style="--swatch:#d9bce8"></span>
+              <p>Queremos verte elegante y listo para celebrar. Puedes usar el color que prefieras, excepto el tono reservado para María Fernanda.</p>
+              <div class="reserved-color" aria-label="Color cereza reservado para el vestido de la quinceañera">
+                <span class="reserved-color__swatch" aria-hidden="true"></span>
+                <span>
+                  <strong>Color reservado: cereza</strong>
+                  <span>Evita únicamente tonos similares al vestido de la quinceañera.</span>
+                </span>
               </div>
-              <small>Por favor evita blanco, rosa y lila.</small>
             </article>
 
             <article class="detail-card reveal">
@@ -285,6 +296,7 @@
         </div>
       </section>
 
+      <!-- Confirmación sin base de datos: prepara el mensaje y continúa en WhatsApp. -->
       <dialog class="rsvp-dialog" id="rsvp-dialog" aria-labelledby="rsvp-dialog-title">
         <form class="rsvp-form" id="rsvp-form" method="dialog">
           <button class="rsvp-dialog__close" id="close-rsvp" type="button" aria-label="Cerrar confirmación">×</button>
