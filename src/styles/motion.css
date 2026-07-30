@@ -1,78 +1,82 @@
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition:
-    opacity 760ms var(--reveal-delay, 0ms) cubic-bezier(0.22, 1, 0.36, 1),
-    transform 760ms var(--reveal-delay, 0ms) cubic-bezier(0.22, 1, 0.36, 1);
+@keyframes sealRelease {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0); }
+  35% { opacity: 1; transform: translate(-50%, -50%) scale(1.12) rotate(-3deg); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.7) rotate(8deg); }
 }
 
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes flapOpen {
+  0% { transform: translateX(-50%) rotateX(0); z-index: 4; }
+  49% { z-index: 4; }
+  50% { z-index: 0; }
+  100% { transform: translateX(-50%) rotateX(178deg); z-index: 0; }
 }
 
-@keyframes cover-breathe {
-  from { transform: scale(1.015); }
-  to { transform: scale(1.035); }
+@keyframes envelopeGlow {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.35); }
+  35% { opacity: 0.9; }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.8); }
 }
 
-@keyframes emblem-in {
-  from { opacity: 0; transform: translateY(22px) scale(0.97); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+@keyframes letterRise {
+  0% { opacity: 0; transform: translate(-50%, 46%); }
+  15% { opacity: 1; }
+  100% { opacity: 1; transform: translate(-50%, -20%); }
 }
 
-@keyframes fifteen-in {
-  from { opacity: 0; transform: translate(-50%, -46%) scale(0.9); }
-  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+@keyframes introLeave {
+  0% { opacity: 1; filter: blur(0); }
+  100% { opacity: 0; filter: blur(8px); }
 }
 
-@keyframes button-in {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes particleBurst {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); }
+  18% { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--x), var(--y)) scale(1.15); }
 }
 
-@keyframes open-arrow {
-  0%, 100% { transform: translateX(-2px); }
-  50% { transform: translateX(3px); }
+@keyframes stainedGlassLight {
+  0% { opacity: 0; filter: brightness(0.55) saturate(0.7) drop-shadow(0 25px 35px rgba(0,0,0,0.32)); }
+  100% { opacity: 1; filter: brightness(1.08) saturate(1.1) drop-shadow(0 0 34px rgba(218,165,78,0.28)); }
 }
 
-@keyframes open-shine {
-  0%, 64% { left: -42%; opacity: 0; }
-  70% { opacity: 1; }
-  86%, 100% { left: 118%; opacity: 0; }
+@keyframes stainedGlassDim {
+  0% { opacity: 1; }
+  100% { opacity: 0.12; }
 }
 
-@keyframes site-enter {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@keyframes haloPulse {
+  0%, 100% { opacity: 0.45; transform: scale(0.95); }
+  50% { opacity: 0.9; transform: scale(1.07); }
 }
 
-@keyframes nudge {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(7px); }
+.seal-button__halo,
+.dress-scene__halo {
+  animation: haloPulse 2.8s ease-in-out infinite;
 }
 
-@keyframes dialog-in {
-  from { opacity: 0; transform: translateY(18px) scale(0.97); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+.magic-burst.is-active span {
+  animation: particleBurst var(--duration, 950ms) var(--delay, 0ms) ease-out forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
   *,
   *::before,
   *::after {
     scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
+    animation-duration: 1ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    transition-duration: 1ms !important;
   }
+}
 
-  .reveal {
-    opacity: 1;
-    transform: none;
-  }
+@keyframes petalSweepOne {
+  0% { opacity: 0; transform: translate3d(12%, -18%, 0) rotate(8deg) scale(0.78); }
+  24% { opacity: 0.65; }
+  100% { opacity: 0; transform: translate3d(-85%, 85%, 0) rotate(46deg) scale(1); }
+}
+
+@keyframes petalSweepTwo {
+  0% { opacity: 0; transform: translate3d(-12%, 18%, 0) rotate(194deg) scale(0.68); }
+  24% { opacity: 0.5; }
+  100% { opacity: 0; transform: translate3d(85%, -85%, 0) rotate(242deg) scale(0.9); }
 }

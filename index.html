@@ -2,349 +2,332 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#681d3d" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#21080f" />
     <meta
       name="description"
       content="Invitación a los XV años de María Fernanda. 3 de octubre de 2026 en Duitama, Boyacá."
     />
     <meta property="og:title" content="Mis XV · María Fernanda" />
-    <meta
-      property="og:description"
-      content="Acompáñame a celebrar una noche inolvidable."
-    />
+    <meta property="og:description" content="Acompáñame a celebrar una noche inolvidable." />
     <title>Mis XV · María Fernanda</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=DM+Sans:wght@400;500;600&family=Great+Vibes&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦋</text></svg>" />
+    <link rel="icon" type="image/png" href="./assets/enchanted/stained-glass/rose-emblem.png" />
+
+    <link rel="stylesheet" href="./src/styles/tokens.css" />
     <link rel="stylesheet" href="./src/styles/base.css" />
-    <link rel="stylesheet" href="./src/styles/intro.css" />
-    <link rel="stylesheet" href="./src/styles/sections.css" />
+    <link rel="stylesheet" href="./src/styles/envelope.css" />
+    <link rel="stylesheet" href="./src/styles/stage.css" />
+    <link rel="stylesheet" href="./src/styles/scenes.css" />
+    <link rel="stylesheet" href="./src/styles/dialog.css" />
     <link rel="stylesheet" href="./src/styles/responsive.css" />
     <link rel="stylesheet" href="./src/styles/motion.css" />
+
     <script type="module" src="./src/main.js"></script>
   </head>
 
-  <body class="intro-visible">
-    <a class="skip-link" href="#contenido">Saltar a la invitación</a>
+  <body class="is-locked">
+    <a class="skip-link" href="#invitation-stage">Saltar a la invitación</a>
 
-    <!-- Portada cerrada: el contenido se revela solo después de la interacción. -->
-    <section class="intro" id="intro" aria-labelledby="intro-title">
-      <div class="intro__backdrop" aria-hidden="true"></div>
-      <div class="intro__veil intro__veil--left" aria-hidden="true"></div>
-      <div class="intro__veil intro__veil--right" aria-hidden="true"></div>
+    <section class="envelope-intro" id="envelope-intro" aria-labelledby="intro-heading">
+      <div class="envelope-intro__ambient" aria-hidden="true"></div>
+      <img
+        class="envelope-intro__corner envelope-intro__corner--top"
+        src="./assets/enchanted/decor/corner-top-left.png"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        class="envelope-intro__corner envelope-intro__corner--bottom"
+        src="./assets/enchanted/decor/corner-bottom-right.png"
+        alt=""
+        aria-hidden="true"
+      />
 
-      <div class="intro__closed-card">
-        <p class="sr-only" id="intro-title">Invitación a los quince años de María Fernanda</p>
-        <div class="intro__emblem" aria-hidden="true">
-          <img class="intro__frame" src="./assets/marco-letrero.png" alt="" />
-          <img class="intro__fifteen" src="./assets/letrero-15.webp" alt="" />
+      <div class="envelope-intro__content">
+        <p class="envelope-intro__eyebrow">Una invitación especial para ti</p>
+        <h1 class="sr-only" id="intro-heading">Invitación a los quince años de María Fernanda</h1>
+
+        <div class="envelope" id="envelope">
+          <img class="envelope__letter" src="./assets/enchanted/envelope/letter.png" alt="" aria-hidden="true" />
+          <img class="envelope__body" src="./assets/enchanted/envelope/body.png" alt="" aria-hidden="true" />
+          <img class="envelope__flap" src="./assets/enchanted/envelope/flap.png" alt="" aria-hidden="true" />
+          <span class="envelope__glow" aria-hidden="true"></span>
+
+          <button class="seal-button" id="open-invitation" type="button">
+            <img src="./assets/enchanted/envelope/seal.png" alt="" aria-hidden="true" />
+            <span class="seal-button__halo" aria-hidden="true"></span>
+            <span class="seal-button__label">Abrir invitación</span>
+          </button>
         </div>
 
-        <button class="intro__open" id="open-invitation" type="button">
-          <span class="intro__open-shine" aria-hidden="true"></span>
-          <span class="intro__open-label">Abrir invitación</span>
-          <span class="intro__open-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <path d="M5 12h13M14 7l5 5-5 5" />
-            </svg>
-          </span>
-        </button>
+        <p class="envelope-intro__hint">Toca el sello para descubrir la invitación</p>
       </div>
+
+      <div class="magic-burst" id="magic-burst" aria-hidden="true"></div>
     </section>
 
     <audio id="background-music" loop preload="metadata">
-      <source src="./assets/musica-fondo.mp3" type="audio/mpeg" />
+      <source src="./assets/enchanted/audio/music.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="spark-sound" preload="auto">
+      <source src="./assets/enchanted/audio/spark.mp3" type="audio/mpeg" />
     </audio>
 
-    <button
-      class="music-control"
-      id="music-control"
-      type="button"
-      aria-label="Pausar música"
-      aria-pressed="false"
-      hidden
-    >
-      <svg class="music-control__on" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M4 9v6h4l5 4V5L8 9H4Z" />
-        <path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a9 9 0 0 1 0 12" />
-      </svg>
-      <svg class="music-control__off" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M4 9v6h4l5 4V5L8 9H4Z" />
-        <path d="m16 9 5 6m0-6-5 6" />
-      </svg>
-      <span>Música</span>
-    </button>
+    <main class="invitation-stage" id="invitation-stage" hidden>
+      <div class="stage-background" aria-hidden="true"></div>
+      <div class="stage-vignette" aria-hidden="true"></div>
 
-    <main id="contenido" class="site" hidden>
-      <nav class="topbar" aria-label="Navegación de la invitación">
-        <a class="topbar__brand" href="#inicio" aria-label="Ir al inicio">MF</a>
-        <div class="topbar__links">
-          <a href="#fecha">Fecha</a>
-          <a href="#ubicacion">Lugar</a>
-          <a href="#detalles">Detalles</a>
-          <a href="#confirmacion">Confirmar</a>
-        </div>
-        <span class="topbar__date" aria-label="Fecha del evento">
-          <span class="topbar__date-full" data-event-short-date>03 · OCT · 2026</span>
-          <span class="topbar__date-compact" data-event-compact-date>03 OCT</span>
-        </span>
-      </nav>
+      <picture class="stage-frame" aria-hidden="true">
+        <source media="(min-width: 769px)" srcset="./assets/enchanted/frames/frame-desktop.png" />
+        <img src="./assets/enchanted/frames/frame-mobile.png" alt="" />
+      </picture>
 
-      <!-- Accesos rápidos disponibles durante toda la invitación. -->
-      <nav class="quick-nav" id="quick-nav" aria-label="Accesos rápidos">
-        <a class="quick-nav__item" href="#detalles" data-nav-section="detalles" aria-label="Ir a información y detalles">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="9" />
-            <path d="M12 10v6M12 7.2h.01" />
+      <img class="stage-corner stage-corner--top" src="./assets/enchanted/decor/corner-top-left.png" alt="" aria-hidden="true" />
+      <img class="stage-corner stage-corner--bottom" src="./assets/enchanted/decor/corner-bottom-right.png" alt="" aria-hidden="true" />
+
+      <div class="stage-petals" aria-hidden="true">
+        <img class="stage-petals__sheet stage-petals__sheet--one" src="./assets/enchanted/decor/petals.png" alt="" />
+        <img class="stage-petals__sheet stage-petals__sheet--two" src="./assets/enchanted/decor/petals.png" alt="" />
+      </div>
+
+      <header class="stage-header">
+        <img class="stage-header__monogram" src="./assets/enchanted/ornaments/monogram-mf.png" alt="MF" />
+        <p class="stage-header__date" data-event-short-date>03 · OCT · 2026</p>
+        <button class="icon-button" id="music-control" type="button" aria-label="Pausar música" aria-pressed="true">
+          <svg class="icon-button__sound-on" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 9v6h4l5 4V5L8 9H4Z" />
+            <path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a9 9 0 0 1 0 12" />
           </svg>
-          <span>Info</span>
-        </a>
-        <a class="quick-nav__item" href="#ubicacion" data-nav-section="ubicacion" aria-label="Ir a la ubicación">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
-            <circle cx="12" cy="10" r="2.5" />
+          <svg class="icon-button__sound-off" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 9v6h4l5 4V5L8 9H4Z" />
+            <path d="m16 9 5 6m0-6-5 6" />
           </svg>
-          <span>Ubicación</span>
-        </a>
-        <button class="quick-nav__item quick-nav__item--primary" id="quick-rsvp" type="button" aria-label="Confirmar asistencia">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z" />
-            <path d="m8.5 11.5 2.2 2.2 4.8-5" />
-          </svg>
-          <span>Confirmar</span>
+        </button>
+      </header>
+
+      <div class="scene-viewport" id="scene-viewport" aria-live="polite">
+        <section class="scene scene--welcome is-active" data-scene="0" data-theme="wine" aria-labelledby="scene-welcome-title">
+          <div class="scene__scroll">
+            <div class="welcome-scene">
+              <div class="stained-glass" aria-hidden="true">
+                <img class="stained-glass__dark" src="./assets/enchanted/stained-glass/rose-dark.png" alt="" />
+                <img class="stained-glass__lit" src="./assets/enchanted/stained-glass/rose-lit.png" alt="" />
+              </div>
+              <div class="welcome-scene__copy">
+                <p class="scene-kicker">Mis quince años</p>
+                <h2 id="scene-welcome-title">María Fernanda</h2>
+                <img class="ornamental-divider" src="./assets/enchanted/ornaments/divider.png" alt="" aria-hidden="true" />
+                <p class="scene-lead">Hay momentos que se sueñan toda la vida. Este quiero vivirlo contigo.</p>
+                <button class="scene-cta" type="button" data-go-to="1">
+                  Descubrir la invitación
+                  <span aria-hidden="true">→</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="scene scene--date" data-scene="1" data-theme="cream" aria-labelledby="scene-date-title" hidden>
+          <div class="scene__scroll">
+            <div class="date-scene">
+              <div class="date-scene__copy">
+                <p class="scene-kicker">Guarda la fecha</p>
+                <h2 id="scene-date-title">La celebración</h2>
+                <p class="scene-copy">Una tarde que se convertirá en noche, entre música, abrazos y recuerdos para siempre.</p>
+
+                <article class="date-display" aria-label="Sábado 3 de octubre de 2026 a las 6 de la tarde">
+                  <span class="date-display__weekday" data-event-weekday>Sábado</span>
+                  <strong class="date-display__day" data-event-day>03</strong>
+                  <span class="date-display__month" data-event-month>Octubre</span>
+                  <span class="date-display__year" data-event-year>2026</span>
+                  <div class="date-display__time">
+                    <span>Recepción</span>
+                    <strong data-event-time>6:00 p. m.</strong>
+                  </div>
+                </article>
+              </div>
+
+              <div class="countdown-panel">
+                <img class="countdown-panel__rose" src="./assets/enchanted/ornaments/enchanted-rose.png" alt="Rosa encantada bajo una cúpula de cristal" />
+                <p>Faltan</p>
+                <div class="countdown" id="countdown" aria-label="Cuenta regresiva para el evento">
+                  <div><strong data-countdown="days">--</strong><span>días</span></div>
+                  <div><strong data-countdown="hours">--</strong><span>horas</span></div>
+                  <div><strong data-countdown="minutes">--</strong><span>min</span></div>
+                  <div><strong data-countdown="seconds">--</strong><span>seg</span></div>
+                </div>
+                <p class="countdown__done" id="countdown-done" hidden>Hoy es el gran día ✨</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="scene scene--location" data-scene="2" data-theme="wine" aria-labelledby="scene-location-title" hidden>
+          <div class="scene__scroll">
+            <div class="location-scene">
+              <div class="location-scene__visual" aria-hidden="true">
+                <img src="./assets/enchanted/stained-glass/rose-emblem.png" alt="" />
+                <span class="location-scene__pin">
+                  <svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></svg>
+                </span>
+              </div>
+
+              <div class="location-scene__copy">
+                <p class="scene-kicker">Nos encontramos en</p>
+                <h2 id="scene-location-title" data-venue-name>Centro Recreacional Comfaboy</h2>
+                <p class="location-scene__city" data-venue-city>Duitama · Boyacá</p>
+                <img class="ornamental-divider" src="./assets/enchanted/ornaments/divider.png" alt="" aria-hidden="true" />
+                <p class="scene-copy">Te recomendamos llegar con algunos minutos de anticipación para recibirte como mereces.</p>
+                <a class="scene-cta scene-cta--light" data-map-link href="#" target="_blank" rel="noopener noreferrer">
+                  Abrir en Google Maps
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5M19 5 10 14M19 13v6H5V5h6" /></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="scene scene--dress" data-scene="3" data-theme="cream" aria-labelledby="scene-dress-title" hidden>
+          <div class="scene__scroll">
+            <div class="dress-scene">
+              <div class="dress-scene__copy">
+                <p class="scene-kicker">Para tener en cuenta</p>
+                <h2 id="scene-dress-title">Código de vestimenta</h2>
+                <p class="dress-scene__formal">Etiqueta formal</p>
+                <p class="scene-copy">Queremos verte elegante y listo para celebrar. Puedes usar el color que prefieras, excepto el tono reservado para María Fernanda.</p>
+
+                <div class="reserved-color">
+                  <span class="reserved-color__swatch" aria-hidden="true"></span>
+                  <div>
+                    <strong>Color reservado: cereza</strong>
+                    <p>Evita únicamente tonos similares al vestido de la quinceañera.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dress-scene__rose" aria-hidden="true">
+                <span class="dress-scene__halo"></span>
+                <img src="./assets/enchanted/decor/rose.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="scene scene--details" data-scene="4" data-theme="wine" aria-labelledby="scene-details-title" hidden>
+          <div class="scene__scroll">
+            <div class="details-scene">
+              <img class="details-scene__vine" src="./assets/enchanted/ornaments/vine.png" alt="" aria-hidden="true" />
+              <div class="details-scene__copy">
+                <p class="scene-kicker">Un detalle especial</p>
+                <h2 id="scene-details-title">Lluvia de sobres</h2>
+                <img class="ornamental-divider" src="./assets/enchanted/ornaments/divider.png" alt="" aria-hidden="true" />
+                <p class="scene-lead">Tu presencia es el mejor regalo.</p>
+                <p class="scene-copy">Quienes deseen obsequiarme algo pueden hacerlo mediante la tradicional lluvia de sobres.</p>
+              </div>
+              <div class="details-scene__message">
+                <span aria-hidden="true">“</span>
+                <p>Gracias por acompañarme en una fecha tan significativa para mí y para mi familia.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="scene scene--rsvp" data-scene="5" data-theme="cream" aria-labelledby="scene-rsvp-title" hidden>
+          <div class="scene__scroll">
+            <div class="rsvp-scene">
+              <img class="rsvp-scene__monogram" src="./assets/enchanted/ornaments/monogram-mf.png" alt="" aria-hidden="true" />
+              <p class="scene-kicker">Será aún más especial contigo</p>
+              <h2 id="scene-rsvp-title">Confirma tu asistencia</h2>
+              <p class="scene-copy">Por favor confirma antes del <strong data-rsvp-deadline>20 de septiembre de 2026</strong>.</p>
+              <button class="scene-cta" id="open-rsvp" type="button">
+                Confirmar asistencia
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z" /><path d="m8.5 11.5 2.2 2.2 4.8-5" /></svg>
+              </button>
+              <p class="rsvp-scene__note">Podrás indicar tu nombre y cuántas personas asistirán.</p>
+              <img class="rsvp-scene__rose" src="./assets/enchanted/stained-glass/rose-emblem.png" alt="" aria-hidden="true" />
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <button class="scene-arrow scene-arrow--prev" id="previous-scene" type="button" aria-label="Escena anterior" disabled>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7" /></svg>
+      </button>
+      <button class="scene-arrow scene-arrow--next" id="next-scene" type="button" aria-label="Siguiente escena">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
+      </button>
+
+      <nav class="scene-navigation" aria-label="Secciones de la invitación">
+        <button type="button" class="scene-navigation__item is-active" data-scene-target="0" aria-current="step">
+          <span class="scene-navigation__dot"></span><span>Inicio</span>
+        </button>
+        <button type="button" class="scene-navigation__item" data-scene-target="1">
+          <span class="scene-navigation__dot"></span><span>Fecha</span>
+        </button>
+        <button type="button" class="scene-navigation__item" data-scene-target="2">
+          <span class="scene-navigation__dot"></span><span>Lugar</span>
+        </button>
+        <button type="button" class="scene-navigation__item" data-scene-target="3">
+          <span class="scene-navigation__dot"></span><span>Vestimenta</span>
+        </button>
+        <button type="button" class="scene-navigation__item" data-scene-target="4">
+          <span class="scene-navigation__dot"></span><span>Detalles</span>
+        </button>
+        <button type="button" class="scene-navigation__item" data-scene-target="5">
+          <span class="scene-navigation__dot"></span><span>Confirmar</span>
         </button>
       </nav>
 
-      <section class="hero" id="inicio">
-        <img class="hero__butterflies" src="./assets/conjunto-mariposas.webp" alt="" aria-hidden="true" />
-        <div class="hero__glow" aria-hidden="true"></div>
-
-        <div class="hero__content container">
-          <p class="eyebrow reveal">Mis quince años</p>
-          <p class="hero__script reveal" aria-hidden="true">María Fernanda</p>
-          <h2 class="hero__title reveal">
-            Hay momentos que se sueñan toda la vida.
-            <em>Este quiero vivirlo contigo.</em>
-          </h2>
-          <p class="hero__text reveal">
-            Con mucha alegría, junto a mi familia, te invito a celebrar el comienzo de una nueva etapa.
-          </p>
-          <a class="hero__scroll reveal" href="#fecha">
-            Descubre la invitación
-            <span aria-hidden="true">↓</span>
-          </a>
-        </div>
-      </section>
-
-      <section class="event section" id="fecha">
-        <div class="container event__grid">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Guarda la fecha</p>
-            <h2>La celebración</h2>
-            <p>
-              Una tarde que se convertirá en noche, entre música, abrazos y recuerdos para siempre.
-            </p>
-          </div>
-
-          <article class="date-card reveal" data-date-card aria-label="Sábado 3 de octubre de 2026 a las 6 de la tarde">
-            <div class="date-card__header">
-              <span>Fecha del evento</span>
-              <span data-event-year>2026</span>
-            </div>
-
-            <div class="date-card__calendar">
-              <span class="date-card__weekday" data-event-weekday>Sábado</span>
-              <div class="date-card__date-row">
-                <strong class="date-card__day" data-event-day>03</strong>
-                <div class="date-card__month-year">
-                  <span class="date-card__month" data-event-month>Octubre</span>
-                  <span class="date-card__year" data-event-year>2026</span>
-                </div>
-              </div>
-              <p class="date-card__full-date" data-event-date-label>Sábado, 3 de octubre de 2026</p>
-            </div>
-
-            <div class="date-card__time">
-              <span>Recepción</span>
-              <strong data-event-time>6:00 p. m.</strong>
-            </div>
-          </article>
-        </div>
-
-        <div class="countdown-wrap container reveal" aria-label="Cuenta regresiva para el evento">
-          <p>Faltan</p>
-          <div class="countdown" id="countdown">
-            <div><strong data-countdown="days">--</strong><span>días</span></div>
-            <div><strong data-countdown="hours">--</strong><span>horas</span></div>
-            <div><strong data-countdown="minutes">--</strong><span>minutos</span></div>
-            <div><strong data-countdown="seconds">--</strong><span>segundos</span></div>
-          </div>
-          <p class="countdown__done" id="countdown-done" hidden>Hoy es el gran día ✨</p>
-        </div>
-      </section>
-
-      <section class="location section section--paper" id="ubicacion">
-        <img class="corner corner--top" src="./assets/flores-esquina-2.webp" alt="" aria-hidden="true" />
-        <img class="corner corner--bottom" src="./assets/flores-esquina-1.webp" alt="" aria-hidden="true" />
-
-        <div class="container location__grid">
-          <div class="location__copy reveal">
-            <p class="eyebrow">Nos encontramos en</p>
-            <h2>Centro Recreacional Comfaboy</h2>
-            <p class="location__city">Duitama · Boyacá</p>
-            <p>
-              Te recomendamos llegar con algunos minutos de anticipación para recibirte como mereces.
-            </p>
-            <a
-              class="button button--secondary"
-              data-map-link
-              href="https://www.google.com/maps/search/?api=1&query=Comfaboy+Centro+Recreacional+Duitama+Boyaca+Colombia"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Abrir en Google Maps
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5M19 5 10 14M19 13v6H5V5h6" /></svg>
-            </a>
-          </div>
-
-          <div class="map-card reveal">
-            <iframe
-              title="Mapa del Centro Recreacional Comfaboy en Duitama"
-              src="https://maps.google.com/maps?q=Comfaboy+Centro+Recreacional+Duitama+Boyaca+Colombia&t=&z=15&ie=UTF8&iwloc=&output=embed"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-            <span class="map-card__label">Duitama, Boyacá</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="details section" id="detalles">
-        <div class="container">
-          <div class="section-heading section-heading--center reveal">
-            <p class="eyebrow">Para tener en cuenta</p>
-            <h2>Detalles de la noche</h2>
-          </div>
-
-          <div class="details__grid">
-            <article class="detail-card reveal">
-              <span class="detail-card__number">01</span>
-              <div class="detail-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M8 3h8l1 6 3 3-3 2v7H7v-7l-3-2 3-3 1-6Z" /><path d="M8 9h8M9 14h6" /></svg>
-              </div>
-              <h3>Código de vestimenta</h3>
-              <p class="detail-card__lead">Etiqueta formal</p>
-              <p>Queremos verte elegante y listo para celebrar. Puedes usar el color que prefieras, excepto el tono reservado para María Fernanda.</p>
-              <div class="reserved-color" aria-label="Color cereza reservado para el vestido de la quinceañera">
-                <span class="reserved-color__swatch" aria-hidden="true"></span>
-                <span>
-                  <strong>Color reservado: cereza</strong>
-                  <span>Evita únicamente tonos similares al vestido de la quinceañera.</span>
-                </span>
-              </div>
-            </article>
-
-            <article class="detail-card reveal">
-              <span class="detail-card__number">02</span>
-              <div class="detail-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M3 9h18v12H3V9Zm-1-5h20v5H2V4Z" /><path d="M12 4v17M7.5 4C5 1 2.5 5 6 7h6M16.5 4C19 1 21.5 5 18 7h-6" /></svg>
-              </div>
-              <h3>Lluvia de sobres</h3>
-              <p class="detail-card__lead">Tu cariño es el mejor regalo</p>
-              <p>
-                Quienes deseen obsequiarme algo pueden hacerlo mediante la tradicional lluvia de sobres.
-              </p>
-            </article>
-
-            <article class="detail-card reveal">
-              <span class="detail-card__number">03</span>
-              <div class="detail-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M12 21s8-4.5 8-11a4.5 4.5 0 0 0-8-2.7A4.5 4.5 0 0 0 4 10c0 6.5 8 11 8 11Z" /></svg>
-              </div>
-              <h3>Con todo el corazón</h3>
-              <p class="detail-card__lead">Lo más importante es compartir</p>
-              <p>
-                Gracias por acompañarme en una fecha tan significativa para mí y para mi familia.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="rsvp section" id="confirmacion">
-        <div class="rsvp__sparkle" aria-hidden="true"></div>
-        <img class="rsvp__lights" src="./assets/luces.webp" alt="" aria-hidden="true" />
-        <img class="rsvp__butterfly" src="./assets/decoracion-mariposa.webp" alt="" aria-hidden="true" />
-
-        <div class="container rsvp__content reveal">
-          <p class="eyebrow">Será aún más especial contigo</p>
-          <h2>Confirma tu asistencia</h2>
-          <p>
-            Por favor confirma antes del <strong data-rsvp-deadline>20 de septiembre de 2026</strong>.
-          </p>
-          <button class="button button--light" id="open-rsvp" type="button">
-            Confirmar asistencia
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z" /><path d="M8.5 8.5c.5 3 2 4.5 5 5" /></svg>
-          </button>
-          <small>Podrás indicar tu nombre y cuántas personas asistirán.</small>
-        </div>
-      </section>
-
-      <!-- Confirmación sin base de datos: prepara el mensaje y continúa en WhatsApp. -->
-      <dialog class="rsvp-dialog" id="rsvp-dialog" aria-labelledby="rsvp-dialog-title">
-        <form class="rsvp-form" id="rsvp-form" method="dialog">
-          <button class="rsvp-dialog__close" id="close-rsvp" type="button" aria-label="Cerrar confirmación">×</button>
-          <p class="eyebrow">Confirmación</p>
-          <h2 id="rsvp-dialog-title">¿Nos acompañas?</h2>
-          <p class="rsvp-form__intro">Completa estos datos y abriremos WhatsApp con el mensaje listo.</p>
-
-          <label class="field">
-            <span>Nombre de quien confirma</span>
-            <input id="rsvp-name" name="name" type="text" autocomplete="name" maxlength="80" required placeholder="Ej. Familia Gómez" />
-          </label>
-
-          <fieldset class="attendance-fieldset">
-            <legend>¿Podrás asistir?</legend>
-            <label class="attendance-option">
-              <input type="radio" name="attendance" value="yes" checked />
-              <span>Sí, asistiré</span>
-            </label>
-            <label class="attendance-option">
-              <input type="radio" name="attendance" value="no" />
-              <span>No podré asistir</span>
-            </label>
-          </fieldset>
-
-          <label class="field" id="guest-count-field">
-            <span>Número total de asistentes</span>
-            <select id="rsvp-guests" name="guests" aria-label="Número total de asistentes"></select>
-          </label>
-
-          <label class="field">
-            <span>Mensaje adicional <small>(opcional)</small></span>
-            <textarea id="rsvp-note" name="note" rows="3" maxlength="180" placeholder="Algo que quieras contarle a María Fernanda"></textarea>
-          </label>
-
-          <button class="button button--primary rsvp-form__submit" type="submit">
-            Continuar en WhatsApp
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M14 7l5 5-5 5" /></svg>
-          </button>
-        </form>
-      </dialog>
-
-      <footer class="footer">
-        <div class="footer__mark">MF</div>
-        <p class="footer__name" data-event-name>María Fernanda</p>
-        <p>Gracias por ser parte de mi historia.</p>
-        <span data-current-year></span>
-      </footer>
+      <p class="swipe-hint" id="swipe-hint">Desliza para continuar <span aria-hidden="true">→</span></p>
     </main>
+
+    <dialog class="rsvp-dialog" id="rsvp-dialog" aria-labelledby="rsvp-dialog-title">
+      <form class="rsvp-form" id="rsvp-form" method="dialog">
+        <button class="rsvp-dialog__close" id="close-rsvp" type="button" aria-label="Cerrar confirmación">×</button>
+        <p class="scene-kicker">Confirmación</p>
+        <h2 id="rsvp-dialog-title">¿Nos acompañas?</h2>
+        <p class="rsvp-form__intro">Completa estos datos y abriremos WhatsApp con el mensaje listo.</p>
+
+        <label class="field">
+          <span>Nombre de quien confirma</span>
+          <input id="rsvp-name" name="name" type="text" autocomplete="name" maxlength="80" required placeholder="Ej. Familia Gómez" />
+        </label>
+
+        <fieldset class="attendance-fieldset">
+          <legend>¿Podrás asistir?</legend>
+          <label class="attendance-option">
+            <input type="radio" name="attendance" value="yes" checked />
+            <span>Sí, asistiré</span>
+          </label>
+          <label class="attendance-option">
+            <input type="radio" name="attendance" value="no" />
+            <span>No podré asistir</span>
+          </label>
+        </fieldset>
+
+        <label class="field" id="guest-count-field">
+          <span>Número total de asistentes</span>
+          <select id="rsvp-guests" name="guests" aria-label="Número total de asistentes"></select>
+        </label>
+
+        <label class="field">
+          <span>Mensaje adicional <small>(opcional)</small></span>
+          <textarea id="rsvp-note" name="note" rows="3" maxlength="180" placeholder="Algo que quieras contarle a María Fernanda"></textarea>
+        </label>
+
+        <button class="scene-cta rsvp-form__submit" type="submit">
+          Continuar en WhatsApp
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M14 7l5 5-5 5" /></svg>
+        </button>
+      </form>
+    </dialog>
 
     <noscript>
       <div class="noscript">Activa JavaScript para ver la invitación y su cuenta regresiva.</div>

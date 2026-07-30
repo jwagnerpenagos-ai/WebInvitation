@@ -1,6 +1,6 @@
 import { $ } from './dom.js';
 
-const MILLISECONDS = Object.freeze({
+const UNIT = Object.freeze({
   day: 86_400_000,
   hour: 3_600_000,
   minute: 60_000,
@@ -22,8 +22,6 @@ export function setupCountdown(eventDate) {
     return;
   }
 
-  const pad = (value) => String(value).padStart(2, '0');
-
   const render = () => {
     const remaining = targetTime - Date.now();
 
@@ -33,15 +31,15 @@ export function setupCountdown(eventDate) {
       return false;
     }
 
-    fields.days.textContent = pad(Math.floor(remaining / MILLISECONDS.day));
-    fields.hours.textContent = pad(Math.floor((remaining / MILLISECONDS.hour) % 24));
-    fields.minutes.textContent = pad(Math.floor((remaining / MILLISECONDS.minute) % 60));
-    fields.seconds.textContent = pad(Math.floor((remaining / MILLISECONDS.second) % 60));
+    fields.days.textContent = String(Math.floor(remaining / UNIT.day)).padStart(2, '0');
+    fields.hours.textContent = String(Math.floor((remaining / UNIT.hour) % 24)).padStart(2, '0');
+    fields.minutes.textContent = String(Math.floor((remaining / UNIT.minute) % 60)).padStart(2, '0');
+    fields.seconds.textContent = String(Math.floor((remaining / UNIT.second) % 60)).padStart(2, '0');
     return true;
   };
 
   render();
   const timer = window.setInterval(() => {
     if (!render()) window.clearInterval(timer);
-  }, MILLISECONDS.second);
+  }, UNIT.second);
 }

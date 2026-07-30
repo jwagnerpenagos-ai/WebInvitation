@@ -6,7 +6,7 @@ export const invitationConfig = Object.freeze({
   rsvpDeadline: '20 de septiembre de 2026',
   venue: {
     name: 'Centro Recreacional Comfaboy',
-    city: 'Duitama, Boyacá',
+    city: 'Duitama · Boyacá',
     mapsUrl:
       'https://www.google.com/maps/search/?api=1&query=Comfaboy+Centro+Recreacional+Duitama+Boyaca+Colombia',
   },

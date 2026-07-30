@@ -1,18 +1,21 @@
 import { invitationConfig } from './config.js';
+import { setupAudio } from './modules/audio.js';
 import { bindInvitationContent } from './modules/content.js';
 import { setupCountdown } from './modules/countdown.js';
-import { setupIntro } from './modules/intro.js';
-import { setupQuickNavigation, setupSmoothAnchors } from './modules/navigation.js';
-import { initRevealAnimations } from './modules/reveal.js';
+import { setupEnvelope } from './modules/envelope.js';
 import { setupRsvp } from './modules/rsvp.js';
+import { setupSceneSlider } from './modules/slider.js';
 
-function initInvitation() {
+function initializeInvitation() {
   bindInvitationContent(invitationConfig);
   setupCountdown(invitationConfig.eventDate);
   setupRsvp(invitationConfig);
-  setupSmoothAnchors();
-  setupQuickNavigation();
-  setupIntro({ onOpened: initRevealAnimations });
+
+  const audio = setupAudio();
+  setupEnvelope({
+    ...audio,
+    onOpened: setupSceneSlider,
+  });
 }
 
-initInvitation();
+initializeInvitation();

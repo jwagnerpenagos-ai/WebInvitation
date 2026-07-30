@@ -1,0 +1,135 @@
+.rsvp-dialog {
+  width: min(92vw, 560px);
+  max-height: min(90dvh, 760px);
+  padding: 0;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-radius: 28px;
+  overflow: visible;
+}
+
+.rsvp-dialog::backdrop {
+  background: rgba(18, 4, 9, 0.72);
+  backdrop-filter: blur(8px);
+}
+
+.rsvp-form {
+  position: relative;
+  max-height: min(90dvh, 760px);
+  padding: clamp(1.3rem, 4vw, 2rem);
+  overflow-y: auto;
+  background:
+    linear-gradient(rgba(255,250,243,0.9), rgba(255,250,243,0.96)),
+    url('../../assets/enchanted/backgrounds/cream-mobile.webp') center / cover;
+  border: 1px solid rgba(201, 163, 91, 0.48);
+  border-radius: 28px;
+  box-shadow: 0 35px 80px rgba(0,0,0,0.42);
+}
+
+.rsvp-form h2 {
+  font-size: clamp(2.5rem, 8vw, 4.2rem);
+}
+
+.rsvp-form__intro {
+  margin: 0.65rem 0 1.3rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.rsvp-dialog__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  color: var(--wine-700);
+  font-size: 1.6rem;
+  background: rgba(255,255,255,0.72);
+  border: 1px solid rgba(143,33,71,0.12);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.field {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 1rem;
+}
+
+.field > span,
+.attendance-fieldset legend {
+  color: var(--wine-800);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.85rem 0.95rem;
+  color: var(--ink);
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(143,33,71,0.17);
+  border-radius: 14px;
+  outline: none;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--cherry-500);
+  box-shadow: 0 0 0 3px rgba(163,49,89,0.12);
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.attendance-fieldset {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.attendance-fieldset legend {
+  grid-column: 1 / -1;
+  margin-bottom: 0.45rem;
+}
+
+.attendance-option {
+  position: relative;
+}
+
+.attendance-option input {
+  position: absolute;
+  opacity: 0;
+}
+
+.attendance-option span {
+  display: block;
+  padding: 0.8rem;
+  color: var(--muted);
+  background: rgba(255,255,255,0.65);
+  border: 1px solid rgba(143,33,71,0.14);
+  border-radius: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.attendance-option input:checked + span {
+  color: var(--cream-50);
+  background: linear-gradient(135deg, var(--cherry-500), var(--wine-700));
+  border-color: transparent;
+}
+
+.rsvp-form__submit {
+  width: 100%;
+  margin-top: 1.35rem;
+}
