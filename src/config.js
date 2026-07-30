@@ -13,6 +13,8 @@ export const invitationConfig = Object.freeze({
     city: 'Duitama · Boyacá',
     mapsUrl:
       'https://www.google.com/maps/search/?api=1&query=Comfaboy+Centro+Recreacional+Duitama+Boyaca+Colombia',
+    mapsEmbedUrl:
+      'https://www.google.com/maps?q=Centro+Recreacional+Comfaboy+Duitama+Boyaca+Colombia&output=embed',
   }),
   rsvp: Object.freeze({
     // Formato internacional, sin “+”, espacios ni guiones.

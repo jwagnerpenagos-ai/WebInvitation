@@ -18,6 +18,10 @@ export function bindInvitationContent(config) {
     link.href = config.venue.mapsUrl;
   });
 
+  $$('[data-map-embed]').forEach((frame) => {
+    frame.src = config.venue.mapsEmbedUrl;
+  });
+
   $('.date-hero')?.setAttribute(
     'aria-label',
     `${date.full}. Eucaristía a las ${config.schedule.ceremony}. Recepción a las ${config.schedule.reception}.`,

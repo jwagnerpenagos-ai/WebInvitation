@@ -89,20 +89,22 @@
 .date-scene,
 .location-scene {
   display: grid;
-  grid-template-columns: minmax(280px, 0.9fr) minmax(360px, 1.1fr);
   align-items: center;
-  gap: clamp(2rem, 5vw, 5rem);
+  height: 100%;
 }
 
+/* Portada: dos focos claros, sin competir por el mismo espacio. */
 .identity-scene {
-  grid-template-columns: minmax(300px, 0.9fr) minmax(420px, 1.1fr);
+  grid-template-columns: minmax(300px, 0.88fr) minmax(430px, 1.12fr);
+  gap: clamp(2.5rem, 5vw, 5.5rem);
+  padding-inline: clamp(0.5rem, 2vw, 2rem);
 }
 
 .stained-glass {
   position: relative;
   justify-self: center;
-  width: min(35vw, 410px);
-  height: min(60vh, 560px);
+  width: min(33vw, 405px);
+  height: min(58vh, 540px);
 }
 
 .stained-glass img {
@@ -131,21 +133,21 @@
   align-items: flex-end;
   justify-content: center;
   gap: 0.45rem;
-  margin: -0.1rem 0 0.2rem;
+  margin: 0 0 0.25rem;
   color: var(--gold-400);
   text-shadow: 0 12px 30px rgba(0, 0, 0, 0.32);
 }
 
 .identity-scene__milestone strong {
   font-family: var(--font-display);
-  font-size: clamp(7rem, 11vw, 11rem);
+  font-size: clamp(7rem, 10vw, 10.5rem);
   font-weight: 500;
   line-height: 0.68;
   letter-spacing: -0.07em;
 }
 
 .identity-scene__milestone span {
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.82rem;
   font-family: var(--font-display);
   font-size: clamp(1.45rem, 2.2vw, 2.2rem);
   font-style: italic;
@@ -154,26 +156,29 @@
 .identity-scene h2 {
   width: 100%;
   font-family: var(--font-script);
-  font-size: clamp(4.6rem, 7vw, 7.2rem);
+  font-size: clamp(4.5rem, 6.8vw, 7rem);
   font-weight: 400;
   line-height: 0.82;
   text-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
 }
 
 .identity-scene h2 span { display: block; }
-.identity-scene .ornamental-divider { margin-top: 1rem; }
+.identity-scene .ornamental-divider { margin-top: 0.9rem; }
 
+/* Fecha: la información principal y la cuenta regresiva forman dos bloques equivalentes. */
 .date-scene {
-  grid-template-columns: minmax(470px, 1.12fr) minmax(300px, 0.88fr);
+  grid-template-columns: minmax(480px, 1.08fr) minmax(350px, 0.92fr);
+  gap: clamp(2.5rem, 5vw, 5rem);
+  padding-inline: clamp(0.5rem, 2vw, 2rem);
 }
 
 .date-scene__main {
-  align-self: center;
   width: 100%;
   max-width: 660px;
+  justify-self: end;
 }
 
-.date-scene__main h2 { font-size: clamp(3.4rem, 5.3vw, 5.1rem); }
+.date-scene__main h2 { font-size: clamp(3.4rem, 5.1vw, 5rem); }
 
 .date-hero {
   display: grid;
@@ -181,14 +186,14 @@
   align-items: center;
   gap: clamp(1.1rem, 2.5vw, 2rem);
   margin-top: 1rem;
-  padding: 0.55rem 0 0.9rem;
+  padding: 0.6rem 0 1rem;
   border-bottom: 1px solid rgba(140, 91, 67, 0.24);
 }
 
 .date-hero__day {
   color: var(--wine-700);
   font-family: var(--font-display);
-  font-size: clamp(7.5rem, 11vw, 10.3rem);
+  font-size: clamp(7.2rem, 10.5vw, 10rem);
   font-weight: 500;
   line-height: 0.72;
   letter-spacing: -0.07em;
@@ -213,7 +218,7 @@
 .date-hero__month {
   margin-top: 0.2rem;
   font-family: var(--font-display);
-  font-size: clamp(3rem, 4.5vw, 4.25rem);
+  font-size: clamp(3rem, 4.4vw, 4.2rem);
   font-weight: 600;
   line-height: 0.92;
 }
@@ -230,7 +235,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 0.85rem;
 }
 
 .event-schedule__item {
@@ -239,7 +244,7 @@
   align-items: center;
   gap: 0.75rem;
   min-width: 0;
-  padding: 0.65rem 0;
+  padding: 0.6rem 0;
 }
 
 .event-schedule__item + .event-schedule__item {
@@ -283,44 +288,67 @@
   margin-top: 0.18rem;
   color: var(--wine-700);
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 2.5vw, 2.25rem);
+  font-size: clamp(1.6rem, 2.45vw, 2.2rem);
   font-weight: 600;
   line-height: 1;
 }
 
 .countdown-panel {
   display: grid;
-  justify-items: center;
   align-content: center;
-  height: 100%;
+  justify-items: center;
+  gap: 0.9rem;
+  width: 100%;
+  max-width: 430px;
+  padding-left: clamp(1.5rem, 3vw, 3rem);
+  border-left: 1px solid rgba(140, 91, 67, 0.18);
   text-align: center;
+  justify-self: start;
+}
+
+.countdown-panel__intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+}
+
+.countdown-panel__intro > div { text-align: left; }
+
+.countdown-panel__intro span {
+  color: var(--muted);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.countdown-panel__intro p {
+  margin: 0.05rem 0 0;
+  color: var(--cherry-600);
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-style: italic;
+  line-height: 1;
 }
 
 .countdown-panel__rose {
-  width: min(210px, 75%);
-  max-height: 260px;
+  width: 105px;
+  height: 138px;
   object-fit: contain;
-  filter: drop-shadow(0 20px 28px rgba(67, 15, 30, 0.22));
-}
-
-.countdown-panel > p {
-  margin: 0.2rem 0 0.5rem;
-  color: var(--cherry-600);
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-style: italic;
+  filter: drop-shadow(0 18px 24px rgba(67, 15, 30, 0.2));
 }
 
 .countdown {
   display: grid;
-  grid-template-columns: repeat(4, minmax(54px, 1fr));
+  grid-template-columns: repeat(4, minmax(58px, 1fr));
   gap: 0.5rem;
   width: min(100%, 390px);
 }
 
 .countdown > div {
-  padding: 0.65rem 0.28rem;
-  background: rgba(255, 255, 255, 0.54);
+  padding: 0.7rem 0.28rem;
+  background: rgba(255, 255, 255, 0.58);
   border: 1px solid rgba(143, 33, 71, 0.12);
   border-radius: 15px;
 }
@@ -331,7 +359,7 @@
 .countdown strong {
   color: var(--wine-700);
   font-family: var(--font-display);
-  font-size: clamp(1.45rem, 2.8vw, 2.2rem);
+  font-size: clamp(1.45rem, 2.7vw, 2.1rem);
 }
 
 .countdown span {
@@ -342,52 +370,81 @@
   text-transform: uppercase;
 }
 
+/* Lugar: el mapa es contenido, no un adorno; por eso tiene una superficie propia. */
 .location-scene {
-  grid-template-columns: minmax(300px, 0.9fr) minmax(430px, 1.1fr);
+  grid-template-columns: minmax(430px, 1.05fr) minmax(390px, 0.95fr);
+  gap: clamp(2.5rem, 5vw, 5rem);
+  padding-inline: clamp(0.5rem, 2vw, 2rem);
 }
 
-.location-scene__visual {
+.location-scene__map {
   position: relative;
-  justify-self: center;
-  width: min(35vw, 390px);
-  height: min(55vh, 520px);
+  width: 100%;
+  max-width: 580px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid rgba(239, 204, 128, 0.55);
+  border-radius: 28px;
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.34);
+  justify-self: end;
+  isolation: isolate;
 }
 
-.location-scene__visual > img {
+.location-scene__map iframe {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 24px 34px rgba(0, 0, 0, 0.3));
+  border: 0;
+  filter: saturate(0.72) sepia(0.12) contrast(0.94);
 }
 
-.location-scene__pin {
+.location-scene__map-shade {
   position: absolute;
-  right: 4%;
-  bottom: 13%;
-  display: grid;
-  place-items: center;
-  width: 58px;
-  height: 58px;
-  color: var(--wine-700);
-  background: linear-gradient(145deg, #fff7df, #e7c67e);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 50%;
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.24);
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(38, 4, 13, 0.08), rgba(38, 4, 13, 0.2));
+  pointer-events: none;
 }
 
-.location-scene__pin svg {
-  width: 27px;
-  height: 27px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.7;
+.location-scene__map-emblem {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 2;
+  width: 64px;
+  height: 78px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.28));
+  pointer-events: none;
 }
 
-.location-scene__copy { max-width: 630px; }
+.location-scene__map-label {
+  position: absolute;
+  right: 18px;
+  bottom: 16px;
+  z-index: 2;
+  padding: 0.5rem 0.75rem;
+  color: var(--wine-800);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(255, 247, 226, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(8px);
+}
+
+.location-scene__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 600px;
+}
 
 .location-scene__copy h2 {
-  max-width: 620px;
-  font-size: clamp(3.2rem, 5vw, 5rem);
+  max-width: 590px;
+  font-size: clamp(3.2rem, 4.8vw, 4.8rem);
 }
 
 .location-scene__city {

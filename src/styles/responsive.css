@@ -86,7 +86,7 @@
       calc(var(--navigation-height) + max(14px, env(safe-area-inset-bottom)));
   }
 
-  .invitation-shell[data-scene='0'] .scene-viewport {
+  .invitation-shell[data-current-scene='0'] .scene-viewport {
     bottom: max(22px, env(safe-area-inset-bottom));
   }
 
@@ -182,47 +182,52 @@
   .identity-scene {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(0, 1fr) auto;
-    gap: 0.35rem;
-    padding: 0.2rem 0 0.35rem;
+    grid-template-rows: minmax(210px, 36dvh) auto;
+    align-content: center;
+    gap: clamp(1rem, 2.5dvh, 1.5rem);
+    padding: 0.35rem 0 0.75rem;
   }
 
   .stained-glass {
-    width: min(55vw, 225px);
+    align-self: end;
+    width: min(58vw, 230px);
     height: 100%;
-    max-height: min(39dvh, 305px);
+    max-height: 305px;
   }
 
-  .identity-scene__copy { align-self: end; }
+  .identity-scene__copy {
+    align-self: start;
+    justify-self: center;
+  }
 
   .identity-scene__milestone {
-    gap: 0.25rem;
+    gap: 0.28rem;
     margin: 0;
   }
 
   .identity-scene__milestone strong {
-    font-size: clamp(5.4rem, 24vw, 7rem);
-    line-height: 0.66;
+    font-size: clamp(5.2rem, 23vw, 6.6rem);
+    line-height: 0.67;
   }
 
   .identity-scene__milestone span {
-    margin-bottom: 0.5rem;
-    font-size: 1.35rem;
+    margin-bottom: 0.48rem;
+    font-size: 1.25rem;
   }
 
   .identity-scene h2 {
-    font-size: clamp(3.5rem, 16vw, 4.9rem);
+    font-size: clamp(3.35rem, 15vw, 4.45rem);
     line-height: 0.8;
   }
 
-  .identity-scene .ornamental-divider { margin-top: 0.45rem; }
+  .identity-scene .ornamental-divider { margin-top: 0.4rem; }
 
   .date-scene {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 0.35rem;
-    padding: 0.15rem 0 0.2rem;
+    display: grid;
+    grid-template-rows: auto auto;
+    align-content: center;
+    gap: clamp(1.35rem, 3.2dvh, 2rem);
+    padding: 0.3rem 0 0.75rem;
   }
 
   .date-scene__main {
@@ -230,33 +235,33 @@
     text-align: center;
   }
 
-  .date-scene__main h2 { font-size: clamp(2.7rem, 11vw, 3.4rem); }
+  .date-scene__main h2 { font-size: clamp(2.65rem, 10.8vw, 3.25rem); }
 
   .date-hero {
-    grid-template-columns: minmax(98px, 0.78fr) minmax(126px, 1.22fr);
-    gap: 0.55rem;
+    grid-template-columns: minmax(94px, 0.76fr) minmax(132px, 1.24fr);
+    gap: 0.6rem;
     width: min(100%, 430px);
-    margin: 0.45rem auto 0;
-    padding: 0.25rem 0 0.55rem;
+    margin: 0.5rem auto 0;
+    padding: 0.3rem 0 0.65rem;
   }
 
   .date-hero__day {
-    font-size: clamp(5rem, 23vw, 6.5rem);
+    font-size: clamp(5rem, 22vw, 6.2rem);
     line-height: 0.72;
   }
 
   .date-hero__copy {
-    padding-left: 0.72rem;
+    padding-left: 0.75rem;
     text-align: left;
   }
 
   .date-hero__weekday { font-size: 0.57rem; }
-  .date-hero__month { font-size: clamp(2rem, 9vw, 2.65rem); }
+  .date-hero__month { font-size: clamp(2rem, 8.8vw, 2.55rem); }
   .date-hero__year { margin-top: 0.2rem; font-size: 0.57rem; }
 
   .event-schedule {
     width: min(100%, 430px);
-    margin: 0.35rem auto 0;
+    margin: 0.45rem auto 0;
     gap: 0.4rem;
   }
 
@@ -266,7 +271,7 @@
     text-align: left;
   }
 
-  .event-schedule__item + .event-schedule__item { padding-left: 0.55rem; }
+  .event-schedule__item + .event-schedule__item { padding-left: 0.6rem; }
 
   .event-schedule__icon {
     width: 34px;
@@ -278,29 +283,38 @@
   .event-schedule__item strong { font-size: 1.35rem; }
 
   .countdown-panel {
-    flex: 1 1 auto;
-    width: 100%;
-    min-height: 0;
+    display: grid;
+    gap: 0.55rem;
+    width: min(100%, 430px);
+    max-width: none;
     height: auto;
+    margin: 0 auto;
+    padding: 0.8rem 0 0;
+    border-top: 1px solid rgba(143, 33, 71, 0.15);
+    border-left: 0;
+    justify-self: center;
   }
+
+  .countdown-panel__intro {
+    gap: 0.5rem;
+  }
+
+  .countdown-panel__intro > div { text-align: left; }
+  .countdown-panel__intro span { font-size: 0.5rem; }
+  .countdown-panel__intro p { font-size: 1.15rem; }
 
   .countdown-panel__rose {
-    width: min(25vw, 104px);
-    max-height: min(14dvh, 112px);
-  }
-
-  .countdown-panel > p {
-    margin: -0.1rem 0 0.22rem;
-    font-size: 1rem;
+    width: 48px;
+    height: 65px;
   }
 
   .countdown {
-    width: min(100%, 390px);
+    width: 100%;
     gap: 0.32rem;
   }
 
   .countdown > div {
-    padding: 0.4rem 0.15rem;
+    padding: 0.46rem 0.15rem;
     border-radius: 12px;
   }
 
@@ -308,54 +322,80 @@
   .countdown span { font-size: 0.5rem; }
 
   .location-scene {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    gap: 0.4rem;
-    padding: 0.15rem 0 0.3rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(155px, 24dvh) auto;
+    align-content: center;
+    gap: clamp(0.9rem, 2.4dvh, 1.35rem);
+    padding: 0.25rem 0 0.75rem;
     text-align: center;
   }
 
-  .location-scene__visual {
-    flex: 0 1 auto;
-    width: min(52vw, 215px);
-    height: min(34dvh, 260px);
+  .location-scene__map {
+    width: min(100%, 430px);
+    max-width: none;
+    height: 100%;
+    min-height: 155px;
+    aspect-ratio: auto;
+    border-radius: 20px;
+    justify-self: center;
   }
 
-  .location-scene__pin {
-    right: 0;
-    bottom: 7%;
-    width: 45px;
-    height: 45px;
+  .location-scene__map-emblem {
+    top: 10px;
+    left: 11px;
+    width: 44px;
+    height: 55px;
   }
 
-  .location-scene__pin svg { width: 22px; height: 22px; }
+  .location-scene__map-label {
+    right: 10px;
+    bottom: 10px;
+    padding: 0.38rem 0.55rem;
+    font-size: 0.5rem;
+  }
 
   .location-scene__copy {
-    display: flex;
-    flex-direction: column;
     align-items: center;
     width: 100%;
+    max-width: 430px;
+    margin: 0 auto;
   }
 
   .location-scene__copy h2 {
     max-width: 22rem;
-    font-size: clamp(2.35rem, 9.7vw, 3.15rem);
+    font-size: clamp(2.35rem, 9.4vw, 3.05rem);
   }
 
   .location-scene__city {
-    margin-top: 0.35rem;
-    font-size: 0.58rem;
+    margin-top: 0.3rem;
+    font-size: 0.56rem;
   }
 
-  .location-scene .scene-copy { max-width: 20rem; }
+  .location-scene .ornamental-divider {
+    width: 130px;
+    margin: 0.2rem 0;
+  }
+
+  .location-scene .scene-copy {
+    max-width: 21rem;
+    margin-top: 0.3rem;
+    font-size: 0.72rem;
+    line-height: 1.4;
+  }
+
+  .location-scene .scene-cta {
+    min-height: 46px;
+    margin-top: 0.65rem;
+    padding: 0.68rem 1.15rem;
+  }
 
   .info-scene {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.45rem;
-    padding: 0.1rem 0 0.3rem;
+    display: grid;
+    grid-template-rows: auto auto;
+    align-content: center;
+    gap: clamp(0.9rem, 2.4dvh, 1.35rem);
+    padding: 0.25rem 0 0.75rem;
   }
 
   .info-scene__heading h2 { font-size: clamp(2.55rem, 10.5vw, 3.3rem); }
@@ -363,9 +403,9 @@
   .info-scene__content {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.55rem;
+    gap: 0.7rem;
     width: min(100%, 440px);
-    margin: 0.25rem auto 0;
+    margin: 0 auto;
   }
 
   .info-scene__separator {
@@ -376,8 +416,9 @@
 
   .info-block {
     grid-template-columns: auto 1fr;
-    gap: 0.65rem;
-    align-items: center;
+    gap: 0.7rem;
+    align-items: start;
+    padding: 0.25rem 0;
   }
 
   .info-block__icon {
@@ -482,20 +523,17 @@
   .event-schedule { margin-top: 0.18rem; }
   .event-schedule__icon { display: none; }
   .event-schedule__item { grid-template-columns: 1fr; }
-  .countdown-panel__rose {
-    display: block;
-    width: 68px;
-    max-height: 74px;
-    margin-bottom: -0.15rem;
-  }
-  .countdown-panel > p { margin-top: 0.12rem; }
+  .countdown-panel { gap: 0.35rem; padding-top: 0.45rem; }
+  .countdown-panel__rose { width: 38px; height: 50px; }
+  .countdown-panel__intro p { font-size: 1rem; }
   .countdown > div { padding-block: 0.25rem; }
 
-  .location-scene__visual { width: 140px; height: 165px; }
-  .location-scene__copy h2 { font-size: 2.35rem; }
-  .location-scene .scene-copy { display: none; }
+  .location-scene { grid-template-rows: 125px auto; gap: 0.55rem; }
+  .location-scene__map { min-height: 125px; border-radius: 16px; }
+  .location-scene__copy h2 { font-size: 2.2rem; }
+  .location-scene .scene-copy,
   .location-scene .ornamental-divider { display: none; }
-  .location-scene .scene-cta { margin-top: 0.6rem; min-height: 43px; }
+  .location-scene .scene-cta { margin-top: 0.45rem; min-height: 41px; }
 
   .info-scene__heading h2 { font-size: 2.35rem; }
   .info-block__icon { width: 39px; height: 39px; }

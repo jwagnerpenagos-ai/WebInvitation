@@ -180,12 +180,17 @@
               </div>
 
               <aside class="countdown-panel" data-reveal>
-                <img
-                  class="countdown-panel__rose"
-                  src="./assets/enchanted/ornaments/enchanted-rose.png"
-                  alt="Rosa encantada bajo una cúpula de cristal"
-                />
-                <p>Faltan</p>
+                <div class="countdown-panel__intro">
+                  <img
+                    class="countdown-panel__rose"
+                    src="./assets/enchanted/ornaments/enchanted-rose.png"
+                    alt="Rosa encantada bajo una cúpula de cristal"
+                  />
+                  <div>
+                    <span>Cuenta regresiva</span>
+                    <p>Faltan</p>
+                  </div>
+                </div>
                 <div class="countdown" id="countdown" aria-label="Cuenta regresiva para el evento">
                   <div><strong data-countdown="days">--</strong><span>días</span></div>
                   <div><strong data-countdown="hours">--</strong><span>horas</span></div>
@@ -199,11 +204,22 @@
 
           <section class="scene scene--location" data-scene="3" data-theme="wine" aria-labelledby="scene-location-title" hidden>
             <div class="scene-layout location-scene">
-              <div class="location-scene__visual" aria-hidden="true" data-reveal>
-                <img src="./assets/enchanted/stained-glass/rose-emblem.png" alt="" />
-                <span class="location-scene__pin">
-                  <svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></svg>
-                </span>
+              <div class="location-scene__map" data-reveal>
+                <iframe
+                  data-map-embed
+                  title="Mapa del Centro Recreacional Comfaboy"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  allowfullscreen
+                ></iframe>
+                <span class="location-scene__map-shade" aria-hidden="true"></span>
+                <img
+                  class="location-scene__map-emblem"
+                  src="./assets/enchanted/stained-glass/rose-emblem.png"
+                  alt=""
+                  aria-hidden="true"
+                />
+                <span class="location-scene__map-label" data-venue-city>Duitama · Boyacá</span>
               </div>
 
               <div class="location-scene__copy" data-reveal>

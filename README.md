@@ -54,3 +54,11 @@ python -m http.server 8000
 ```
 
 Después abre `http://localhost:8000`.
+
+
+## Ajustes de composición V6
+
+- Escenas centradas por contenido, sin usar espacios vacíos como separadores.
+- Mapa embebido y responsivo en la escena de ubicación.
+- Fecha y cuenta regresiva agrupadas como una sola composición.
+- Portada equilibrada en teléfonos altos, bajos y escritorio.

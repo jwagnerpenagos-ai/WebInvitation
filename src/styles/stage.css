@@ -328,6 +328,11 @@
 }
 
 .quick-navigation__item--featured:not(.is-active) {
-  color: #fff4df;
-  background: rgba(143, 33, 71, 0.34);
+  color: rgba(255, 244, 223, 0.82);
+  background: rgba(143, 33, 71, 0.12);
+}
+
+.invitation-shell[data-theme='cream'] .quick-navigation__item--featured:not(.is-active) {
+  color: rgba(82, 22, 43, 0.76);
+  background: rgba(143, 33, 71, 0.06);
 }
