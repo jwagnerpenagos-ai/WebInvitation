@@ -1,32 +1,64 @@
 # Invitación XV · María Fernanda
 
-Invitación web estática, responsive y organizada por escenas. No requiere proceso de compilación.
+Invitación web estática organizada por escenas, optimizada para celular y computador y lista para desplegar en Vercel.
 
-## Despliegue
+## Flujo
 
-Puede desplegarse directamente en Vercel, Netlify o cualquier servidor estático. El archivo de entrada es `index.html`.
+1. Sobre animado
+2. Mensaje de apertura
+3. Portada de María Fernanda y sus 15 años
+4. Fecha y horarios
+5. Lugar
+6. Información: vestimenta y lluvia de sobres
+7. Confirmación por WhatsApp
+
+La navegación principal se concentra en cuatro accesos persistentes: **Fecha**, **Lugar**, **Información** y **Confirmar**. Las escenas iniciales se recorren con gesto horizontal, flechas o teclado.
 
 ## Configuración
 
-Los datos del evento se administran desde `src/config.js`:
+Los datos que normalmente cambian están centralizados en `src/config.js`:
 
-- fecha del evento;
-- horarios de eucaristía y recepción;
-- ubicación y enlaces de Google Maps;
-- fecha límite y teléfono para confirmar por WhatsApp;
-- número máximo de asistentes.
+```js
+schedule: {
+  ceremony: '4:00 p. m.',
+  reception: '5:00 p. m.',
+},
+```
+
+Antes de desplegar, reemplaza el teléfono de ejemplo:
+
+```js
+phone: '573000000000',
+```
+
+Debe ir en formato internacional, sin `+`, espacios ni guiones.
 
 ## Estructura
 
-- `src/modules`: comportamiento por responsabilidad.
-- `src/styles`: estilos separados por componente y responsive.
-- `assets/enchanted`: imágenes y audio de la invitación.
+```text
+assets/enchanted/          Recursos visuales y audio
+src/config.js              Datos del evento
+src/main.js                Inicialización
+src/modules/               Audio, contenido, contador, sobre, navegación y RSVP
+src/styles/                Estilos separados por responsabilidad
+index.html                 Estructura semántica de las escenas
+vercel.json                Configuración de despliegue
+```
 
-## Ajustes de la versión final V9
+## Ejecución local
 
-- La leyenda ocupa más espacio útil y mantiene una lectura cómoda en celular.
-- La portada usa una composición editorial distinta para móvil y escritorio: nombre y aniversario como foco, vitral como contrapunto.
-- La fecha se presenta como un calendario protagonista acompañado por un itinerario de eucaristía y recepción.
-- El contador queda integrado como cierre de la escena de fecha.
-- La sección de información incluye vestimenta, una invitación a disfrutar y una referencia discreta y opcional a los sobres.
-- `src/styles/final.css` concentra el último sistema de composición sin mezclarlo con la lógica de componentes.
+El proyecto usa módulos ES, por lo que debe abrirse mediante un servidor local:
+
+```bash
+python -m http.server 8000
+```
+
+Después abre `http://localhost:8000`.
+
+
+## Ajustes de composición V6
+
+- Escenas centradas por contenido, sin usar espacios vacíos como separadores.
+- Mapa embebido y responsivo en la escena de ubicación.
+- Fecha y cuenta regresiva agrupadas como una sola composición.
+- Portada equilibrada en teléfonos altos, bajos y escritorio.

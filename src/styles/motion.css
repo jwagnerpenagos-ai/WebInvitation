@@ -34,20 +34,6 @@
   50% { opacity: 0.92; transform: scale(1.06); }
 }
 
-
-@keyframes legendReveal {
-  from {
-    opacity: 0;
-    filter: blur(8px);
-    transform: translate3d(0, 14px, 0) scale(0.995);
-  }
-  to {
-    opacity: 1;
-    filter: blur(0);
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-}
-
 @keyframes contentEnter {
   from {
     opacity: 0;
@@ -85,11 +71,12 @@
 }
 
 .legend-scene__emblem { animation-delay: 40ms !important; }
-.legend-scene > * .scene-kicker { animation-delay: 120ms !important; }
-.legend-scene__message { animation-delay: 220ms !important; }
-.legend-scene__divider { animation-delay: 370ms !important; }
-.legend-scene__signature { animation-delay: 460ms !important; }
-.legend-scene__next { animation-delay: 560ms !important; }
+.legend-scene > * .scene-kicker { animation-delay: 100ms !important; }
+.legend-scene__message p:first-of-type { animation-delay: 180ms !important; }
+.legend-scene__message p:last-of-type { animation-delay: 300ms !important; }
+.legend-scene__divider { animation-delay: 410ms !important; }
+.legend-scene__signature { animation-delay: 480ms !important; }
+.legend-scene__hint { animation-delay: 560ms !important; }
 
 .identity-scene [data-reveal]:nth-child(1) { animation-delay: 70ms; }
 .identity-scene [data-reveal]:nth-child(2) { animation-delay: 160ms; }
@@ -102,34 +89,12 @@
 .location-scene [data-reveal]:nth-child(2),
 .info-scene [data-reveal]:nth-child(2) { animation-delay: 170ms; }
 
-.info-scene__content .info-block:nth-child(1) { animation-delay: 110ms; }
-.info-scene__content .info-block:nth-child(2) { animation-delay: 200ms; }
-.info-scene__content .info-block:nth-child(3) { animation-delay: 290ms; }
+.info-scene__content .info-block:nth-child(1) { animation-delay: 130ms; }
+.info-scene__content .info-block:nth-child(3) { animation-delay: 250ms; }
 
 .rsvp-scene [data-reveal]:nth-child(1) { animation-delay: 50ms; }
 .rsvp-scene [data-reveal]:nth-child(2) { animation-delay: 140ms; }
 .rsvp-scene [data-reveal]:nth-child(3) { animation-delay: 230ms; }
-
-
-/* Mantiene oculta la leyenda hasta que el sobre deja ver el contenido. */
-.scene--legend.is-active [data-reveal] {
-  opacity: 0;
-  animation-name: none !important;
-}
-
-.invitation-stage.is-content-ready .scene--legend.is-active [data-reveal] {
-  animation-name: legendReveal !important;
-  animation-duration: 980ms !important;
-  animation-timing-function: var(--ease-out) !important;
-  animation-fill-mode: both !important;
-}
-
-@keyframes invitationCue {
-  0%, 100% { transform: translateX(0); opacity: 0.78; }
-  50% { transform: translateX(4px); opacity: 1; }
-}
-
-.legend-scene__next svg { animation: invitationCue 1.45s ease-in-out infinite; }
 
 @media (prefers-reduced-motion: reduce) {
   *,
