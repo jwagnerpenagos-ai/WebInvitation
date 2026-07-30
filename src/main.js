@@ -6,16 +6,12 @@ import { setupEnvelope } from './modules/envelope.js';
 import { setupRsvp } from './modules/rsvp.js';
 import { setupSceneSlider } from './modules/slider.js';
 
-function initializeInvitation() {
-  bindInvitationContent(invitationConfig);
-  setupCountdown(invitationConfig.eventDate);
-  setupRsvp(invitationConfig);
+bindInvitationContent(invitationConfig);
+setupCountdown(invitationConfig.eventDate);
+setupRsvp(invitationConfig);
 
-  const audio = setupAudio();
-  setupEnvelope({
-    ...audio,
-    onOpened: setupSceneSlider,
-  });
-}
-
-initializeInvitation();
+const audio = setupAudio();
+setupEnvelope({
+  ...audio,
+  onOpened: setupSceneSlider,
+});

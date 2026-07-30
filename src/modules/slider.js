@@ -2,6 +2,7 @@ import { $, $$ } from './dom.js';
 
 export function setupSceneSlider() {
   const stage = $('#invitation-stage');
+  const shell = $('#invitation-shell');
   const viewport = $('#scene-viewport');
   const scenes = $$('[data-scene]');
   const navigationItems = $$('[data-scene-target]');
@@ -10,24 +11,24 @@ export function setupSceneSlider() {
   const goToButtons = $$('[data-go-to]');
   const swipeHint = $('#swipe-hint');
 
-  if (!stage || !viewport || scenes.length === 0 || !previousButton || !nextButton) return;
+  if (!stage || !shell || !viewport || scenes.length === 0 || !previousButton || !nextButton) return;
 
   let currentIndex = 0;
   let touchStartX = 0;
   let touchStartY = 0;
   let wheelLocked = false;
 
-  const showScene = (nextIndex) => {
-    const safeIndex = Math.max(0, Math.min(nextIndex, scenes.length - 1));
-    if (safeIndex === currentIndex) return;
+  const showScene = (requestedIndex) => {
+    const nextIndex = Math.max(0, Math.min(requestedIndex, scenes.length - 1));
+    if (nextIndex === currentIndex) return;
 
-    currentIndex = safeIndex;
+    currentIndex = nextIndex;
 
-    // Reiniciar la clase permite reproducir el barrido de pétalos en cada cambio.
-    stage.classList.remove('is-changing');
-    void stage.offsetWidth;
-    stage.classList.add('is-changing');
-    window.setTimeout(() => stage.classList.remove('is-changing'), 940);
+    // Se reinicia la clase para reproducir los pétalos en cada transición.
+    shell.classList.remove('is-changing');
+    void shell.offsetWidth;
+    shell.classList.add('is-changing');
+    window.setTimeout(() => shell.classList.remove('is-changing'), 900);
 
     scenes.forEach((scene, index) => {
       const active = index === currentIndex;
@@ -40,7 +41,7 @@ export function setupSceneSlider() {
       if (!active) {
         window.setTimeout(() => {
           if (!scene.classList.contains('is-active')) scene.hidden = true;
-        }, 680);
+        }, 660);
       }
     });
 
@@ -53,7 +54,7 @@ export function setupSceneSlider() {
 
     previousButton.disabled = currentIndex === 0;
     nextButton.disabled = currentIndex === scenes.length - 1;
-    stage.dataset.theme = scenes[currentIndex].dataset.theme || 'wine';
+    shell.dataset.theme = scenes[currentIndex].dataset.theme || 'wine';
     swipeHint?.toggleAttribute('hidden', currentIndex > 0);
   };
 
@@ -81,25 +82,15 @@ export function setupSceneSlider() {
     const deltaX = touch.clientX - touchStartX;
     const deltaY = touch.clientY - touchStartY;
 
-    if (Math.abs(deltaX) < 55 || Math.abs(deltaX) < Math.abs(deltaY)) return;
+    if (Math.abs(deltaX) < 48 || Math.abs(deltaX) < Math.abs(deltaY)) return;
     step(deltaX < 0 ? 1 : -1);
   }, { passive: true });
 
   viewport.addEventListener('wheel', (event) => {
-    if (wheelLocked || Math.abs(event.deltaY) < 34) return;
-    const scrollContainer = event.target.closest('.scene__scroll');
-
-    // El contenido puede desplazarse internamente en pantallas bajas. Solo cambia
-    // de escena cuando ya llegó al borde correspondiente.
-    if (scrollContainer) {
-      const atTop = scrollContainer.scrollTop <= 0;
-      const atBottom = scrollContainer.scrollTop + scrollContainer.clientHeight >= scrollContainer.scrollHeight - 2;
-      if ((event.deltaY < 0 && !atTop) || (event.deltaY > 0 && !atBottom)) return;
-    }
-
+    if (wheelLocked || Math.abs(event.deltaY) < 28) return;
     wheelLocked = true;
     step(event.deltaY > 0 ? 1 : -1);
-    window.setTimeout(() => { wheelLocked = false; }, 720);
+    window.setTimeout(() => { wheelLocked = false; }, 680);
   }, { passive: true });
 
   scenes.forEach((scene, index) => {

@@ -1,25 +1,23 @@
 :root {
   --wine-950: #16070b;
-  --wine-900: #260910;
-  --wine-800: #3d0d1b;
-  --wine-700: #5a1429;
+  --wine-900: #25090f;
+  --wine-800: #3b0d1a;
+  --wine-700: #591428;
   --cherry-600: #8f2147;
   --cherry-500: #a33159;
   --gold-500: #c5a259;
-  --gold-400: #d7bd7f;
+  --gold-400: #d9c083;
   --cream-50: #fffaf3;
   --cream-100: #f8efe3;
   --ink: #32151d;
   --muted: #775f64;
-  --line: rgba(140, 91, 67, 0.24);
-  --shadow-lg: 0 30px 80px rgba(22, 7, 11, 0.42);
-  --shadow-md: 0 18px 48px rgba(41, 10, 18, 0.22);
+  --line: rgba(140, 91, 67, 0.22);
   --font-display: "Cormorant Garamond", Georgia, serif;
   --font-script: "Great Vibes", cursive;
   --font-body: "DM Sans", system-ui, sans-serif;
-  --stage-max-width: 1560px;
-  --stage-max-height: 980px;
-  --header-height: 74px;
-  --navigation-height: 72px;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --shell-radius: 34px;
+  --header-height: 74px;
+  --navigation-height: 70px;
+  --frame-inset: 18px;
 }

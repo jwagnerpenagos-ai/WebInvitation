@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#21080f" />
+    <meta name="theme-color" content="#1b060b" />
     <meta
       name="description"
       content="Invitación a los XV años de María Fernanda. 3 de octubre de 2026 en Duitama, Boyacá."
@@ -32,43 +32,21 @@
     <script type="module" src="./src/main.js"></script>
   </head>
 
-  <body class="is-locked">
-    <a class="skip-link" href="#invitation-stage">Saltar a la invitación</a>
+  <body>
+    <section class="envelope-intro" id="envelope-intro" aria-labelledby="intro-title">
+      <h1 class="sr-only" id="intro-title">Invitación a los quince años de María Fernanda</h1>
 
-    <section class="envelope-intro" id="envelope-intro" aria-labelledby="intro-heading">
-      <div class="envelope-intro__ambient" aria-hidden="true"></div>
-      <img
-        class="envelope-intro__corner envelope-intro__corner--top"
-        src="./assets/enchanted/decor/corner-top-left.png"
-        alt=""
-        aria-hidden="true"
-      />
-      <img
-        class="envelope-intro__corner envelope-intro__corner--bottom"
-        src="./assets/enchanted/decor/corner-bottom-right.png"
-        alt=""
-        aria-hidden="true"
-      />
+      <div class="envelope-intro__preview" aria-hidden="true"></div>
+      <div class="envelope-door envelope-door--upper" aria-hidden="true"></div>
+      <div class="envelope-door envelope-door--lower" aria-hidden="true"></div>
+      <span class="envelope-seam envelope-seam--upper" aria-hidden="true"></span>
+      <span class="envelope-seam envelope-seam--lower" aria-hidden="true"></span>
 
-      <div class="envelope-intro__content">
-        <p class="envelope-intro__eyebrow">Una invitación especial para ti</p>
-        <h1 class="sr-only" id="intro-heading">Invitación a los quince años de María Fernanda</h1>
-
-        <div class="envelope" id="envelope">
-          <img class="envelope__letter" src="./assets/enchanted/envelope/letter.png" alt="" aria-hidden="true" />
-          <img class="envelope__body" src="./assets/enchanted/envelope/body.png" alt="" aria-hidden="true" />
-          <img class="envelope__flap" src="./assets/enchanted/envelope/flap.png" alt="" aria-hidden="true" />
-          <span class="envelope__glow" aria-hidden="true"></span>
-
-          <button class="seal-button" id="open-invitation" type="button">
-            <img src="./assets/enchanted/envelope/seal.png" alt="" aria-hidden="true" />
-            <span class="seal-button__halo" aria-hidden="true"></span>
-            <span class="seal-button__label">Abrir invitación</span>
-          </button>
-        </div>
-
-        <p class="envelope-intro__hint">Toca el sello para descubrir la invitación</p>
-      </div>
+      <button class="seal-button" id="open-invitation" type="button" aria-label="Abrir invitación">
+        <span class="seal-button__glow" aria-hidden="true"></span>
+        <img src="./assets/enchanted/envelope/seal.png" alt="" aria-hidden="true" />
+        <span class="seal-button__caption">Abrir invitación</span>
+      </button>
 
       <div class="magic-burst" id="magic-burst" aria-hidden="true"></div>
     </section>
@@ -81,72 +59,80 @@
     </audio>
 
     <main class="invitation-stage" id="invitation-stage" hidden>
-      <div class="stage-background" aria-hidden="true"></div>
-      <div class="stage-vignette" aria-hidden="true"></div>
+      <div class="stage-ambient" aria-hidden="true"></div>
 
-      <picture class="stage-frame" aria-hidden="true">
-        <source media="(min-width: 769px)" srcset="./assets/enchanted/frames/frame-desktop.png" />
-        <img src="./assets/enchanted/frames/frame-mobile.png" alt="" />
-      </picture>
+      <div class="invitation-shell" id="invitation-shell">
+        <div class="shell-background" aria-hidden="true"></div>
+        <div class="shell-vignette" aria-hidden="true"></div>
 
-      <img class="stage-corner stage-corner--top" src="./assets/enchanted/decor/corner-top-left.png" alt="" aria-hidden="true" />
-      <img class="stage-corner stage-corner--bottom" src="./assets/enchanted/decor/corner-bottom-right.png" alt="" aria-hidden="true" />
+        <div class="ornamental-frame" aria-hidden="true">
+          <span class="ornamental-frame__line ornamental-frame__line--outer"></span>
+          <span class="ornamental-frame__line ornamental-frame__line--inner"></span>
+          <img class="frame-corner frame-corner--top-left" src="./assets/enchanted/decor/corner-top-left.png" alt="" />
+          <img class="frame-corner frame-corner--top-right" src="./assets/enchanted/decor/corner-top-left.png" alt="" />
+          <img class="frame-corner frame-corner--bottom-right" src="./assets/enchanted/decor/corner-bottom-right.png" alt="" />
+          <img class="frame-corner frame-corner--bottom-left" src="./assets/enchanted/decor/corner-bottom-right.png" alt="" />
+          <img class="frame-divider frame-divider--top" src="./assets/enchanted/ornaments/divider.png" alt="" />
+          <img class="frame-divider frame-divider--bottom" src="./assets/enchanted/ornaments/divider.png" alt="" />
+        </div>
 
-      <div class="stage-petals" aria-hidden="true">
-        <img class="stage-petals__sheet stage-petals__sheet--one" src="./assets/enchanted/decor/petals.png" alt="" />
-        <img class="stage-petals__sheet stage-petals__sheet--two" src="./assets/enchanted/decor/petals.png" alt="" />
-      </div>
+        <div class="stage-petals" aria-hidden="true">
+          <img class="stage-petals__sheet stage-petals__sheet--one" src="./assets/enchanted/decor/petals.png" alt="" />
+          <img class="stage-petals__sheet stage-petals__sheet--two" src="./assets/enchanted/decor/petals.png" alt="" />
+        </div>
 
-      <header class="stage-header">
-        <img class="stage-header__monogram" src="./assets/enchanted/ornaments/monogram-mf.png" alt="MF" />
-        <p class="stage-header__date" data-event-short-date>03 · OCT · 2026</p>
-        <button class="icon-button" id="music-control" type="button" aria-label="Pausar música" aria-pressed="true">
-          <svg class="icon-button__sound-on" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4 9v6h4l5 4V5L8 9H4Z" />
-            <path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a9 9 0 0 1 0 12" />
-          </svg>
-          <svg class="icon-button__sound-off" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4 9v6h4l5 4V5L8 9H4Z" />
-            <path d="m16 9 5 6m0-6-5 6" />
-          </svg>
-        </button>
-      </header>
+        <header class="stage-header">
+          <img class="stage-header__monogram" src="./assets/enchanted/ornaments/monogram-mf.png" alt="MF" />
+          <p class="stage-header__date" data-event-short-date>03 · OCT · 2026</p>
+          <button class="icon-button" id="music-control" type="button" aria-label="Pausar música" aria-pressed="true">
+            <svg class="icon-button__sound-on" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 9v6h4l5 4V5L8 9H4Z" />
+              <path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a9 9 0 0 1 0 12" />
+            </svg>
+            <svg class="icon-button__sound-off" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 9v6h4l5 4V5L8 9H4Z" />
+              <path d="m16 9 5 6m0-6-5 6" />
+            </svg>
+          </button>
+        </header>
 
-      <div class="scene-viewport" id="scene-viewport" aria-live="polite">
-        <section class="scene scene--welcome is-active" data-scene="0" data-theme="wine" aria-labelledby="scene-welcome-title">
-          <div class="scene__scroll">
-            <div class="welcome-scene">
+        <div class="scene-viewport" id="scene-viewport" aria-live="polite">
+          <section class="scene scene--welcome is-active" data-scene="0" data-theme="wine" aria-labelledby="scene-welcome-title">
+            <div class="scene-layout welcome-scene">
               <div class="stained-glass" aria-hidden="true">
                 <img class="stained-glass__dark" src="./assets/enchanted/stained-glass/rose-dark.png" alt="" />
                 <img class="stained-glass__lit" src="./assets/enchanted/stained-glass/rose-lit.png" alt="" />
               </div>
+
               <div class="welcome-scene__copy">
                 <p class="scene-kicker">Mis quince años</p>
-                <h2 id="scene-welcome-title">María Fernanda</h2>
+                <h2 id="scene-welcome-title">María<br />Fernanda</h2>
                 <img class="ornamental-divider" src="./assets/enchanted/ornaments/divider.png" alt="" aria-hidden="true" />
                 <p class="scene-lead">Hay momentos que se sueñan toda la vida. Este quiero vivirlo contigo.</p>
                 <button class="scene-cta" type="button" data-go-to="1">
-                  Descubrir la invitación
+                  Ver invitación
                   <span aria-hidden="true">→</span>
                 </button>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section class="scene scene--date" data-scene="1" data-theme="cream" aria-labelledby="scene-date-title" hidden>
-          <div class="scene__scroll">
-            <div class="date-scene">
+          <section class="scene scene--date" data-scene="1" data-theme="cream" aria-labelledby="scene-date-title" hidden>
+            <div class="scene-layout date-scene">
               <div class="date-scene__copy">
                 <p class="scene-kicker">Guarda la fecha</p>
                 <h2 id="scene-date-title">La celebración</h2>
                 <p class="scene-copy">Una tarde que se convertirá en noche, entre música, abrazos y recuerdos para siempre.</p>
 
-                <article class="date-display" aria-label="Sábado 3 de octubre de 2026 a las 6 de la tarde">
+                <article class="date-display">
                   <span class="date-display__weekday" data-event-weekday>Sábado</span>
-                  <strong class="date-display__day" data-event-day>03</strong>
-                  <span class="date-display__month" data-event-month>Octubre</span>
-                  <span class="date-display__year" data-event-year>2026</span>
+                  <div class="date-display__date">
+                    <strong class="date-display__day" data-event-day>03</strong>
+                    <div class="date-display__month-year">
+                      <span class="date-display__month" data-event-month>Octubre</span>
+                      <span class="date-display__year" data-event-year>2026</span>
+                    </div>
+                  </div>
                   <div class="date-display__time">
                     <span>Recepción</span>
                     <strong data-event-time>6:00 p. m.</strong>
@@ -154,7 +140,7 @@
                 </article>
               </div>
 
-              <div class="countdown-panel">
+              <aside class="countdown-panel">
                 <img class="countdown-panel__rose" src="./assets/enchanted/ornaments/enchanted-rose.png" alt="Rosa encantada bajo una cúpula de cristal" />
                 <p>Faltan</p>
                 <div class="countdown" id="countdown" aria-label="Cuenta regresiva para el evento">
@@ -164,14 +150,12 @@
                   <div><strong data-countdown="seconds">--</strong><span>seg</span></div>
                 </div>
                 <p class="countdown__done" id="countdown-done" hidden>Hoy es el gran día ✨</p>
-              </div>
+              </aside>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section class="scene scene--location" data-scene="2" data-theme="wine" aria-labelledby="scene-location-title" hidden>
-          <div class="scene__scroll">
-            <div class="location-scene">
+          <section class="scene scene--location" data-scene="2" data-theme="wine" aria-labelledby="scene-location-title" hidden>
+            <div class="scene-layout location-scene">
               <div class="location-scene__visual" aria-hidden="true">
                 <img src="./assets/enchanted/stained-glass/rose-emblem.png" alt="" />
                 <span class="location-scene__pin">
@@ -191,17 +175,15 @@
                 </a>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section class="scene scene--dress" data-scene="3" data-theme="cream" aria-labelledby="scene-dress-title" hidden>
-          <div class="scene__scroll">
-            <div class="dress-scene">
+          <section class="scene scene--dress" data-scene="3" data-theme="cream" aria-labelledby="scene-dress-title" hidden>
+            <div class="scene-layout dress-scene">
               <div class="dress-scene__copy">
                 <p class="scene-kicker">Para tener en cuenta</p>
                 <h2 id="scene-dress-title">Código de vestimenta</h2>
                 <p class="dress-scene__formal">Etiqueta formal</p>
-                <p class="scene-copy">Queremos verte elegante y listo para celebrar. Puedes usar el color que prefieras, excepto el tono reservado para María Fernanda.</p>
+                <p class="scene-copy">Puedes usar el color que prefieras, excepto el tono reservado para María Fernanda.</p>
 
                 <div class="reserved-color">
                   <span class="reserved-color__swatch" aria-hidden="true"></span>
@@ -217,12 +199,10 @@
                 <img src="./assets/enchanted/decor/rose.png" alt="" />
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section class="scene scene--details" data-scene="4" data-theme="wine" aria-labelledby="scene-details-title" hidden>
-          <div class="scene__scroll">
-            <div class="details-scene">
+          <section class="scene scene--details" data-scene="4" data-theme="wine" aria-labelledby="scene-details-title" hidden>
+            <div class="scene-layout details-scene">
               <img class="details-scene__vine" src="./assets/enchanted/ornaments/vine.png" alt="" aria-hidden="true" />
               <div class="details-scene__copy">
                 <p class="scene-kicker">Un detalle especial</p>
@@ -230,18 +210,14 @@
                 <img class="ornamental-divider" src="./assets/enchanted/ornaments/divider.png" alt="" aria-hidden="true" />
                 <p class="scene-lead">Tu presencia es el mejor regalo.</p>
                 <p class="scene-copy">Quienes deseen obsequiarme algo pueden hacerlo mediante la tradicional lluvia de sobres.</p>
+                <blockquote>Gracias por acompañarme en una fecha tan significativa para mí y para mi familia.</blockquote>
               </div>
-              <div class="details-scene__message">
-                <span aria-hidden="true">“</span>
-                <p>Gracias por acompañarme en una fecha tan significativa para mí y para mi familia.</p>
-              </div>
+              <img class="details-scene__rose" src="./assets/enchanted/stained-glass/rose-emblem.png" alt="" aria-hidden="true" />
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section class="scene scene--rsvp" data-scene="5" data-theme="cream" aria-labelledby="scene-rsvp-title" hidden>
-          <div class="scene__scroll">
-            <div class="rsvp-scene">
+          <section class="scene scene--rsvp" data-scene="5" data-theme="cream" aria-labelledby="scene-rsvp-title" hidden>
+            <div class="scene-layout rsvp-scene">
               <img class="rsvp-scene__monogram" src="./assets/enchanted/ornaments/monogram-mf.png" alt="" aria-hidden="true" />
               <p class="scene-kicker">Será aún más especial contigo</p>
               <h2 id="scene-rsvp-title">Confirma tu asistencia</h2>
@@ -253,39 +229,27 @@
               <p class="rsvp-scene__note">Podrás indicar tu nombre y cuántas personas asistirán.</p>
               <img class="rsvp-scene__rose" src="./assets/enchanted/stained-glass/rose-emblem.png" alt="" aria-hidden="true" />
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
+
+        <button class="scene-arrow scene-arrow--prev" id="previous-scene" type="button" aria-label="Escena anterior" disabled>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7" /></svg>
+        </button>
+        <button class="scene-arrow scene-arrow--next" id="next-scene" type="button" aria-label="Siguiente escena">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
+        </button>
+
+        <nav class="scene-navigation" aria-label="Secciones de la invitación">
+          <button type="button" class="scene-navigation__item is-active" data-scene-target="0" aria-current="step"><span></span><b>Inicio</b></button>
+          <button type="button" class="scene-navigation__item" data-scene-target="1"><span></span><b>Fecha</b></button>
+          <button type="button" class="scene-navigation__item" data-scene-target="2"><span></span><b>Lugar</b></button>
+          <button type="button" class="scene-navigation__item" data-scene-target="3"><span></span><b>Vestimenta</b></button>
+          <button type="button" class="scene-navigation__item" data-scene-target="4"><span></span><b>Detalles</b></button>
+          <button type="button" class="scene-navigation__item" data-scene-target="5"><span></span><b>Confirmar</b></button>
+        </nav>
+
+        <p class="swipe-hint" id="swipe-hint">Desliza para continuar <span aria-hidden="true">→</span></p>
       </div>
-
-      <button class="scene-arrow scene-arrow--prev" id="previous-scene" type="button" aria-label="Escena anterior" disabled>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7" /></svg>
-      </button>
-      <button class="scene-arrow scene-arrow--next" id="next-scene" type="button" aria-label="Siguiente escena">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
-      </button>
-
-      <nav class="scene-navigation" aria-label="Secciones de la invitación">
-        <button type="button" class="scene-navigation__item is-active" data-scene-target="0" aria-current="step">
-          <span class="scene-navigation__dot"></span><span>Inicio</span>
-        </button>
-        <button type="button" class="scene-navigation__item" data-scene-target="1">
-          <span class="scene-navigation__dot"></span><span>Fecha</span>
-        </button>
-        <button type="button" class="scene-navigation__item" data-scene-target="2">
-          <span class="scene-navigation__dot"></span><span>Lugar</span>
-        </button>
-        <button type="button" class="scene-navigation__item" data-scene-target="3">
-          <span class="scene-navigation__dot"></span><span>Vestimenta</span>
-        </button>
-        <button type="button" class="scene-navigation__item" data-scene-target="4">
-          <span class="scene-navigation__dot"></span><span>Detalles</span>
-        </button>
-        <button type="button" class="scene-navigation__item" data-scene-target="5">
-          <span class="scene-navigation__dot"></span><span>Confirmar</span>
-        </button>
-      </nav>
-
-      <p class="swipe-hint" id="swipe-hint">Desliza para continuar <span aria-hidden="true">→</span></p>
     </main>
 
     <dialog class="rsvp-dialog" id="rsvp-dialog" aria-labelledby="rsvp-dialog-title">
@@ -302,14 +266,8 @@
 
         <fieldset class="attendance-fieldset">
           <legend>¿Podrás asistir?</legend>
-          <label class="attendance-option">
-            <input type="radio" name="attendance" value="yes" checked />
-            <span>Sí, asistiré</span>
-          </label>
-          <label class="attendance-option">
-            <input type="radio" name="attendance" value="no" />
-            <span>No podré asistir</span>
-          </label>
+          <label class="attendance-option"><input type="radio" name="attendance" value="yes" checked /><span>Sí, asistiré</span></label>
+          <label class="attendance-option"><input type="radio" name="attendance" value="no" /><span>No podré asistir</span></label>
         </fieldset>
 
         <label class="field" id="guest-count-field">
@@ -329,8 +287,6 @@
       </form>
     </dialog>
 
-    <noscript>
-      <div class="noscript">Activa JavaScript para ver la invitación y su cuenta regresiva.</div>
-    </noscript>
+    <noscript><div class="noscript">Activa JavaScript para ver la invitación.</div></noscript>
   </body>
 </html>

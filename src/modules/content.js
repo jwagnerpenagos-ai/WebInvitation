@@ -17,8 +17,7 @@ export function bindInvitationContent(config) {
     link.href = config.venue.mapsUrl;
   });
 
-  const dateDisplay = $('.date-display');
-  dateDisplay?.setAttribute('aria-label', `${date.full} a las ${config.eventTimeLabel}`);
+  $('.date-display')?.setAttribute('aria-label', `${date.full} a las ${config.eventTimeLabel}`);
 }
 
 function setText(selector, value) {

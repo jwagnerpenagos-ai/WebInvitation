@@ -1,29 +1,29 @@
 .rsvp-dialog {
   width: min(92vw, 560px);
-  max-height: min(90dvh, 760px);
+  max-height: min(92dvh, 760px);
   padding: 0;
   color: var(--ink);
   background: transparent;
   border: 0;
-  border-radius: 28px;
+  border-radius: 26px;
   overflow: visible;
 }
 
 .rsvp-dialog::backdrop {
-  background: rgba(18, 4, 9, 0.72);
+  background: rgba(18, 4, 9, 0.74);
   backdrop-filter: blur(8px);
 }
 
 .rsvp-form {
   position: relative;
-  max-height: min(90dvh, 760px);
-  padding: clamp(1.3rem, 4vw, 2rem);
+  max-height: min(92dvh, 760px);
+  padding: clamp(1.25rem, 4vw, 2rem);
   overflow-y: auto;
   background:
-    linear-gradient(rgba(255,250,243,0.9), rgba(255,250,243,0.96)),
+    linear-gradient(rgba(255,250,243,0.92), rgba(255,250,243,0.97)),
     url('../../assets/enchanted/backgrounds/cream-mobile.webp') center / cover;
   border: 1px solid rgba(201, 163, 91, 0.48);
-  border-radius: 28px;
+  border-radius: 26px;
   box-shadow: 0 35px 80px rgba(0,0,0,0.42);
 }
 
@@ -32,9 +32,9 @@
 }
 
 .rsvp-form__intro {
-  margin: 0.65rem 0 1.3rem;
+  margin: 0.65rem 0 1.2rem;
   color: var(--muted);
-  line-height: 1.6;
+  line-height: 1.55;
 }
 
 .rsvp-dialog__close {
@@ -47,7 +47,7 @@
   height: 40px;
   color: var(--wine-700);
   font-size: 1.6rem;
-  background: rgba(255,255,255,0.72);
+  background: rgba(255,255,255,0.74);
   border: 1px solid rgba(143,33,71,0.12);
   border-radius: 50%;
   cursor: pointer;
@@ -55,14 +55,14 @@
 
 .field {
   display: grid;
-  gap: 0.45rem;
-  margin-top: 1rem;
+  gap: 0.42rem;
+  margin-top: 0.95rem;
 }
 
 .field > span,
 .attendance-fieldset legend {
   color: var(--wine-800);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 600;
 }
 
@@ -70,11 +70,11 @@
 .field select,
 .field textarea {
   width: 100%;
-  padding: 0.85rem 0.95rem;
+  padding: 0.82rem 0.92rem;
   color: var(--ink);
-  background: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.82);
   border: 1px solid rgba(143,33,71,0.17);
-  border-radius: 14px;
+  border-radius: 13px;
   outline: none;
 }
 
@@ -100,7 +100,7 @@
 
 .attendance-fieldset legend {
   grid-column: 1 / -1;
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.42rem;
 }
 
 .attendance-option {
@@ -114,11 +114,11 @@
 
 .attendance-option span {
   display: block;
-  padding: 0.8rem;
+  padding: 0.78rem;
   color: var(--muted);
-  background: rgba(255,255,255,0.65);
+  background: rgba(255,255,255,0.66);
   border: 1px solid rgba(143,33,71,0.14);
-  border-radius: 14px;
+  border-radius: 13px;
   text-align: center;
   cursor: pointer;
 }
@@ -131,5 +131,5 @@
 
 .rsvp-form__submit {
   width: 100%;
-  margin-top: 1.35rem;
+  margin-top: 1.3rem;
 }
