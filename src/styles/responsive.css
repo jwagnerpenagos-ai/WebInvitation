@@ -1,10 +1,12 @@
 @media (max-width: 1100px) {
   .scene-viewport { inset-inline: 62px; }
 
-  .identity-scene,
-  .date-scene,
-  .location-scene { gap: 2rem; }
+  .identity-scene {
+    grid-template-columns: minmax(280px, 0.88fr) minmax(420px, 1.12fr);
+    gap: 2rem;
+  }
 
+  .location-scene { gap: 2rem; }
   .info-scene__content { gap: 1.4rem; }
 
   .quick-navigation {
@@ -22,7 +24,6 @@
   }
 
   .invitation-stage { display: block; }
-
   .stage-ambient { display: none; }
 
   .invitation-shell {
@@ -91,7 +92,6 @@
   }
 
   .scene-layout { width: 100%; }
-
   .scene h2 { font-size: clamp(2.7rem, 11vw, 3.7rem); }
 
   .scene-kicker {
@@ -140,185 +140,180 @@
     height: 20px;
   }
 
+  /* La leyenda usa casi todo el ancho útil y aparece después de abrir el sobre. */
   .legend-scene__content {
     justify-content: center;
     height: 100%;
-    padding: 0.5rem 0.15rem;
+    padding: 0.35rem 0.05rem 0.6rem;
   }
 
   .legend-scene__emblem {
-    width: min(21vw, 82px);
-    max-height: 82px;
-    margin-bottom: 0.1rem;
+    width: min(20vw, 76px);
+    max-height: 76px;
+    margin-bottom: 0.25rem;
   }
 
   .legend-scene__message {
     width: 100%;
-    padding: 0.75rem 0.2rem;
-  }
-
-  .legend-scene__quote {
-    top: 0;
-    left: -0.1rem;
-    font-size: 6.5rem;
+    padding: 0.9rem 0.05rem;
   }
 
   .legend-scene__message p {
-    font-size: clamp(1.08rem, 5.1vw, 1.34rem);
-    line-height: 1.38;
+    font-size: clamp(1.26rem, 5.65vw, 1.55rem);
+    line-height: 1.34;
   }
 
-  .legend-scene__message p + p { margin-top: 0.5rem; }
+  .legend-scene__message p + p { margin-top: 0.72rem; }
+  .legend-scene__divider { margin: 0.45rem 0 0.12rem; }
+  .legend-scene__signature { font-size: clamp(1.55rem, 7vw, 1.95rem); }
 
-  .legend-scene__divider { margin-top: 0.35rem; }
-
-  .legend-scene__signature { font-size: 1.55rem; }
-
-  .legend-scene__hint {
-    margin-top: 0.45rem;
-    font-size: 0.52rem;
+  .legend-scene__next {
+    display: inline-flex;
+    width: 48px;
+    height: 48px;
+    margin-top: 0.8rem;
+    padding: 0;
   }
 
+  .legend-scene__next span { display: none; }
+  .legend-scene__next svg { width: 23px; height: 23px; }
+
+  /* Portada móvil: vitral, hito y nombre ocupan un solo eje visual. */
   .identity-scene {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(210px, 36dvh) auto;
+    grid-template-rows: minmax(220px, 38dvh) auto;
     align-content: center;
-    gap: clamp(0.75rem, 2dvh, 1.15rem);
-    padding: 0.2rem 0 0.65rem;
+    gap: clamp(0.45rem, 1.5dvh, 0.8rem);
+    padding: 0.15rem 0 0.75rem;
   }
 
   .stained-glass {
     align-self: end;
     justify-self: center;
-    width: min(55vw, 220px);
+    width: min(62vw, 245px);
     height: 100%;
-    max-height: 290px;
+    max-height: 315px;
   }
 
   .identity-scene__copy {
     align-self: start;
     justify-self: center;
-    max-width: 330px;
+    max-width: 355px;
+    min-height: 0;
     padding: 0;
   }
 
-  .identity-scene__copy::before { inset: -5% -8% -8%; }
+  .identity-scene__copy::before { inset: -8% -6% -10%; }
 
   .identity-scene__milestone {
     gap: 0.35rem;
-    margin: 0.25rem 0 0.65rem;
+    margin: 0.2rem 0 0.42rem;
   }
 
   .identity-scene__milestone strong {
-    font-size: clamp(4.7rem, 20vw, 5.65rem);
-    line-height: 0.82;
+    font-size: clamp(5.45rem, 23vw, 6.5rem);
+    line-height: 0.78;
   }
 
   .identity-scene__milestone span {
-    margin-bottom: 0.45rem;
-    font-size: 1.12rem;
+    margin-bottom: 0.48rem;
+    font-size: 1.15rem;
   }
 
   .identity-scene h2 {
-    gap: 0.02em;
-    font-size: clamp(3.25rem, 14vw, 4rem);
-    line-height: 0.9;
+    gap: 0;
+    font-size: clamp(3.75rem, 16vw, 4.6rem);
+    line-height: 0.85;
   }
 
   .identity-scene .ornamental-divider {
-    width: 132px;
-    margin-top: 0.65rem;
+    width: 140px;
+    margin-top: 0.55rem;
   }
 
+  /* La fecha se reparte verticalmente para evitar amontonamientos. */
   .date-scene {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: clamp(0.7rem, 1.8dvh, 1.05rem);
+    display: grid;
+    grid-template-rows: auto auto;
+    align-content: space-evenly;
+    gap: clamp(1.15rem, 3dvh, 1.9rem);
+    width: 100%;
     max-width: 430px;
-    padding: 0.1rem 0 0.55rem;
+    padding: 0.75rem 0 1.2rem;
   }
 
   .date-scene__main {
+    display: grid;
+    justify-items: center;
     width: 100%;
   }
 
   .date-scene__main h2 {
-    font-size: clamp(2.45rem, 10.1vw, 3.05rem);
+    font-size: clamp(2.55rem, 10.8vw, 3.2rem);
   }
 
   .date-hero {
-    grid-template-columns: minmax(86px, 0.75fr) minmax(145px, 1.25fr);
-    gap: 0.65rem;
-    width: min(100%, 360px);
-    margin-top: 0.35rem;
-    padding: 0.25rem 0 0.45rem;
+    grid-template-columns: minmax(100px, 0.8fr) minmax(150px, 1.2fr);
+    gap: 0.85rem;
+    width: min(100%, 370px);
+    margin-top: 0.6rem;
+    padding: 0.55rem 0 0.7rem;
   }
 
   .date-hero__day {
-    font-size: clamp(4.4rem, 19vw, 5.35rem);
-    line-height: 0.8;
+    font-size: clamp(4.8rem, 20vw, 5.8rem);
+    line-height: 0.88;
   }
 
-  .date-hero__copy {
-    padding-left: 0.8rem;
-  }
-
-  .date-hero__weekday { font-size: 0.53rem; }
-  .date-hero__month { font-size: clamp(1.85rem, 8vw, 2.3rem); }
-  .date-hero__year { margin-top: 0.16rem; font-size: 0.53rem; }
+  .date-hero__copy { padding-left: 0.9rem; }
+  .date-hero__weekday { font-size: 0.55rem; }
+  .date-hero__month { font-size: clamp(2rem, 8.7vw, 2.55rem); }
+  .date-hero__year { margin-top: 0.2rem; font-size: 0.54rem; }
 
   .event-schedule {
     grid-template-columns: repeat(2, 1fr);
-    width: min(100%, 360px);
-    margin-top: 0.25rem;
+    width: min(100%, 370px);
+    margin-top: 0.35rem;
   }
 
   .event-schedule__item {
     grid-template-columns: 1fr;
     gap: 0;
-    padding: 0.45rem 0.45rem 0.55rem;
+    padding: 0.6rem 0.45rem 0.7rem;
     text-align: center;
   }
 
-  .event-schedule__item + .event-schedule__item {
-    padding-left: 0.45rem;
-  }
-
+  .event-schedule__item + .event-schedule__item { padding-left: 0.45rem; }
   .event-schedule__icon { display: none; }
-  .event-schedule__item small { font-size: 0.48rem; }
-  .event-schedule__item strong { font-size: 1.25rem; }
+  .event-schedule__item small { font-size: 0.5rem; }
+  .event-schedule__item strong { font-size: clamp(1.25rem, 5.7vw, 1.5rem); }
 
   .countdown-panel {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.45rem;
-    width: min(100%, 360px);
+    gap: 0.65rem;
+    width: min(100%, 370px);
     margin: 0 auto;
   }
 
   .countdown-panel__intro {
     justify-content: center;
-    gap: 0.45rem;
+    gap: 0.55rem;
   }
 
   .countdown-panel__intro > div { text-align: left; }
-  .countdown-panel__intro span { font-size: 0.47rem; }
-  .countdown-panel__intro p { font-size: 1.05rem; }
+  .countdown-panel__intro span { font-size: 0.49rem; }
+  .countdown-panel__intro p { font-size: 1.12rem; }
 
   .countdown-panel__rose {
-    width: 40px;
-    height: 50px;
+    width: 44px;
+    height: 56px;
   }
 
-  .countdown {
-    width: 100%;
-  }
-
-  .countdown > div { padding: 0.35rem 0.12rem; }
-  .countdown strong { font-size: 1.25rem; }
-  .countdown span { font-size: 0.46rem; }
+  .countdown > div { padding: 0.48rem 0.12rem; }
+  .countdown strong { font-size: clamp(1.25rem, 5.5vw, 1.5rem); }
+  .countdown span { font-size: 0.47rem; }
 
   .location-scene {
     display: grid;
@@ -426,7 +421,6 @@
   }
 
   .info-block__icon svg { width: 22px; height: 22px; }
-
   .info-block__copy { text-align: left; }
   .info-block__eyebrow { font-size: 0.51rem; }
   .info-block h3 { font-size: clamp(1.75rem, 7.8vw, 2.25rem); }
@@ -470,7 +464,6 @@
   }
 
   .rsvp-scene .scene-copy { max-width: 20rem; }
-
   .rsvp-scene__note { font-size: 0.66rem; }
 
   .rsvp-scene__rose {
@@ -501,32 +494,41 @@
 
   .quick-navigation__item svg { width: 18px; height: 18px; }
 
-  .legend-scene__emblem { width: 52px; max-height: 52px; }
+  .legend-scene__emblem { width: 48px; max-height: 48px; }
   .legend-scene__message { padding-block: 0.45rem; }
-  .legend-scene__message p { font-size: clamp(0.92rem, 4.25vw, 1.08rem); line-height: 1.3; }
-  .legend-scene__signature { font-size: 1.25rem; }
-  .legend-scene__hint { display: none; }
+  .legend-scene__message p { font-size: clamp(1rem, 4.5vw, 1.12rem); line-height: 1.28; }
+  .legend-scene__message p + p { margin-top: 0.45rem; }
+  .legend-scene__signature { font-size: 1.22rem; }
+  .legend-scene__next { width: 40px; height: 40px; margin-top: 0.45rem; }
 
-  .stained-glass { width: min(40vw, 155px); max-height: 170px; }
-  .identity-scene { grid-template-rows: minmax(150px, 29dvh) auto; gap: 0.45rem; }
-  .identity-scene__milestone { margin-bottom: 0.35rem; }
-  .identity-scene__milestone strong { font-size: 4.1rem; }
+  .identity-scene {
+    grid-template-rows: minmax(145px, 28dvh) auto;
+    gap: 0.35rem;
+  }
+
+  .stained-glass { width: min(42vw, 160px); max-height: 170px; }
+  .identity-scene__milestone { margin-bottom: 0.28rem; }
+  .identity-scene__milestone strong { font-size: 4.35rem; }
   .identity-scene__milestone span { font-size: 0.95rem; }
-  .identity-scene h2 { font-size: 2.85rem; }
+  .identity-scene h2 { font-size: 3rem; }
   .identity-scene .ornamental-divider { display: none; }
 
-  .date-scene { gap: 0.38rem; }
-  .date-scene__main h2 { font-size: 2.1rem; }
-  .date-hero { margin-top: 0.08rem; padding-bottom: 0.25rem; }
-  .date-hero__day { font-size: 3.95rem; }
-  .date-hero__month { font-size: 1.65rem; }
-  .event-schedule { margin-top: 0.08rem; }
-  .event-schedule__item { padding-block: 0.28rem 0.35rem; }
-  .event-schedule__item strong { font-size: 1.05rem; }
-  .countdown-panel { gap: 0.25rem; }
-  .countdown-panel__rose { width: 30px; height: 38px; }
-  .countdown-panel__intro p { font-size: 0.9rem; }
-  .countdown > div { padding-block: 0.2rem; }
+  .date-scene {
+    gap: 0.65rem;
+    padding-block: 0.25rem 0.55rem;
+  }
+
+  .date-scene__main h2 { font-size: 2.15rem; }
+  .date-hero { margin-top: 0.22rem; padding-block: 0.32rem 0.42rem; }
+  .date-hero__day { font-size: 4.1rem; }
+  .date-hero__month { font-size: 1.72rem; }
+  .event-schedule { margin-top: 0.14rem; }
+  .event-schedule__item { padding-block: 0.34rem 0.42rem; }
+  .event-schedule__item strong { font-size: 1.08rem; }
+  .countdown-panel { gap: 0.3rem; }
+  .countdown-panel__rose { width: 32px; height: 40px; }
+  .countdown-panel__intro p { font-size: 0.92rem; }
+  .countdown > div { padding-block: 0.25rem; }
 
   .location-scene { grid-template-rows: 125px auto; gap: 0.55rem; }
   .location-scene__map { min-height: 125px; border-radius: 16px; }

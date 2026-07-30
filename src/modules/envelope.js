@@ -22,9 +22,6 @@ export function setupEnvelope({ onOpened, playMusic, playSpark }) {
     onOpened?.();
     requestAnimationFrame(() => stage.classList.add('is-visible'));
 
-    // El mensaje entra después del primer movimiento del sobre; así no aparece de golpe.
-    window.setTimeout(() => stage.classList.add('is-content-ready'), 620);
-
     intro.classList.add('is-opening');
     burst.classList.add('is-active');
     playSpark();
@@ -34,6 +31,9 @@ export function setupEnvelope({ onOpened, playMusic, playSpark }) {
       intro.classList.add('is-leaving');
       intro.hidden = true;
       burst.classList.remove('is-active');
+
+      // La leyenda entra cuando el sobre ya no la cubre, para que la animación sea visible.
+      requestAnimationFrame(() => stage.classList.add('is-content-ready'));
     }, OPENING_DURATION);
   }, { once: true });
 }

@@ -1,65 +1,33 @@
 # Invitación XV · María Fernanda
 
-Invitación web estática organizada por escenas, optimizada para celular y computador y lista para desplegar en Vercel.
+Invitación web estática, responsive y organizada por escenas. No requiere proceso de compilación.
 
-## Flujo
+## Despliegue
 
-1. Sobre animado
-2. Mensaje de apertura
-3. Portada de María Fernanda y sus 15 años
-4. Fecha y horarios
-5. Lugar
-6. Información: vestimenta y lluvia de sobres
-7. Confirmación por WhatsApp
-
-La navegación principal se concentra en cuatro accesos persistentes: **Fecha**, **Lugar**, **Información** y **Confirmar**. Las escenas iniciales se recorren con gesto horizontal, flechas o teclado.
+Puede desplegarse directamente en Vercel, Netlify o cualquier servidor estático. El archivo de entrada es `index.html`.
 
 ## Configuración
 
-Los datos que normalmente cambian están centralizados en `src/config.js`:
+Los datos del evento se administran desde `src/config.js`:
 
-```js
-schedule: {
-  ceremony: '4:00 p. m.',
-  reception: '5:00 p. m.',
-},
-```
-
-Antes de desplegar, reemplaza el teléfono de ejemplo:
-
-```js
-phone: '573000000000',
-```
-
-Debe ir en formato internacional, sin `+`, espacios ni guiones.
+- fecha del evento;
+- horarios de eucaristía y recepción;
+- ubicación y enlaces de Google Maps;
+- fecha límite y teléfono para confirmar por WhatsApp;
+- número máximo de asistentes.
 
 ## Estructura
 
-```text
-assets/enchanted/          Recursos visuales y audio
-src/config.js              Datos del evento
-src/main.js                Inicialización
-src/modules/               Audio, contenido, contador, sobre, navegación y RSVP
-src/styles/                Estilos separados por responsabilidad
-index.html                 Estructura semántica de las escenas
-vercel.json                Configuración de despliegue
-```
+- `src/modules`: comportamiento por responsabilidad.
+- `src/styles`: estilos separados por componente y responsive.
+- `assets/enchanted`: imágenes y audio de la invitación.
 
-## Ejecución local
+## Ajustes de la versión final V8
 
-El proyecto usa módulos ES, por lo que debe abrirse mediante un servidor local:
-
-```bash
-python -m http.server 8000
-```
-
-Después abre `http://localhost:8000`.
-
-
-## Ajustes de composición V7
-
-- Portada reconstruida como un solo lockup visual: vitral, 15 años y nombre sin superposiciones.
-- Fecha reorganizada en una composición central con horarios y contador integrados.
-- Entrada progresiva de la leyenda sincronizada con la apertura del sobre.
-- Decoraciones redundantes eliminadas de la escena de información.
-- Ajustes específicos para escritorio, celular estándar y teléfonos de poca altura.
+- La leyenda aparece después de terminar la apertura del sobre.
+- El texto de la leyenda aprovecha mejor el espacio móvil y ya no usa comillas decorativas.
+- Se añadió un botón móvil discreto para continuar sin depender del gesto de deslizar.
+- Se reorganizó la portada para dar protagonismo separado y claro a los 15 años y a María Fernanda.
+- El día `03` usa una tipografía numérica limpia para evitar la cola ornamental del número tres.
+- La fecha y la cuenta regresiva tienen más respiración vertical en móvil.
+- La lluvia de sobres se presenta como un detalle completamente opcional.

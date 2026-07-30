@@ -1,3 +1,5 @@
+
+/* Mensaje inicial */
 .legend-scene {
   display: grid;
   place-items: center;
@@ -9,22 +11,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: min(100%, 910px);
+  justify-content: center;
+  width: min(100%, 900px);
+  height: 100%;
   padding: clamp(1rem, 2.5vw, 2rem);
 }
 
 .legend-scene__emblem {
-  width: clamp(82px, 8vw, 118px);
-  max-height: 118px;
-  margin-bottom: 0.25rem;
+  width: clamp(74px, 7vw, 108px);
+  max-height: 108px;
+  margin-bottom: 0.35rem;
   object-fit: contain;
   filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.24));
 }
 
 .legend-scene__message {
   position: relative;
-  width: min(100%, 840px);
-  padding: clamp(1rem, 2vw, 1.5rem) clamp(1rem, 3vw, 2rem);
+  width: min(100%, 820px);
+  padding: clamp(1.15rem, 2vw, 1.7rem) clamp(1rem, 3vw, 2rem);
 }
 
 .legend-scene__message::before,
@@ -41,23 +45,11 @@
 .legend-scene__message::before { top: 0; }
 .legend-scene__message::after { bottom: 0; }
 
-.legend-scene__quote {
-  position: absolute;
-  top: -0.3rem;
-  left: 0.5rem;
-  color: rgba(217, 192, 131, 0.22);
-  font-family: var(--font-display);
-  font-size: clamp(7rem, 13vw, 12rem);
-  line-height: 0.7;
-  pointer-events: none;
-}
-
 .legend-scene__message p {
-  position: relative;
   margin: 0;
-  color: rgba(255, 250, 243, 0.95);
+  color: rgba(255, 250, 243, 0.96);
   font-family: var(--font-display);
-  font-size: clamp(1.38rem, 2.15vw, 2.05rem);
+  font-size: clamp(1.42rem, 2.12vw, 2.02rem);
   font-style: italic;
   font-weight: 500;
   line-height: 1.42;
@@ -65,54 +57,76 @@
   text-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 
-.legend-scene__message p + p { margin-top: 0.8rem; }
-
-.legend-scene__divider { margin: 0.55rem 0 0.15rem; }
+.legend-scene__message p + p { margin-top: 0.9rem; }
+.legend-scene__divider { margin: 0.65rem 0 0.2rem; }
 
 .legend-scene__signature {
   margin: 0;
   color: var(--gold-400);
   font-family: var(--font-script);
-  font-size: clamp(1.55rem, 2.2vw, 2.2rem);
+  font-size: clamp(1.65rem, 2.2vw, 2.25rem);
 }
 
-.legend-scene__hint {
-  margin: 0.75rem 0 0;
-  color: rgba(255, 250, 243, 0.62);
-  font-size: 0.64rem;
+.legend-scene__next {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  padding: 0.55rem 0.8rem;
+  color: rgba(255, 250, 243, 0.9);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 228, 168, 0.28);
+  border-radius: 999px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.legend-scene__next span {
+  font-size: 0.58rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
+}
+
+.legend-scene__next svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .identity-scene,
 .date-scene,
 .location-scene {
-  display: grid;
-  align-items: center;
   height: 100%;
 }
 
-/* Portada: el vitral, los quince y el nombre forman un único lockup visual. */
+/* Portada: una composición editorial clara, sin superponer el nombre y el hito. */
 .identity-scene {
-  grid-template-columns: minmax(300px, 0.9fr) minmax(470px, 1.1fr);
-  gap: clamp(2.5rem, 5vw, 5rem);
+  display: grid;
+  grid-template-columns: minmax(330px, 0.92fr) minmax(500px, 1.08fr);
+  align-items: center;
+  gap: clamp(2.25rem, 5vw, 5rem);
   padding-inline: clamp(1rem, 3vw, 3.5rem);
 }
 
 .stained-glass {
   position: relative;
   justify-self: end;
-  width: min(31vw, 390px);
-  height: min(57vh, 520px);
+  width: min(31vw, 400px);
+  height: min(58vh, 530px);
 }
 
 .stained-glass::before {
   content: '';
   position: absolute;
-  inset: 12% 5%;
+  inset: 10% 4%;
   z-index: -1;
-  background: radial-gradient(circle, rgba(221, 166, 77, 0.2), transparent 68%);
+  background: radial-gradient(circle, rgba(221, 166, 77, 0.22), transparent 68%);
   filter: blur(18px);
 }
 
@@ -129,12 +143,12 @@
 
 .identity-scene__copy {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  justify-items: center;
+  align-content: center;
   width: 100%;
-  max-width: 650px;
-  padding: clamp(1rem, 2vw, 2rem) 0;
+  max-width: 680px;
+  min-height: 470px;
   text-align: center;
   justify-self: start;
 }
@@ -142,61 +156,62 @@
 .identity-scene__copy::before {
   content: '';
   position: absolute;
-  inset: 8% 5% 5%;
+  inset: 5% 0;
   z-index: -1;
-  background: radial-gradient(ellipse at center, rgba(155, 15, 54, 0.24), transparent 72%);
-  filter: blur(20px);
+  background: radial-gradient(ellipse at center, rgba(155, 15, 54, 0.25), transparent 70%);
+  filter: blur(22px);
 }
 
 .identity-scene__milestone {
-  display: flex;
-  align-items: flex-end;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: end;
   justify-content: center;
-  gap: 0.6rem;
-  margin: 0.55rem 0 1.15rem;
+  column-gap: 0.65rem;
+  margin: 0.5rem 0 0.7rem;
   color: var(--gold-400);
   text-shadow: 0 12px 30px rgba(0, 0, 0, 0.32);
 }
 
 .identity-scene__milestone strong {
   font-family: var(--font-display);
-  font-size: clamp(6.7rem, 9vw, 9rem);
+  font-size: clamp(7rem, 9.5vw, 9.6rem);
   font-weight: 500;
-  line-height: 0.82;
-  letter-spacing: -0.06em;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
 }
 
 .identity-scene__milestone span {
-  margin-bottom: 0.72rem;
+  margin-bottom: 0.75rem;
   font-family: var(--font-display);
-  font-size: clamp(1.45rem, 2vw, 2rem);
+  font-size: clamp(1.45rem, 2vw, 2.05rem);
   font-style: italic;
 }
 
 .identity-scene h2 {
   display: grid;
-  gap: 0.04em;
+  gap: 0.01em;
   width: 100%;
   margin: 0;
   font-family: var(--font-script);
-  font-size: clamp(4.65rem, 6.3vw, 6.5rem);
+  font-size: clamp(4.9rem, 6.3vw, 6.7rem);
   font-weight: 400;
-  line-height: 0.9;
+  line-height: 0.88;
   text-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
 }
 
 .identity-scene h2 span { display: block; }
 .identity-scene .ornamental-divider { margin-top: 1.15rem; }
 
-/* Fecha: una sola composición central evita bloques aislados y vacíos. */
+/* Fecha: el día usa una cifra limpia para evitar la cola tipográfica del “3”. */
 .date-scene {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(1rem, 2.3vh, 1.6rem);
+  display: grid;
+  grid-template-rows: auto auto;
+  align-content: center;
+  justify-items: center;
+  gap: clamp(1.3rem, 3vh, 2.2rem);
   max-width: 1080px;
-  padding: 0.3rem clamp(1rem, 3vw, 2.5rem);
+  padding: 0.5rem clamp(1rem, 3vw, 2.5rem);
   text-align: center;
 }
 
@@ -208,27 +223,27 @@
 
 .date-scene__main h2 {
   margin: 0;
-  font-size: clamp(3.15rem, 4.8vw, 4.7rem);
+  font-size: clamp(3.2rem, 4.8vw, 4.75rem);
 }
 
 .date-hero {
   display: grid;
-  grid-template-columns: minmax(180px, 0.82fr) minmax(300px, 1.18fr);
+  grid-template-columns: minmax(170px, 0.78fr) minmax(300px, 1.22fr);
   align-items: center;
-  gap: clamp(1.2rem, 3vw, 2.5rem);
+  gap: clamp(1.4rem, 3vw, 2.6rem);
   width: min(100%, 720px);
-  margin-top: 0.7rem;
-  padding: 0.35rem 0 0.8rem;
+  margin-top: 0.9rem;
+  padding: 0.5rem 0 0.95rem;
   border-bottom: 1px solid rgba(140, 91, 67, 0.22);
 }
 
 .date-hero__day {
   color: var(--wine-700);
-  font-family: var(--font-display);
-  font-size: clamp(6.4rem, 9vw, 8.8rem);
-  font-weight: 500;
-  line-height: 0.78;
-  letter-spacing: -0.07em;
+  font-family: var(--font-body);
+  font-size: clamp(6.1rem, 8.8vw, 8.5rem);
+  font-weight: 400;
+  line-height: 0.88;
+  letter-spacing: -0.09em;
   text-align: right;
 }
 
@@ -250,7 +265,7 @@
 }
 
 .date-hero__month {
-  margin-top: 0.15rem;
+  margin-top: 0.12rem;
   font-family: var(--font-display);
   font-size: clamp(2.8rem, 4vw, 3.8rem);
   font-weight: 600;
@@ -269,7 +284,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(220px, 1fr));
   width: min(100%, 720px);
-  margin-top: 0.45rem;
+  margin-top: 0.55rem;
   border-bottom: 1px solid rgba(140, 91, 67, 0.18);
 }
 
@@ -279,7 +294,7 @@
   align-items: center;
   gap: 0.8rem;
   min-width: 0;
-  padding: 0.65rem clamp(0.5rem, 2vw, 1.25rem) 0.85rem;
+  padding: 0.7rem clamp(0.5rem, 2vw, 1.25rem) 0.9rem;
   text-align: left;
 }
 
@@ -330,15 +345,13 @@
 
 .countdown-panel {
   display: grid;
-  grid-template-columns: auto minmax(400px, 1fr);
+  grid-template-columns: auto minmax(420px, 1fr);
   align-items: center;
-  gap: clamp(1.2rem, 3vw, 2.5rem);
-  width: min(100%, 820px);
-  max-width: none;
+  gap: clamp(1.25rem, 3vw, 2.6rem);
+  width: min(100%, 840px);
   padding: 0;
   border: 0;
   text-align: left;
-  justify-self: center;
 }
 
 .countdown-panel__intro {
@@ -384,10 +397,7 @@
 
 .countdown > div {
   position: relative;
-  padding: 0.65rem 0.25rem;
-  background: transparent;
-  border: 0;
-  border-radius: 0;
+  padding: 0.7rem 0.25rem;
   text-align: center;
 }
 

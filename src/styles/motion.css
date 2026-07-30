@@ -85,12 +85,11 @@
 }
 
 .legend-scene__emblem { animation-delay: 40ms !important; }
-.legend-scene > * .scene-kicker { animation-delay: 100ms !important; }
-.legend-scene__message p:first-of-type { animation-delay: 180ms !important; }
-.legend-scene__message p:last-of-type { animation-delay: 300ms !important; }
-.legend-scene__divider { animation-delay: 410ms !important; }
-.legend-scene__signature { animation-delay: 480ms !important; }
-.legend-scene__hint { animation-delay: 560ms !important; }
+.legend-scene > * .scene-kicker { animation-delay: 120ms !important; }
+.legend-scene__message { animation-delay: 220ms !important; }
+.legend-scene__divider { animation-delay: 370ms !important; }
+.legend-scene__signature { animation-delay: 460ms !important; }
+.legend-scene__next { animation-delay: 560ms !important; }
 
 .identity-scene [data-reveal]:nth-child(1) { animation-delay: 70ms; }
 .identity-scene [data-reveal]:nth-child(2) { animation-delay: 160ms; }
@@ -123,6 +122,13 @@
   animation-timing-function: var(--ease-out) !important;
   animation-fill-mode: both !important;
 }
+
+@keyframes invitationCue {
+  0%, 100% { transform: translateX(0); opacity: 0.78; }
+  50% { transform: translateX(4px); opacity: 1; }
+}
+
+.legend-scene__next svg { animation: invitationCue 1.45s ease-in-out infinite; }
 
 @media (prefers-reduced-motion: reduce) {
   *,
