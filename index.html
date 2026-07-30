@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="./src/styles/scenes.css" />
     <link rel="stylesheet" href="./src/styles/dialog.css" />
     <link rel="stylesheet" href="./src/styles/responsive.css" />
+    <link rel="stylesheet" href="./src/styles/final.css" />
     <link rel="stylesheet" href="./src/styles/motion.css" />
 
     <script type="module" src="./src/main.js"></script>
@@ -133,71 +134,56 @@
 
           <section class="scene scene--identity" data-scene="1" data-theme="wine" aria-labelledby="scene-identity-title" hidden>
             <div class="scene-layout identity-scene">
-              <div class="stained-glass" aria-hidden="true" data-reveal>
-                <img class="stained-glass__dark" src="./assets/enchanted/stained-glass/rose-dark.png" alt="" />
-                <img class="stained-glass__lit" src="./assets/enchanted/stained-glass/rose-lit.png" alt="" />
-              </div>
-
               <div class="identity-scene__copy" data-reveal>
-                <p class="scene-kicker">Mis quince años</p>
-                <div class="identity-scene__milestone" aria-label="Mis quince años">
-                  <strong>15</strong>
-                  <span>años</span>
-                </div>
+                <p class="identity-scene__eyebrow">Una noche para recordar</p>
                 <h2 id="scene-identity-title"><span>María</span><span>Fernanda</span></h2>
+                <div class="identity-scene__milestone" aria-label="Mis quince años">
+                  <span class="identity-scene__milestone-prefix">Mis</span>
+                  <strong>15</strong>
+                  <span class="identity-scene__milestone-suffix">años</span>
+                </div>
                 <img class="ornamental-divider" src="./assets/enchanted/ornaments/divider.png" alt="" aria-hidden="true" />
+              </div>
+              <div class="identity-scene__visual" data-reveal>
+                <div class="stained-glass" aria-hidden="true">
+                  <img class="stained-glass__dark" src="./assets/enchanted/stained-glass/rose-dark.png" alt="" />
+                  <img class="stained-glass__lit" src="./assets/enchanted/stained-glass/rose-lit.png" alt="" />
+                </div>
+                <p class="identity-scene__caption">Mis XV · 03 de octubre de 2026</p>
               </div>
             </div>
           </section>
 
           <section class="scene scene--date" data-scene="2" data-theme="cream" aria-labelledby="scene-date-title" hidden>
             <div class="scene-layout date-scene">
-              <div class="date-scene__main" data-reveal>
+              <header class="date-scene__header" data-reveal>
                 <p class="scene-kicker">Guarda la fecha</p>
-                <h2 id="scene-date-title">La celebración</h2>
-
-                <div class="date-hero">
-                  <strong class="date-hero__day" data-event-day>03</strong>
-                  <div class="date-hero__copy">
-                    <span class="date-hero__weekday" data-event-weekday>Sábado</span>
-                    <span class="date-hero__month" data-event-month>Octubre</span>
-                    <span class="date-hero__year" data-event-year>2026</span>
-                  </div>
+                <h2 id="scene-date-title">Una fecha inolvidable</h2>
+              </header>
+              <div class="date-scene__composition">
+                <div class="date-lockup" data-reveal aria-label="Sábado 3 de octubre de 2026">
+                  <span class="date-lockup__weekday" data-event-weekday>Sábado</span>
+                  <strong class="date-lockup__day" data-event-day>03</strong>
+                  <div class="date-lockup__month-year"><span data-event-month>Octubre</span><small data-event-year>2026</small></div>
                 </div>
-
-                <div class="event-schedule" aria-label="Horarios del evento">
-                  <div class="event-schedule__item">
-                    <span class="event-schedule__icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24"><path d="M12 3v18M7 7h10M8.5 12h7M9.5 17h5" /></svg>
-                    </span>
-                    <div><small>Eucaristía</small><strong data-event-ceremony-time>4:00 p. m.</strong></div>
-                  </div>
-                  <div class="event-schedule__item">
-                    <span class="event-schedule__icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24"><path d="M4 12h16M12 4v16" /><circle cx="12" cy="12" r="8" /></svg>
-                    </span>
-                    <div><small>Recepción</small><strong data-event-reception-time>5:00 p. m.</strong></div>
-                  </div>
+                <div class="event-itinerary" data-reveal aria-label="Itinerario del evento">
+                  <article class="event-itinerary__item">
+                    <span class="event-itinerary__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 21V9l7-5 7 5v12M3 21h18M9 21v-6h6v6M9 10h6M12 7v6" /></svg></span>
+                    <div class="event-itinerary__time"><strong data-event-ceremony-time>4:00 p. m.</strong><span>Eucaristía</span></div>
+                    <p>Un momento para agradecer y bendecir esta nueva etapa.</p>
+                  </article>
+                  <span class="event-itinerary__line" aria-hidden="true"></span>
+                  <article class="event-itinerary__item">
+                    <span class="event-itinerary__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3v4M17 3v4M4 9h16M5 6h14v14H5z" /><path d="m9 14 2 2 4-5" /></svg></span>
+                    <div class="event-itinerary__time"><strong data-event-reception-time>5:00 p. m.</strong><span>Recepción</span></div>
+                    <p>Después, celebremos juntos con música, alegría y muchos recuerdos.</p>
+                  </article>
                 </div>
               </div>
-
               <aside class="countdown-panel" data-reveal>
-                <div class="countdown-panel__intro">
-                  <img
-                    class="countdown-panel__rose"
-                    src="./assets/enchanted/ornaments/enchanted-rose.png"
-                    alt="Rosa encantada bajo una cúpula de cristal"
-                  />
-                  <div>
-                    <span>Cuenta regresiva</span>
-                    <p>Faltan</p>
-                  </div>
-                </div>
+                <div class="countdown-panel__intro"><img class="countdown-panel__rose" src="./assets/enchanted/ornaments/enchanted-rose.png" alt="Rosa encantada bajo una cúpula de cristal" /><div><span>Cuenta regresiva</span><p>Faltan</p></div></div>
                 <div class="countdown" id="countdown" aria-label="Cuenta regresiva para el evento">
-                  <div><strong data-countdown="days">--</strong><span>días</span></div>
-                  <div><strong data-countdown="hours">--</strong><span>horas</span></div>
-                  <div><strong data-countdown="minutes">--</strong><span>min</span></div>
-                  <div><strong data-countdown="seconds">--</strong><span>seg</span></div>
+                  <div><strong data-countdown="days">--</strong><span>días</span></div><div><strong data-countdown="hours">--</strong><span>horas</span></div><div><strong data-countdown="minutes">--</strong><span>min</span></div><div><strong data-countdown="seconds">--</strong><span>seg</span></div>
                 </div>
                 <p class="countdown__done" id="countdown-done" hidden>Hoy es el gran día ✨</p>
               </aside>
@@ -240,43 +226,11 @@
 
           <section class="scene scene--info" data-scene="4" data-theme="cream" aria-labelledby="scene-info-title" hidden>
             <div class="scene-layout info-scene">
-              <div class="info-scene__heading" data-reveal>
-                <p class="scene-kicker">Para tener en cuenta</p>
-                <h2 id="scene-info-title">Información importante</h2>
-              </div>
-
+              <div class="info-scene__heading" data-reveal><p class="scene-kicker">Para tener en cuenta</p><h2 id="scene-info-title">Detalles para celebrar</h2></div>
               <div class="info-scene__content">
-                <section class="info-block" data-reveal aria-labelledby="dress-info-title">
-                  <span class="info-block__icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24"><path d="M8 4 4 7l3 4 2-1v10h6V10l2 1 3-4-4-3c-1 2-7 2-8 0Z" /></svg>
-                  </span>
-                  <div class="info-block__copy">
-                    <p class="info-block__eyebrow">Etiqueta formal</p>
-                    <h3 id="dress-info-title">Código de vestimenta</h3>
-                    <p>Puedes usar el color que prefieras, excepto el tono reservado para María Fernanda.</p>
-                    <div class="reserved-color">
-                      <span class="reserved-color__swatch" aria-hidden="true"></span>
-                      <div>
-                        <strong>Color reservado: cereza</strong>
-                        <p>Evita únicamente tonos similares al vestido de la quinceañera.</p>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-
-                <span class="info-scene__separator" aria-hidden="true"></span>
-
-                <section class="info-block" data-reveal aria-labelledby="gift-info-title">
-                  <span class="info-block__icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 7v13M12 7H7.5A2.5 2.5 0 1 1 10 4.5L12 7Zm0 0h4.5A2.5 2.5 0 1 0 14 4.5L12 7Z" /></svg>
-                  </span>
-                  <div class="info-block__copy">
-                    <p class="info-block__eyebrow">Un detalle opcional</p>
-                    <h3 id="gift-info-title">Lluvia de sobres</h3>
-                    <p class="info-block__lead">Tu presencia es, sin duda, el mejor regalo.</p>
-                    <p>Si deseas tener un detalle conmigo, puedes hacerlo de manera voluntaria mediante la tradicional lluvia de sobres.</p>
-                  </div>
-                </section>
+                <section class="info-block info-block--dress" data-reveal aria-labelledby="dress-info-title"><span class="info-block__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 4 4 7l3 4 2-1v10h6V10l2 1 3-4-4-3c-1 2-7 2-8 0Z" /></svg></span><div class="info-block__copy"><p class="info-block__eyebrow">Etiqueta formal</p><h3 id="dress-info-title">Código de vestimenta</h3><p>Elige el color que prefieras y reserva el tono cereza para María Fernanda.</p><div class="reserved-color"><span class="reserved-color__swatch" aria-hidden="true"></span><div><strong>Color reservado: cereza</strong><p>Tonos similares al vestido de la quinceañera.</p></div></div></div></section>
+                <section class="info-block info-block--celebrate" data-reveal aria-labelledby="celebrate-info-title"><span class="info-block__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 1.3 4.1L17 9l-3.7 1.9L12 15l-1.3-4.1L7 9l3.7-1.9L12 3Z" /><path d="m5 14 .8 2.2L8 17l-2.2.8L5 20l-.8-2.2L2 17l2.2-.8L5 14ZM19 13l.8 2.2L22 16l-2.2.8L19 19l-.8-2.2L16 16l2.2-.8L19 13Z" /></svg></span><div class="info-block__copy"><p class="info-block__eyebrow">Lo más importante</p><h3 id="celebrate-info-title">Ven a disfrutar</h3><p>Trae tus mejores ganas de celebrar, bailar y crear recuerdos inolvidables.</p></div></section>
+                <section class="info-block info-block--gift" data-reveal aria-labelledby="gift-info-title"><span class="info-block__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 7l9 7 9-7" /></svg></span><div class="info-block__copy"><p class="info-block__eyebrow">De manera opcional</p><h3 id="gift-info-title">Un detalle</h3><p class="info-block__subtle">Si deseas tener un gesto adicional, habrá un espacio para sobres.</p></div></section>
               </div>
             </div>
           </section>

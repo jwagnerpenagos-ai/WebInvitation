@@ -22,12 +22,11 @@ Los datos del evento se administran desde `src/config.js`:
 - `src/styles`: estilos separados por componente y responsive.
 - `assets/enchanted`: imágenes y audio de la invitación.
 
-## Ajustes de la versión final V8
+## Ajustes de la versión final V9
 
-- La leyenda aparece después de terminar la apertura del sobre.
-- El texto de la leyenda aprovecha mejor el espacio móvil y ya no usa comillas decorativas.
-- Se añadió un botón móvil discreto para continuar sin depender del gesto de deslizar.
-- Se reorganizó la portada para dar protagonismo separado y claro a los 15 años y a María Fernanda.
-- El día `03` usa una tipografía numérica limpia para evitar la cola ornamental del número tres.
-- La fecha y la cuenta regresiva tienen más respiración vertical en móvil.
-- La lluvia de sobres se presenta como un detalle completamente opcional.
+- La leyenda ocupa más espacio útil y mantiene una lectura cómoda en celular.
+- La portada usa una composición editorial distinta para móvil y escritorio: nombre y aniversario como foco, vitral como contrapunto.
+- La fecha se presenta como un calendario protagonista acompañado por un itinerario de eucaristía y recepción.
+- El contador queda integrado como cierre de la escena de fecha.
+- La sección de información incluye vestimenta, una invitación a disfrutar y una referencia discreta y opcional a los sobres.
+- `src/styles/final.css` concentra el último sistema de composición sin mezclarlo con la lógica de componentes.
