@@ -143,8 +143,7 @@ svg {
 .scene-cta:focus-visible,
 .icon-button:focus-visible,
 .scene-arrow:focus-visible,
-.scene-navigation__item:focus-visible,
-.menu-card:focus-visible,
+.quick-navigation__item:focus-visible,
 .seal-button:focus-visible {
   outline: 3px solid rgba(255, 228, 168, 0.95);
   outline-offset: 4px;

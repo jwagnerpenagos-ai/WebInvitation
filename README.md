@@ -1,70 +1,56 @@
 # Invitación XV · María Fernanda
 
-Invitación digital de pantalla completa organizada por escenas. La experiencia no utiliza scroll de página: se navega con los controles inferiores, las flechas del teclado, la rueda del mouse o un gesto horizontal en celular.
+Invitación web estática organizada por escenas, optimizada para celular y computador y lista para desplegar en Vercel.
 
-## Flujo actual
+## Flujo
 
-1. Sobre sellado a pantalla completa.
-2. Mensaje inicial con efecto de escritura.
-3. Portada de María Fernanda.
-4. Menú visual con accesos a cada sección.
-5. Fecha y cuenta regresiva.
-6. Ubicación y enlace a Google Maps.
-7. Código de vestimenta.
-8. Lluvia de sobres.
-9. Confirmación de asistencia por WhatsApp.
+1. Sobre animado
+2. Mensaje de apertura
+3. Portada de María Fernanda y sus 15 años
+4. Fecha y horarios
+5. Lugar
+6. Información: vestimenta y lluvia de sobres
+7. Confirmación por WhatsApp
 
-## Ejecutar localmente
-
-Los módulos ES necesitan un servidor local:
-
-```bash
-python -m http.server 8080
-```
-
-Después abre `http://localhost:8080`.
+La navegación principal se concentra en cuatro accesos persistentes: **Fecha**, **Lugar**, **Información** y **Confirmar**. Las escenas iniciales se recorren con gesto horizontal, flechas o teclado.
 
 ## Configuración
 
-Los datos editables están centralizados en `src/config.js`:
+Los datos que normalmente cambian están centralizados en `src/config.js`:
 
-- mensaje inicial;
-- fecha y hora;
-- lugar y enlace de Google Maps;
-- fecha límite de confirmación;
-- teléfono de WhatsApp;
-- cantidad máxima de asistentes.
+```js
+schedule: {
+  ceremony: '4:00 p. m.',
+  reception: '5:00 p. m.',
+},
+```
 
-El teléfono debe escribirse en formato internacional, sin `+`, espacios ni guiones.
+Antes de desplegar, reemplaza el teléfono de ejemplo:
+
+```js
+phone: '573000000000',
+```
+
+Debe ir en formato internacional, sin `+`, espacios ni guiones.
 
 ## Estructura
 
 ```text
-src/
-├── config.js
-├── main.js
-├── modules/
-│   ├── audio.js
-│   ├── content.js
-│   ├── countdown.js
-│   ├── dom.js
-│   ├── envelope.js
-│   ├── rsvp.js
-│   ├── slider.js
-│   └── typewriter.js
-└── styles/
-    ├── tokens.css
-    ├── base.css
-    ├── envelope.css
-    ├── stage.css
-    ├── scenes.css
-    ├── dialog.css
-    ├── responsive.css
-    └── motion.css
+assets/enchanted/          Recursos visuales y audio
+src/config.js              Datos del evento
+src/main.js                Inicialización
+src/modules/               Audio, contenido, contador, sobre, navegación y RSVP
+src/styles/                Estilos separados por responsabilidad
+index.html                 Estructura semántica de las escenas
+vercel.json                Configuración de despliegue
 ```
 
-En escritorio, el lienzo conserva una proporción `16:10` para mantener la composición. En móvil ocupa `100dvh` y cada escena tiene una distribución específica para evitar scroll y superposiciones.
+## Ejecución local
 
-## Despliegue
+El proyecto usa módulos ES, por lo que debe abrirse mediante un servidor local:
 
-El proyecto incluye `vercel.json`. Puede desplegarse directamente en Vercel como sitio estático, sin comando de build.
+```bash
+python -m http.server 8000
+```
+
+Después abre `http://localhost:8000`.

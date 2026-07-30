@@ -1,17 +1,16 @@
 import { $, $$ } from './dom.js';
 
-const TRANSITION_DURATION = 560;
-const SWIPE_THRESHOLD = 48;
+const TRANSITION_DURATION = 520;
+const SWIPE_THRESHOLD = 46;
 
 export function setupSceneSlider() {
   const stage = $('#invitation-stage');
   const shell = $('#invitation-shell');
   const viewport = $('#scene-viewport');
-  const scenes = $$('[data-scene]');
+  const scenes = $$('section[data-scene]');
   const navigationItems = $$('[data-scene-target]');
   const previousButton = $('#previous-scene');
   const nextButton = $('#next-scene');
-  const goToButtons = $$('[data-go-to]');
 
   if (!stage || !shell || !viewport || scenes.length === 0 || !previousButton || !nextButton) return;
 
@@ -20,15 +19,16 @@ export function setupSceneSlider() {
   let touchStartY = 0;
   let wheelLocked = false;
 
-  const updateControls = () => {
+  const syncControls = () => {
     navigationItems.forEach((item) => {
       const active = Number(item.dataset.sceneTarget) === currentIndex;
       item.classList.toggle('is-active', active);
-      active ? item.setAttribute('aria-current', 'step') : item.removeAttribute('aria-current');
+      active ? item.setAttribute('aria-current', 'page') : item.removeAttribute('aria-current');
     });
 
     previousButton.disabled = currentIndex === 0;
     nextButton.disabled = currentIndex === scenes.length - 1;
+    shell.dataset.currentScene = String(currentIndex);
     shell.dataset.theme = scenes[currentIndex].dataset.theme || 'wine';
   };
 
@@ -53,20 +53,24 @@ export function setupSceneSlider() {
       }
     });
 
-    updateControls();
+    syncControls();
   };
 
   const step = (direction) => showScene(currentIndex + direction);
 
   previousButton.addEventListener('click', () => step(-1));
   nextButton.addEventListener('click', () => step(1));
-  navigationItems.forEach((item) => item.addEventListener('click', () => showScene(Number(item.dataset.sceneTarget))));
-  goToButtons.forEach((button) => button.addEventListener('click', () => showScene(Number(button.dataset.goTo))));
+  navigationItems.forEach((item) => {
+    item.addEventListener('click', () => showScene(Number(item.dataset.sceneTarget)));
+  });
 
   document.addEventListener('keydown', (event) => {
     if (stage.hidden || $('#rsvp-dialog')?.open) return;
-    if (event.key === 'ArrowLeft') step(-1);
+
+    if (event.key === 'ArrowLeft' || event.key === 'PageUp') step(-1);
     if (event.key === 'ArrowRight' || event.key === 'PageDown') step(1);
+    if (event.key === 'Home') showScene(0);
+    if (event.key === 'End') showScene(scenes.length - 1);
   });
 
   viewport.addEventListener('touchstart', (event) => {
@@ -86,9 +90,12 @@ export function setupSceneSlider() {
 
   viewport.addEventListener('wheel', (event) => {
     if (wheelLocked || Math.abs(event.deltaY) < 28) return;
+
     wheelLocked = true;
     step(event.deltaY > 0 ? 1 : -1);
-    window.setTimeout(() => { wheelLocked = false; }, 680);
+    window.setTimeout(() => {
+      wheelLocked = false;
+    }, 620);
   }, { passive: true });
 
   scenes.forEach((scene, index) => {
@@ -96,6 +103,6 @@ export function setupSceneSlider() {
     scene.setAttribute('aria-hidden', String(index !== 0));
   });
 
-  updateControls();
+  syncControls();
   return { showScene };
 }

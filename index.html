@@ -9,7 +9,7 @@
       content="Invitación a los XV años de María Fernanda. 3 de octubre de 2026 en Duitama, Boyacá."
     />
     <meta property="og:title" content="Mis XV · María Fernanda" />
-    <meta property="og:description" content="Acompáñame a celebrar una noche inolvidable." />
+    <meta property="og:description" content="Acompáñame a celebrar una fecha inolvidable." />
     <title>Mis XV · María Fernanda</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -60,7 +60,7 @@
     <main class="invitation-stage" id="invitation-stage" hidden>
       <div class="stage-ambient" aria-hidden="true"></div>
 
-      <div class="invitation-shell" id="invitation-shell" data-theme="wine">
+      <div class="invitation-shell" id="invitation-shell" data-theme="wine" data-current-scene="0">
         <div class="shell-background" aria-hidden="true"></div>
         <div class="shell-vignette" aria-hidden="true"></div>
 
@@ -93,17 +93,38 @@
         <div class="scene-viewport" id="scene-viewport" aria-live="polite">
           <section class="scene scene--legend is-active" data-scene="0" data-theme="wine" aria-labelledby="scene-legend-title">
             <div class="scene-layout legend-scene">
-              <div class="legend-scene__content" data-reveal>
-                <p class="scene-kicker">Una fecha para recordar</p>
+              <div class="legend-scene__content">
+                <img
+                  class="legend-scene__emblem"
+                  src="./assets/enchanted/stained-glass/rose-emblem.png"
+                  alt=""
+                  aria-hidden="true"
+                  data-reveal
+                />
+                <p class="scene-kicker" data-reveal>Una fecha para recordar</p>
                 <h2 class="sr-only" id="scene-legend-title">Un mensaje para ti</h2>
-                <span class="legend-scene__quote" aria-hidden="true">“</span>
-                <p class="legend-scene__text" id="legend-message" data-typewriter aria-hidden="true"></p>
-                <p class="sr-only" data-legend-accessible></p>
-                <img class="ornamental-divider legend-scene__divider" src="./assets/enchanted/ornaments/divider.png" alt="" aria-hidden="true" />
-                <button class="scene-cta scene-cta--subtle" type="button" data-go-to="1">
-                  Continuar
-                  <span aria-hidden="true">→</span>
-                </button>
+
+                <div class="legend-scene__message" aria-label="Mensaje de María Fernanda">
+                  <span class="legend-scene__quote" aria-hidden="true">“</span>
+                  <p data-reveal>
+                    Hay momentos inolvidables que se atesoran en el corazón para siempre, y lo que los hace realmente
+                    especiales son las personas que amas y que hacen parte fundamental de tu vida.
+                  </p>
+                  <p data-reveal>
+                    Por esta razón, quiero que compartas conmigo este maravilloso día, en donde acaba una linda etapa e
+                    inicia un camino lleno de sueños e ilusiones.
+                  </p>
+                </div>
+
+                <img
+                  class="ornamental-divider legend-scene__divider"
+                  src="./assets/enchanted/ornaments/divider.png"
+                  alt=""
+                  aria-hidden="true"
+                  data-reveal
+                />
+                <p class="legend-scene__signature" data-reveal>Con cariño, María Fernanda</p>
+                <p class="legend-scene__hint" data-reveal>Desliza para continuar <span aria-hidden="true">→</span></p>
               </div>
             </div>
           </section>
@@ -116,90 +137,54 @@
               </div>
 
               <div class="identity-scene__copy" data-reveal>
-                <p class="scene-kicker">Mis quince años</p>
+                <p class="scene-kicker">Celebremos juntos</p>
+                <div class="identity-scene__milestone" aria-label="Mis quince años">
+                  <strong>15</strong>
+                  <span>años</span>
+                </div>
                 <h2 id="scene-identity-title"><span>María</span><span>Fernanda</span></h2>
                 <img class="ornamental-divider" src="./assets/enchanted/ornaments/divider.png" alt="" aria-hidden="true" />
               </div>
             </div>
           </section>
 
-          <section class="scene scene--menu" data-scene="2" data-theme="cream" aria-labelledby="scene-menu-title" hidden>
-            <div class="scene-layout menu-scene">
-              <div class="menu-scene__heading" data-reveal>
-                <p class="scene-kicker">Todos los detalles</p>
-                <h2 id="scene-menu-title">Nuestra celebración</h2>
-                <p class="scene-copy">Elige una opción para conocer cada parte de este día tan especial.</p>
-              </div>
-
-              <div class="menu-grid" aria-label="Accesos a la invitación">
-                <button class="menu-card" type="button" data-go-to="3" data-reveal>
-                  <span class="menu-card__icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
-                  </span>
-                  <strong>Fecha</strong>
-                  <small>Día y hora</small>
-                </button>
-
-                <button class="menu-card" type="button" data-go-to="4" data-reveal>
-                  <span class="menu-card__icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
-                  </span>
-                  <strong>Lugar</strong>
-                  <small>Cómo llegar</small>
-                </button>
-
-                <button class="menu-card" type="button" data-go-to="5" data-reveal>
-                  <span class="menu-card__icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24"><path d="M8 4 4 7l3 4 2-1v10h6V10l2 1 3-4-4-3c-1 2-7 2-8 0Z"/></svg>
-                  </span>
-                  <strong>Vestimenta</strong>
-                  <small>Etiqueta formal</small>
-                </button>
-
-                <button class="menu-card" type="button" data-go-to="6" data-reveal>
-                  <span class="menu-card__icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 7v13M12 7H7.5A2.5 2.5 0 1 1 10 4.5L12 7Zm0 0h4.5A2.5 2.5 0 1 0 14 4.5L12 7Z"/></svg>
-                  </span>
-                  <strong>Detalles</strong>
-                  <small>Lluvia de sobres</small>
-                </button>
-
-                <button class="menu-card menu-card--featured" type="button" data-go-to="7" data-reveal>
-                  <span class="menu-card__icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z"/><path d="m8.5 11.5 2.2 2.2 4.8-5"/></svg>
-                  </span>
-                  <strong>Confirmar</strong>
-                  <small>Asistencia</small>
-                </button>
-              </div>
-            </div>
-          </section>
-
-          <section class="scene scene--date" data-scene="3" data-theme="cream" aria-labelledby="scene-date-title" hidden>
+          <section class="scene scene--date" data-scene="2" data-theme="cream" aria-labelledby="scene-date-title" hidden>
             <div class="scene-layout date-scene">
-              <div class="date-scene__copy" data-reveal>
+              <div class="date-scene__main" data-reveal>
                 <p class="scene-kicker">Guarda la fecha</p>
                 <h2 id="scene-date-title">La celebración</h2>
-                <p class="scene-copy">Una tarde que se convertirá en noche, entre música, abrazos y recuerdos para siempre.</p>
 
-                <article class="date-display">
-                  <span class="date-display__weekday" data-event-weekday>Sábado</span>
-                  <div class="date-display__date">
-                    <strong class="date-display__day" data-event-day>03</strong>
-                    <div class="date-display__month-year">
-                      <span class="date-display__month" data-event-month>Octubre</span>
-                      <span class="date-display__year" data-event-year>2026</span>
-                    </div>
+                <div class="date-hero">
+                  <strong class="date-hero__day" data-event-day>03</strong>
+                  <div class="date-hero__copy">
+                    <span class="date-hero__weekday" data-event-weekday>Sábado</span>
+                    <span class="date-hero__month" data-event-month>Octubre</span>
+                    <span class="date-hero__year" data-event-year>2026</span>
                   </div>
-                  <div class="date-display__time">
-                    <span>Recepción</span>
-                    <strong data-event-time>6:00 p. m.</strong>
+                </div>
+
+                <div class="event-schedule" aria-label="Horarios del evento">
+                  <div class="event-schedule__item">
+                    <span class="event-schedule__icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24"><path d="M12 3v18M7 7h10M8.5 12h7M9.5 17h5" /></svg>
+                    </span>
+                    <div><small>Eucaristía</small><strong data-event-ceremony-time>4:00 p. m.</strong></div>
                   </div>
-                </article>
+                  <div class="event-schedule__item">
+                    <span class="event-schedule__icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24"><path d="M4 12h16M12 4v16" /><circle cx="12" cy="12" r="8" /></svg>
+                    </span>
+                    <div><small>Recepción</small><strong data-event-reception-time>5:00 p. m.</strong></div>
+                  </div>
+                </div>
               </div>
 
               <aside class="countdown-panel" data-reveal>
-                <img class="countdown-panel__rose" src="./assets/enchanted/ornaments/enchanted-rose.png" alt="Rosa encantada bajo una cúpula de cristal" />
+                <img
+                  class="countdown-panel__rose"
+                  src="./assets/enchanted/ornaments/enchanted-rose.png"
+                  alt="Rosa encantada bajo una cúpula de cristal"
+                />
                 <p>Faltan</p>
                 <div class="countdown" id="countdown" aria-label="Cuenta regresiva para el evento">
                   <div><strong data-countdown="days">--</strong><span>días</span></div>
@@ -212,7 +197,7 @@
             </div>
           </section>
 
-          <section class="scene scene--location" data-scene="4" data-theme="wine" aria-labelledby="scene-location-title" hidden>
+          <section class="scene scene--location" data-scene="3" data-theme="wine" aria-labelledby="scene-location-title" hidden>
             <div class="scene-layout location-scene">
               <div class="location-scene__visual" aria-hidden="true" data-reveal>
                 <img src="./assets/enchanted/stained-glass/rose-emblem.png" alt="" />
@@ -235,46 +220,52 @@
             </div>
           </section>
 
-          <section class="scene scene--dress" data-scene="5" data-theme="cream" aria-labelledby="scene-dress-title" hidden>
-            <div class="scene-layout dress-scene">
-              <div class="dress-scene__copy" data-reveal>
+          <section class="scene scene--info" data-scene="4" data-theme="cream" aria-labelledby="scene-info-title" hidden>
+            <div class="scene-layout info-scene">
+              <div class="info-scene__heading" data-reveal>
                 <p class="scene-kicker">Para tener en cuenta</p>
-                <h2 id="scene-dress-title">Código de vestimenta</h2>
-                <p class="dress-scene__formal">Etiqueta formal</p>
-                <p class="scene-copy">Puedes usar el color que prefieras, excepto el tono reservado para María Fernanda.</p>
+                <h2 id="scene-info-title">Información importante</h2>
+              </div>
 
-                <div class="reserved-color">
-                  <span class="reserved-color__swatch" aria-hidden="true"></span>
-                  <div>
-                    <strong>Color reservado: cereza</strong>
-                    <p>Evita únicamente tonos similares al vestido de la quinceañera.</p>
+              <div class="info-scene__content">
+                <section class="info-block" data-reveal aria-labelledby="dress-info-title">
+                  <span class="info-block__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M8 4 4 7l3 4 2-1v10h6V10l2 1 3-4-4-3c-1 2-7 2-8 0Z" /></svg>
+                  </span>
+                  <div class="info-block__copy">
+                    <p class="info-block__eyebrow">Etiqueta formal</p>
+                    <h3 id="dress-info-title">Código de vestimenta</h3>
+                    <p>Puedes usar el color que prefieras, excepto el tono reservado para María Fernanda.</p>
+                    <div class="reserved-color">
+                      <span class="reserved-color__swatch" aria-hidden="true"></span>
+                      <div>
+                        <strong>Color reservado: cereza</strong>
+                        <p>Evita únicamente tonos similares al vestido de la quinceañera.</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </section>
+
+                <span class="info-scene__separator" aria-hidden="true"></span>
+
+                <section class="info-block" data-reveal aria-labelledby="gift-info-title">
+                  <span class="info-block__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 7v13M12 7H7.5A2.5 2.5 0 1 1 10 4.5L12 7Zm0 0h4.5A2.5 2.5 0 1 0 14 4.5L12 7Z" /></svg>
+                  </span>
+                  <div class="info-block__copy">
+                    <p class="info-block__eyebrow">Un detalle especial</p>
+                    <h3 id="gift-info-title">Lluvia de sobres</h3>
+                    <p class="info-block__lead">Tu presencia es el mejor regalo.</p>
+                    <p>Quienes deseen obsequiarme algo pueden hacerlo mediante la tradicional lluvia de sobres.</p>
+                  </div>
+                </section>
               </div>
 
-              <div class="dress-scene__rose" aria-hidden="true" data-reveal>
-                <span class="dress-scene__halo"></span>
-                <img src="./assets/enchanted/decor/rose.png" alt="" />
-              </div>
+              <img class="info-scene__rose" src="./assets/enchanted/decor/rose.png" alt="" aria-hidden="true" data-reveal />
             </div>
           </section>
 
-          <section class="scene scene--details" data-scene="6" data-theme="wine" aria-labelledby="scene-details-title" hidden>
-            <div class="scene-layout details-scene">
-              <img class="details-scene__vine" src="./assets/enchanted/ornaments/vine.png" alt="" aria-hidden="true" data-reveal />
-              <div class="details-scene__copy" data-reveal>
-                <p class="scene-kicker">Un detalle especial</p>
-                <h2 id="scene-details-title">Lluvia de sobres</h2>
-                <img class="ornamental-divider" src="./assets/enchanted/ornaments/divider.png" alt="" aria-hidden="true" />
-                <p class="scene-lead">Tu presencia es el mejor regalo.</p>
-                <p class="scene-copy">Quienes deseen obsequiarme algo pueden hacerlo mediante la tradicional lluvia de sobres.</p>
-                <blockquote>Gracias por acompañarme en una fecha tan significativa para mí y para mi familia.</blockquote>
-              </div>
-              <img class="details-scene__rose" src="./assets/enchanted/stained-glass/rose-emblem.png" alt="" aria-hidden="true" data-reveal />
-            </div>
-          </section>
-
-          <section class="scene scene--rsvp" data-scene="7" data-theme="cream" aria-labelledby="scene-rsvp-title" hidden>
+          <section class="scene scene--rsvp" data-scene="5" data-theme="wine" aria-labelledby="scene-rsvp-title" hidden>
             <div class="scene-layout rsvp-scene">
               <img class="rsvp-scene__monogram" src="./assets/enchanted/ornaments/monogram-mf.png" alt="" aria-hidden="true" data-reveal />
               <div class="rsvp-scene__copy" data-reveal>
@@ -299,15 +290,23 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
         </button>
 
-        <nav class="scene-navigation" aria-label="Secciones de la invitación">
-          <button type="button" class="scene-navigation__item is-active" data-scene-target="0" aria-current="step"><span></span><b>Mensaje</b></button>
-          <button type="button" class="scene-navigation__item" data-scene-target="1"><span></span><b>Portada</b></button>
-          <button type="button" class="scene-navigation__item" data-scene-target="2"><span></span><b>Menú</b></button>
-          <button type="button" class="scene-navigation__item" data-scene-target="3"><span></span><b>Fecha</b></button>
-          <button type="button" class="scene-navigation__item" data-scene-target="4"><span></span><b>Lugar</b></button>
-          <button type="button" class="scene-navigation__item" data-scene-target="5"><span></span><b>Vestimenta</b></button>
-          <button type="button" class="scene-navigation__item" data-scene-target="6"><span></span><b>Detalles</b></button>
-          <button type="button" class="scene-navigation__item" data-scene-target="7"><span></span><b>Confirmar</b></button>
+        <nav class="quick-navigation" aria-label="Secciones principales de la invitación">
+          <button type="button" class="quick-navigation__item" data-scene-target="2">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M16 3v4M8 3v4M3 10h18" /></svg>
+            <span>Fecha</span>
+          </button>
+          <button type="button" class="quick-navigation__item" data-scene-target="3">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></svg>
+            <span>Lugar</span>
+          </button>
+          <button type="button" class="quick-navigation__item" data-scene-target="4">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 11v6M12 7h.01" /></svg>
+            <span>Información</span>
+          </button>
+          <button type="button" class="quick-navigation__item quick-navigation__item--featured" data-scene-target="5">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z" /><path d="m8.5 11.5 2.2 2.2 4.8-5" /></svg>
+            <span>Confirmar</span>
+          </button>
         </nav>
       </div>
     </main>
