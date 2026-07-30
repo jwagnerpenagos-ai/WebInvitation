@@ -25,8 +25,8 @@
 }
 
 @keyframes stainedGlassLight {
-  0% { opacity: 0; filter: brightness(0.55) saturate(0.7) drop-shadow(0 24px 32px rgba(0,0,0,0.34)); }
-  100% { opacity: 1; filter: brightness(1.06) saturate(1.08) drop-shadow(0 0 34px rgba(218,165,78,0.28)); }
+  0% { opacity: 0; filter: brightness(0.55) saturate(0.7) drop-shadow(0 24px 32px rgba(0, 0, 0, 0.34)); }
+  100% { opacity: 1; filter: brightness(1.06) saturate(1.08) drop-shadow(0 0 34px rgba(218, 165, 78, 0.28)); }
 }
 
 @keyframes stainedGlassDim {
@@ -38,16 +38,20 @@
   50% { opacity: 0.92; transform: scale(1.06); }
 }
 
-@keyframes petalSweepOne {
-  0% { opacity: 0; transform: translate3d(12%, -18%, 0) rotate(8deg) scale(0.78); }
-  24% { opacity: 0.62; }
-  100% { opacity: 0; transform: translate3d(-85%, 85%, 0) rotate(46deg) scale(1); }
+@keyframes contentEnter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
-@keyframes petalSweepTwo {
-  0% { opacity: 0; transform: translate3d(-12%, 18%, 0) rotate(194deg) scale(0.68); }
-  24% { opacity: 0.48; }
-  100% { opacity: 0; transform: translate3d(85%, -85%, 0) rotate(242deg) scale(0.9); }
+@keyframes cursorBlink {
+  0%, 45% { opacity: 1; }
+  46%, 100% { opacity: 0; }
 }
 
 .envelope-intro.is-opening .envelope-intro__preview {
@@ -59,12 +63,12 @@
   animation: particleBurst var(--duration, 950ms) var(--delay, 0ms) ease-out forwards;
 }
 
-.scene--welcome.is-active .stained-glass__lit {
-  animation: stainedGlassLight 2s 220ms ease-out forwards;
+.scene--identity.is-active .stained-glass__lit {
+  animation: stainedGlassLight 1.7s 180ms ease-out forwards;
 }
 
-.scene--welcome.is-active .stained-glass__dark {
-  animation: stainedGlassDim 2s 220ms ease-out forwards;
+.scene--identity.is-active .stained-glass__dark {
+  animation: stainedGlassDim 1.7s 180ms ease-out forwards;
 }
 
 .seal-button__glow,
@@ -72,13 +76,23 @@
   animation: haloPulse 2.8s ease-in-out infinite;
 }
 
-.invitation-shell.is-changing .stage-petals__sheet--one {
-  animation: petalSweepOne 850ms ease-out;
+.scene.is-active [data-reveal] {
+  animation: contentEnter 680ms var(--ease-out) both;
 }
 
-.invitation-shell.is-changing .stage-petals__sheet--two {
-  animation: petalSweepTwo 850ms ease-out 40ms;
+.scene.is-active [data-reveal]:nth-child(2) {
+  animation-delay: 90ms;
 }
+
+.scene.is-active [data-reveal]:nth-child(3) {
+  animation-delay: 160ms;
+}
+
+.menu-grid .menu-card:nth-child(1) { animation-delay: 80ms; }
+.menu-grid .menu-card:nth-child(2) { animation-delay: 140ms; }
+.menu-grid .menu-card:nth-child(3) { animation-delay: 200ms; }
+.menu-grid .menu-card:nth-child(4) { animation-delay: 260ms; }
+.menu-grid .menu-card:nth-child(5) { animation-delay: 320ms; }
 
 @media (prefers-reduced-motion: reduce) {
   *,

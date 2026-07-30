@@ -1,5 +1,8 @@
 import { $, $$ } from './dom.js';
 
+const TRANSITION_DURATION = 560;
+const SWIPE_THRESHOLD = 48;
+
 export function setupSceneSlider() {
   const stage = $('#invitation-stage');
   const shell = $('#invitation-shell');
@@ -9,7 +12,6 @@ export function setupSceneSlider() {
   const previousButton = $('#previous-scene');
   const nextButton = $('#next-scene');
   const goToButtons = $$('[data-go-to]');
-  const swipeHint = $('#swipe-hint');
 
   if (!stage || !shell || !viewport || scenes.length === 0 || !previousButton || !nextButton) return;
 
@@ -18,17 +20,23 @@ export function setupSceneSlider() {
   let touchStartY = 0;
   let wheelLocked = false;
 
+  const updateControls = () => {
+    navigationItems.forEach((item) => {
+      const active = Number(item.dataset.sceneTarget) === currentIndex;
+      item.classList.toggle('is-active', active);
+      active ? item.setAttribute('aria-current', 'step') : item.removeAttribute('aria-current');
+    });
+
+    previousButton.disabled = currentIndex === 0;
+    nextButton.disabled = currentIndex === scenes.length - 1;
+    shell.dataset.theme = scenes[currentIndex].dataset.theme || 'wine';
+  };
+
   const showScene = (requestedIndex) => {
     const nextIndex = Math.max(0, Math.min(requestedIndex, scenes.length - 1));
     if (nextIndex === currentIndex) return;
 
     currentIndex = nextIndex;
-
-    // Se reinicia la clase para reproducir los pétalos en cada transición.
-    shell.classList.remove('is-changing');
-    void shell.offsetWidth;
-    shell.classList.add('is-changing');
-    window.setTimeout(() => shell.classList.remove('is-changing'), 900);
 
     scenes.forEach((scene, index) => {
       const active = index === currentIndex;
@@ -41,21 +49,11 @@ export function setupSceneSlider() {
       if (!active) {
         window.setTimeout(() => {
           if (!scene.classList.contains('is-active')) scene.hidden = true;
-        }, 660);
+        }, TRANSITION_DURATION);
       }
     });
 
-    navigationItems.forEach((item) => {
-      const active = Number(item.dataset.sceneTarget) === currentIndex;
-      item.classList.toggle('is-active', active);
-      if (active) item.setAttribute('aria-current', 'step');
-      else item.removeAttribute('aria-current');
-    });
-
-    previousButton.disabled = currentIndex === 0;
-    nextButton.disabled = currentIndex === scenes.length - 1;
-    shell.dataset.theme = scenes[currentIndex].dataset.theme || 'wine';
-    swipeHint?.toggleAttribute('hidden', currentIndex > 0);
+    updateControls();
   };
 
   const step = (direction) => showScene(currentIndex + direction);
@@ -82,7 +80,7 @@ export function setupSceneSlider() {
     const deltaX = touch.clientX - touchStartX;
     const deltaY = touch.clientY - touchStartY;
 
-    if (Math.abs(deltaX) < 48 || Math.abs(deltaX) < Math.abs(deltaY)) return;
+    if (Math.abs(deltaX) < SWIPE_THRESHOLD || Math.abs(deltaX) < Math.abs(deltaY)) return;
     step(deltaX < 0 ? 1 : -1);
   }, { passive: true });
 
@@ -98,5 +96,6 @@ export function setupSceneSlider() {
     scene.setAttribute('aria-hidden', String(index !== 0));
   });
 
+  updateControls();
   return { showScene };
 }
