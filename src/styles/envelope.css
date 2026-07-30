@@ -39,12 +39,13 @@
   filter: brightness(0.78);
 }
 
+/* Una sola línea diagonal mantiene el pliegue alineado en cualquier tamaño. */
 .envelope-seam {
   position: absolute;
   z-index: 4;
   top: 50%;
   left: 50%;
-  width: 72vmax;
+  width: 130vmax;
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(222, 180, 92, 0.9) 20%, rgba(255, 225, 153, 0.95) 50%, rgba(222, 180, 92, 0.9) 80%, transparent);
   box-shadow: 0 0 8px rgba(218, 171, 77, 0.3);
@@ -52,11 +53,7 @@
 }
 
 .envelope-seam--upper {
-  transform: translate(-100%, -50%) rotate(-52deg);
-}
-
-.envelope-seam--lower {
-  transform: translate(0, -50%) rotate(-52deg);
+  transform: translate(-50%, -50%) rotate(-65deg);
 }
 
 .seal-button {
@@ -150,13 +147,4 @@
 
 .envelope-intro.is-leaving {
   pointer-events: none;
-}
-/* Una sola línea diagonal mantiene el pliegue alineado en cualquier tamaño. */
-.envelope-seam--upper {
-  width: 130vmax;
-  transform: translate(-50%, -50%) rotate(-65deg);
-}
-
-.envelope-seam--lower {
-  display: none;
 }

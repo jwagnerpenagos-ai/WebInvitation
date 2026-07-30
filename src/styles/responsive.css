@@ -224,6 +224,7 @@
 
   .date-scene {
     display: grid;
+    grid-template-columns: 1fr;
     grid-template-rows: auto auto;
     align-content: center;
     gap: clamp(1.35rem, 3.2dvh, 2rem);
@@ -339,13 +340,6 @@
     aspect-ratio: auto;
     border-radius: 20px;
     justify-self: center;
-  }
-
-  .location-scene__map-emblem {
-    top: 10px;
-    left: 11px;
-    width: 44px;
-    height: 55px;
   }
 
   .location-scene__map-label {
@@ -480,6 +474,22 @@
     width: min(31vw, 125px);
     max-height: 135px;
   }
+}
+
+/* Tablets en vertical (iPad y similares) son angostos como un móvil pero mucho
+   más altos: sin esto, el layout móvil queda centrado con grandes vacíos
+   arriba y abajo en vez de aprovechar el alto disponible. */
+@media (max-width: 820px) and (min-height: 1000px) {
+  .legend-scene__content { gap: 0.4rem; }
+
+  .identity-scene,
+  .date-scene,
+  .location-scene,
+  .info-scene {
+    align-content: space-evenly;
+  }
+
+  .rsvp-scene { justify-content: space-evenly; }
 }
 
 @media (max-width: 820px) and (max-height: 720px) {

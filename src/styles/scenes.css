@@ -405,18 +405,6 @@
   pointer-events: none;
 }
 
-.location-scene__map-emblem {
-  position: absolute;
-  top: 18px;
-  left: 18px;
-  z-index: 2;
-  width: 64px;
-  height: 78px;
-  object-fit: contain;
-  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.28));
-  pointer-events: none;
-}
-
 .location-scene__map-label {
   position: absolute;
   right: 18px;
