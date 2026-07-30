@@ -34,6 +34,20 @@
   50% { opacity: 0.92; transform: scale(1.06); }
 }
 
+
+@keyframes legendReveal {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translate3d(0, 14px, 0) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
 @keyframes contentEnter {
   from {
     opacity: 0;
@@ -95,6 +109,20 @@
 .rsvp-scene [data-reveal]:nth-child(1) { animation-delay: 50ms; }
 .rsvp-scene [data-reveal]:nth-child(2) { animation-delay: 140ms; }
 .rsvp-scene [data-reveal]:nth-child(3) { animation-delay: 230ms; }
+
+
+/* Mantiene oculta la leyenda hasta que el sobre deja ver el contenido. */
+.scene--legend.is-active [data-reveal] {
+  opacity: 0;
+  animation-name: none !important;
+}
+
+.invitation-stage.is-content-ready .scene--legend.is-active [data-reveal] {
+  animation-name: legendReveal !important;
+  animation-duration: 980ms !important;
+  animation-timing-function: var(--ease-out) !important;
+  animation-fill-mode: both !important;
+}
 
 @media (prefers-reduced-motion: reduce) {
   *,

@@ -56,9 +56,10 @@ python -m http.server 8000
 Después abre `http://localhost:8000`.
 
 
-## Ajustes de composición V6
+## Ajustes de composición V7
 
-- Escenas centradas por contenido, sin usar espacios vacíos como separadores.
-- Mapa embebido y responsivo en la escena de ubicación.
-- Fecha y cuenta regresiva agrupadas como una sola composición.
-- Portada equilibrada en teléfonos altos, bajos y escritorio.
+- Portada reconstruida como un solo lockup visual: vitral, 15 años y nombre sin superposiciones.
+- Fecha reorganizada en una composición central con horarios y contador integrados.
+- Entrada progresiva de la leyenda sincronizada con la apertura del sobre.
+- Decoraciones redundantes eliminadas de la escena de información.
+- Ajustes específicos para escritorio, celular estándar y teléfonos de poca altura.

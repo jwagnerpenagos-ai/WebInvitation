@@ -93,18 +93,27 @@
   height: 100%;
 }
 
-/* Portada: dos focos claros, sin competir por el mismo espacio. */
+/* Portada: el vitral, los quince y el nombre forman un único lockup visual. */
 .identity-scene {
-  grid-template-columns: minmax(300px, 0.88fr) minmax(430px, 1.12fr);
-  gap: clamp(2.5rem, 5vw, 5.5rem);
-  padding-inline: clamp(0.5rem, 2vw, 2rem);
+  grid-template-columns: minmax(300px, 0.9fr) minmax(470px, 1.1fr);
+  gap: clamp(2.5rem, 5vw, 5rem);
+  padding-inline: clamp(1rem, 3vw, 3.5rem);
 }
 
 .stained-glass {
   position: relative;
-  justify-self: center;
-  width: min(33vw, 405px);
-  height: min(58vh, 540px);
+  justify-self: end;
+  width: min(31vw, 390px);
+  height: min(57vh, 520px);
+}
+
+.stained-glass::before {
+  content: '';
+  position: absolute;
+  inset: 12% 5%;
+  z-index: -1;
+  background: radial-gradient(circle, rgba(221, 166, 77, 0.2), transparent 68%);
+  filter: blur(18px);
 }
 
 .stained-glass img {
@@ -119,153 +128,179 @@
 .stained-glass__lit { opacity: 0; }
 
 .identity-scene__copy {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 680px;
+  max-width: 650px;
+  padding: clamp(1rem, 2vw, 2rem) 0;
   text-align: center;
-  justify-self: center;
+  justify-self: start;
+}
+
+.identity-scene__copy::before {
+  content: '';
+  position: absolute;
+  inset: 8% 5% 5%;
+  z-index: -1;
+  background: radial-gradient(ellipse at center, rgba(155, 15, 54, 0.24), transparent 72%);
+  filter: blur(20px);
 }
 
 .identity-scene__milestone {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 0.45rem;
-  margin: 0 0 0.25rem;
+  gap: 0.6rem;
+  margin: 0.55rem 0 1.15rem;
   color: var(--gold-400);
   text-shadow: 0 12px 30px rgba(0, 0, 0, 0.32);
 }
 
 .identity-scene__milestone strong {
   font-family: var(--font-display);
-  font-size: clamp(7rem, 10vw, 10.5rem);
+  font-size: clamp(6.7rem, 9vw, 9rem);
   font-weight: 500;
-  line-height: 0.68;
-  letter-spacing: -0.07em;
+  line-height: 0.82;
+  letter-spacing: -0.06em;
 }
 
 .identity-scene__milestone span {
-  margin-bottom: 0.82rem;
+  margin-bottom: 0.72rem;
   font-family: var(--font-display);
-  font-size: clamp(1.45rem, 2.2vw, 2.2rem);
+  font-size: clamp(1.45rem, 2vw, 2rem);
   font-style: italic;
 }
 
 .identity-scene h2 {
+  display: grid;
+  gap: 0.04em;
   width: 100%;
+  margin: 0;
   font-family: var(--font-script);
-  font-size: clamp(4.5rem, 6.8vw, 7rem);
+  font-size: clamp(4.65rem, 6.3vw, 6.5rem);
   font-weight: 400;
-  line-height: 0.82;
+  line-height: 0.9;
   text-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
 }
 
 .identity-scene h2 span { display: block; }
-.identity-scene .ornamental-divider { margin-top: 0.9rem; }
+.identity-scene .ornamental-divider { margin-top: 1.15rem; }
 
-/* Fecha: la información principal y la cuenta regresiva forman dos bloques equivalentes. */
+/* Fecha: una sola composición central evita bloques aislados y vacíos. */
 .date-scene {
-  grid-template-columns: minmax(480px, 1.08fr) minmax(350px, 0.92fr);
-  gap: clamp(2.5rem, 5vw, 5rem);
-  padding-inline: clamp(0.5rem, 2vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 2.3vh, 1.6rem);
+  max-width: 1080px;
+  padding: 0.3rem clamp(1rem, 3vw, 2.5rem);
+  text-align: center;
 }
 
 .date-scene__main {
-  width: 100%;
-  max-width: 660px;
-  justify-self: end;
+  display: grid;
+  justify-items: center;
+  width: min(100%, 900px);
 }
 
-.date-scene__main h2 { font-size: clamp(3.4rem, 5.1vw, 5rem); }
+.date-scene__main h2 {
+  margin: 0;
+  font-size: clamp(3.15rem, 4.8vw, 4.7rem);
+}
 
 .date-hero {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: minmax(180px, 0.82fr) minmax(300px, 1.18fr);
   align-items: center;
-  gap: clamp(1.1rem, 2.5vw, 2rem);
-  margin-top: 1rem;
-  padding: 0.6rem 0 1rem;
-  border-bottom: 1px solid rgba(140, 91, 67, 0.24);
+  gap: clamp(1.2rem, 3vw, 2.5rem);
+  width: min(100%, 720px);
+  margin-top: 0.7rem;
+  padding: 0.35rem 0 0.8rem;
+  border-bottom: 1px solid rgba(140, 91, 67, 0.22);
 }
 
 .date-hero__day {
   color: var(--wine-700);
   font-family: var(--font-display);
-  font-size: clamp(7.2rem, 10.5vw, 10rem);
+  font-size: clamp(6.4rem, 9vw, 8.8rem);
   font-weight: 500;
-  line-height: 0.72;
+  line-height: 0.78;
   letter-spacing: -0.07em;
+  text-align: right;
 }
 
 .date-hero__copy {
   display: grid;
   align-content: center;
   min-height: 100%;
-  padding-left: clamp(1rem, 2vw, 1.6rem);
+  padding-left: clamp(1.2rem, 2.5vw, 2rem);
   border-left: 1px solid rgba(140, 91, 67, 0.24);
+  text-align: left;
 }
 
 .date-hero__weekday {
   color: var(--cherry-600);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.25em;
   text-transform: uppercase;
 }
 
 .date-hero__month {
-  margin-top: 0.2rem;
+  margin-top: 0.15rem;
   font-family: var(--font-display);
-  font-size: clamp(3rem, 4.4vw, 4.2rem);
+  font-size: clamp(2.8rem, 4vw, 3.8rem);
   font-weight: 600;
-  line-height: 0.92;
+  line-height: 0.96;
 }
 
 .date-hero__year {
   margin-top: 0.35rem;
   color: var(--muted);
-  font-size: 0.7rem;
+  font-size: 0.67rem;
   font-weight: 600;
   letter-spacing: 0.3em;
 }
 
 .event-schedule {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-top: 0.85rem;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  width: min(100%, 720px);
+  margin-top: 0.45rem;
+  border-bottom: 1px solid rgba(140, 91, 67, 0.18);
 }
 
 .event-schedule__item {
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.8rem;
   min-width: 0;
-  padding: 0.6rem 0;
+  padding: 0.65rem clamp(0.5rem, 2vw, 1.25rem) 0.85rem;
+  text-align: left;
 }
 
 .event-schedule__item + .event-schedule__item {
-  padding-left: 1rem;
-  border-left: 1px solid rgba(140, 91, 67, 0.22);
+  border-left: 1px solid rgba(140, 91, 67, 0.2);
 }
 
 .event-schedule__icon {
   display: grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
+  width: 40px;
+  height: 40px;
   color: var(--cherry-600);
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.4);
   border: 1px solid rgba(143, 33, 71, 0.12);
   border-radius: 50%;
 }
 
 .event-schedule__icon svg {
-  width: 21px;
-  height: 21px;
+  width: 20px;
+  height: 20px;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.55;
@@ -278,46 +313,46 @@
 
 .event-schedule__item small {
   color: var(--muted);
-  font-size: 0.64rem;
+  font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
 .event-schedule__item strong {
-  margin-top: 0.18rem;
+  margin-top: 0.14rem;
   color: var(--wine-700);
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 2.45vw, 2.2rem);
+  font-size: clamp(1.65rem, 2.25vw, 2.05rem);
   font-weight: 600;
   line-height: 1;
 }
 
 .countdown-panel {
   display: grid;
-  align-content: center;
-  justify-items: center;
-  gap: 0.9rem;
-  width: 100%;
-  max-width: 430px;
-  padding-left: clamp(1.5rem, 3vw, 3rem);
-  border-left: 1px solid rgba(140, 91, 67, 0.18);
-  text-align: center;
-  justify-self: start;
+  grid-template-columns: auto minmax(400px, 1fr);
+  align-items: center;
+  gap: clamp(1.2rem, 3vw, 2.5rem);
+  width: min(100%, 820px);
+  max-width: none;
+  padding: 0;
+  border: 0;
+  text-align: left;
+  justify-self: center;
 }
 
 .countdown-panel__intro {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.85rem;
+  justify-content: flex-start;
+  gap: 0.75rem;
 }
 
 .countdown-panel__intro > div { text-align: left; }
 
 .countdown-panel__intro span {
   color: var(--muted);
-  font-size: 0.62rem;
+  font-size: 0.58rem;
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -327,30 +362,43 @@
   margin: 0.05rem 0 0;
   color: var(--cherry-600);
   font-family: var(--font-display);
-  font-size: 1.65rem;
+  font-size: 1.5rem;
   font-style: italic;
   line-height: 1;
 }
 
 .countdown-panel__rose {
-  width: 105px;
-  height: 138px;
+  width: 66px;
+  height: 84px;
   object-fit: contain;
-  filter: drop-shadow(0 18px 24px rgba(67, 15, 30, 0.2));
+  filter: drop-shadow(0 14px 20px rgba(67, 15, 30, 0.18));
 }
 
 .countdown {
   display: grid;
-  grid-template-columns: repeat(4, minmax(58px, 1fr));
-  gap: 0.5rem;
-  width: min(100%, 390px);
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  border-top: 1px solid rgba(143, 33, 71, 0.19);
+  border-bottom: 1px solid rgba(143, 33, 71, 0.19);
 }
 
 .countdown > div {
-  padding: 0.7rem 0.28rem;
-  background: rgba(255, 255, 255, 0.58);
-  border: 1px solid rgba(143, 33, 71, 0.12);
-  border-radius: 15px;
+  position: relative;
+  padding: 0.65rem 0.25rem;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  text-align: center;
+}
+
+.countdown > div + div::before {
+  content: '';
+  position: absolute;
+  top: 22%;
+  bottom: 22%;
+  left: 0;
+  width: 1px;
+  background: rgba(143, 33, 71, 0.18);
 }
 
 .countdown strong,
@@ -359,13 +407,13 @@
 .countdown strong {
   color: var(--wine-700);
   font-family: var(--font-display);
-  font-size: clamp(1.45rem, 2.7vw, 2.1rem);
+  font-size: clamp(1.45rem, 2.4vw, 1.95rem);
 }
 
 .countdown span {
-  margin-top: 0.1rem;
+  margin-top: 0.05rem;
   color: var(--muted);
-  font-size: 0.58rem;
+  font-size: 0.55rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -575,15 +623,6 @@
   line-height: 1.35;
 }
 
-.info-scene__rose {
-  position: absolute;
-  right: 1%;
-  bottom: -5%;
-  width: min(17vw, 190px);
-  opacity: 0.22;
-  transform: rotate(-8deg);
-  pointer-events: none;
-}
 
 .rsvp-scene {
   position: relative;
