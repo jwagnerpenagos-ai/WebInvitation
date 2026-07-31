@@ -630,3 +630,58 @@
   justify-self: center;
   filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.25));
 }
+
+/*
+ * Leyenda en escritorio
+ * El bloque se compacta según la altura disponible para evitar que la firma
+ * o el separador queden fuera del lienzo en portátiles y ventanas 16:10.
+ * Los estilos móviles permanecen definidos en responsive.css.
+ */
+@media (min-width: 769px) {
+  .legend-scene__content {
+    justify-content: center;
+    width: min(100%, 1080px);
+    height: 100%;
+    padding: clamp(0.3rem, 1.15vh, 0.75rem) clamp(1rem, 2.5vw, 2rem);
+  }
+
+  .legend-scene__emblem {
+    width: clamp(68px, 9.5vh, 96px);
+    max-height: clamp(68px, 9.5vh, 96px);
+    margin-bottom: 0.1rem;
+  }
+
+  .legend-scene__content > .scene-kicker {
+    margin-bottom: 0.35rem;
+  }
+
+  .legend-scene__message {
+    width: min(100%, 1000px);
+    padding: clamp(0.55rem, 1.25vh, 0.8rem) clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .legend-scene__message::before,
+  .legend-scene__message::after {
+    width: min(92%, 880px);
+  }
+
+  .legend-scene__message p {
+    font-size: clamp(1.3rem, 3vh, 1.8rem);
+    line-height: 1.32;
+  }
+
+  .legend-scene__message p + p {
+    margin-top: clamp(0.35rem, 0.9vh, 0.55rem);
+  }
+
+  .legend-scene__divider {
+    width: clamp(145px, 17vw, 220px);
+    height: 26px;
+    margin: clamp(0.15rem, 0.55vh, 0.3rem) 0 0.05rem;
+  }
+
+  .legend-scene__signature {
+    font-size: clamp(1.45rem, 3.1vh, 1.95rem);
+    line-height: 1.05;
+  }
+}
