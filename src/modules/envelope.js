@@ -31,6 +31,12 @@ export function setupEnvelope({ onOpened, playMusic, playSpark }) {
       intro.classList.add('is-leaving');
       intro.hidden = true;
       burst.classList.remove('is-active');
+
+      // La leyenda empieza cuando el sobre ya salió de la pantalla. Así la
+      // entrada no ocurre oculta detrás de las piezas de la animación.
+      requestAnimationFrame(() => {
+        stage.classList.add('is-content-ready');
+      });
     }, OPENING_DURATION);
   }, { once: true });
 }

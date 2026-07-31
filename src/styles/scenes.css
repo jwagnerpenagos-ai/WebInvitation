@@ -41,16 +41,6 @@
 .legend-scene__message::before { top: 0; }
 .legend-scene__message::after { bottom: 0; }
 
-.legend-scene__quote {
-  position: absolute;
-  top: -0.3rem;
-  left: 0.5rem;
-  color: rgba(217, 192, 131, 0.22);
-  font-family: var(--font-display);
-  font-size: clamp(7rem, 13vw, 12rem);
-  line-height: 0.7;
-  pointer-events: none;
-}
 
 .legend-scene__message p {
   position: relative;
@@ -76,13 +66,34 @@
   font-size: clamp(1.55rem, 2.2vw, 2.2rem);
 }
 
-.legend-scene__hint {
-  margin: 0.75rem 0 0;
-  color: rgba(255, 250, 243, 0.62);
-  font-size: 0.64rem;
+.legend-scene__continue {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+  padding: 0;
+  color: rgba(255, 250, 243, 0.76);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.legend-scene__continue span {
+  font-size: 0.58rem;
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
+}
+
+.legend-scene__continue svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .identity-scene,

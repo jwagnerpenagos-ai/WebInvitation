@@ -105,7 +105,6 @@
                 <h2 class="sr-only" id="scene-legend-title">Un mensaje para ti</h2>
 
                 <div class="legend-scene__message" aria-label="Mensaje de María Fernanda">
-                  <span class="legend-scene__quote" aria-hidden="true">“</span>
                   <p data-reveal>
                     Hay momentos inolvidables que se atesoran en el corazón para siempre, y lo que los hace realmente
                     especiales son las personas que amas y que hacen parte fundamental de tu vida.
@@ -124,7 +123,16 @@
                   data-reveal
                 />
                 <p class="legend-scene__signature" data-reveal>Con cariño, María Fernanda</p>
-                <p class="legend-scene__hint" data-reveal>Desliza para continuar <span aria-hidden="true">→</span></p>
+                <button
+                  class="legend-scene__continue"
+                  type="button"
+                  data-scene-target="1"
+                  data-reveal
+                  aria-label="Continuar a la portada"
+                >
+                  <span>Continuar</span>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
+                </button>
               </div>
             </div>
           </section>
