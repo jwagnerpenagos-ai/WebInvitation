@@ -203,45 +203,61 @@
   .identity-scene {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(210px, 36dvh) auto;
+    grid-template-rows: minmax(215px, 35dvh) auto;
     align-content: center;
-    gap: clamp(1rem, 2.5dvh, 1.5rem);
-    padding: 0.35rem 0 0.75rem;
+    gap: clamp(0.7rem, 1.8dvh, 1.1rem);
+    padding: 0.2rem 0.15rem 0.7rem;
   }
 
   .stained-glass {
     align-self: end;
-    width: min(58vw, 230px);
+    justify-self: center;
+    width: min(61vw, 245px);
     height: 100%;
-    max-height: 305px;
+    max-height: 300px;
   }
 
   .identity-scene__copy {
     align-self: start;
     justify-self: center;
+    width: 100%;
+    padding: 0;
   }
 
-  .identity-scene__milestone {
-    gap: 0.28rem;
-    margin: 0;
-  }
+  .identity-scene__copy::before { inset: -2% -4% -6%; }
 
-  .identity-scene__milestone strong {
-    font-size: clamp(5.2rem, 23vw, 6.6rem);
-    line-height: 0.67;
-  }
-
-  .identity-scene__milestone span {
-    margin-bottom: 0.48rem;
-    font-size: 1.25rem;
+  .identity-scene__copy .scene-kicker {
+    margin-bottom: 0.4rem;
+    font-size: 0.59rem;
   }
 
   .identity-scene h2 {
-    font-size: clamp(3.35rem, 15vw, 4.45rem);
-    line-height: 0.8;
+    font-size: clamp(3.65rem, 16vw, 4.65rem);
+    line-height: 0.79;
   }
 
-  .identity-scene .ornamental-divider { margin-top: 0.4rem; }
+  .identity-scene .ornamental-divider {
+    width: min(45vw, 165px);
+    height: 25px;
+    margin: 0.5rem 0 0.2rem;
+  }
+
+  .identity-scene__milestone {
+    grid-template-columns: minmax(24px, 1fr) auto minmax(24px, 1fr);
+    gap: 0.65rem;
+    width: min(86%, 320px);
+  }
+
+  .identity-scene__milestone-number { gap: 0.3rem; }
+
+  .identity-scene__milestone-number strong {
+    font-size: clamp(4.65rem, 20vw, 5.75rem);
+    line-height: 0.72;
+  }
+
+  .identity-scene__milestone-number span {
+    font-size: clamp(1rem, 4.7vw, 1.25rem);
+  }
 
   .date-scene {
     display: grid;
@@ -542,11 +558,14 @@
   .legend-scene__continue { width: 44px; height: 44px; margin-top: 0.35rem; }
   .legend-scene__continue svg { width: 24px; height: 24px; }
 
-  .stained-glass { width: min(42vw, 170px); max-height: 185px; }
-  .identity-scene__milestone strong { font-size: 4.7rem; }
-  .identity-scene__milestone span { font-size: 1.05rem; }
-  .identity-scene h2 { font-size: 3.05rem; }
-  .identity-scene .ornamental-divider { display: none; }
+  .identity-scene { grid-template-rows: minmax(150px, 28dvh) auto; gap: 0.35rem; }
+  .stained-glass { width: min(43vw, 172px); max-height: 180px; }
+  .identity-scene__copy .scene-kicker { margin-bottom: 0.2rem; }
+  .identity-scene h2 { font-size: 3.15rem; }
+  .identity-scene .ornamental-divider { width: 120px; height: 20px; margin-block: 0.25rem 0.05rem; }
+  .identity-scene__milestone { width: min(80%, 260px); }
+  .identity-scene__milestone-number strong { font-size: 4rem; }
+  .identity-scene__milestone-number span { font-size: 0.95rem; }
 
   .date-scene__main h2 { font-size: 2.35rem; }
   .date-hero { margin-top: 0.18rem; padding-bottom: 0.3rem; }

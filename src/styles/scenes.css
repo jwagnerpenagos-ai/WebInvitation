@@ -104,18 +104,27 @@
   height: 100%;
 }
 
-/* Portada: dos focos claros, sin competir por el mismo espacio. */
+/* Portada: el vitral presenta la temática y el bloque tipográfico cuenta la celebración. */
 .identity-scene {
-  grid-template-columns: minmax(300px, 0.88fr) minmax(430px, 1.12fr);
-  gap: clamp(2.5rem, 5vw, 5.5rem);
-  padding-inline: clamp(0.5rem, 2vw, 2rem);
+  grid-template-columns: minmax(320px, 0.9fr) minmax(500px, 1.1fr);
+  gap: clamp(2.5rem, 5vw, 5.25rem);
+  padding: clamp(0.5rem, 1.5vw, 1.5rem) clamp(1rem, 3.5vw, 4rem);
 }
 
 .stained-glass {
   position: relative;
   justify-self: center;
-  width: min(33vw, 405px);
-  height: min(58vh, 540px);
+  width: min(34vw, 430px);
+  height: min(62vh, 555px);
+}
+
+.stained-glass::before {
+  content: '';
+  position: absolute;
+  inset: 8% -4%;
+  z-index: -1;
+  background: radial-gradient(ellipse, rgba(198, 52, 74, 0.16), transparent 68%);
+  filter: blur(24px);
 }
 
 .stained-glass img {
@@ -124,57 +133,93 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 24px 32px rgba(0, 0, 0, 0.34));
+  filter: drop-shadow(0 24px 34px rgba(0, 0, 0, 0.36));
 }
 
 .stained-glass__lit { opacity: 0; }
 
 .identity-scene__copy {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  max-width: 680px;
-  text-align: center;
   justify-self: center;
+  width: min(100%, 700px);
+  padding: clamp(1rem, 2vw, 2rem) 0;
+  text-align: center;
 }
 
-.identity-scene__milestone {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 0.45rem;
-  margin: 0 0 0.25rem;
-  color: var(--gold-400);
-  text-shadow: 0 12px 30px rgba(0, 0, 0, 0.32);
+.identity-scene__copy::before {
+  content: '';
+  position: absolute;
+  inset: 5% -8%;
+  z-index: -1;
+  background: radial-gradient(ellipse at center, rgba(151, 16, 48, 0.2), transparent 72%);
+  filter: blur(22px);
 }
 
-.identity-scene__milestone strong {
-  font-family: var(--font-display);
-  font-size: clamp(7rem, 10vw, 10.5rem);
-  font-weight: 500;
-  line-height: 0.68;
-  letter-spacing: -0.07em;
-}
-
-.identity-scene__milestone span {
-  margin-bottom: 0.82rem;
-  font-family: var(--font-display);
-  font-size: clamp(1.45rem, 2.2vw, 2.2rem);
-  font-style: italic;
+.identity-scene__copy .scene-kicker {
+  margin-bottom: clamp(0.65rem, 1.4vh, 1rem);
 }
 
 .identity-scene h2 {
+  display: grid;
+  gap: 0.03em;
   width: 100%;
+  margin: 0;
   font-family: var(--font-script);
-  font-size: clamp(4.5rem, 6.8vw, 7rem);
+  font-size: clamp(5.4rem, 7.1vw, 7.4rem);
   font-weight: 400;
   line-height: 0.82;
-  text-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
 }
 
 .identity-scene h2 span { display: block; }
-.identity-scene .ornamental-divider { margin-top: 0.9rem; }
+
+.identity-scene .ornamental-divider {
+  width: clamp(190px, 24vw, 280px);
+  margin: clamp(0.85rem, 1.8vh, 1.25rem) 0 0.45rem;
+}
+
+.identity-scene__milestone {
+  display: grid;
+  grid-template-columns: minmax(45px, 1fr) auto minmax(45px, 1fr);
+  align-items: center;
+  gap: clamp(0.8rem, 1.8vw, 1.35rem);
+  width: min(100%, 500px);
+  color: var(--gold-400);
+}
+
+.identity-scene__milestone-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(225, 194, 117, 0.72));
+}
+
+.identity-scene__milestone-line:last-child {
+  background: linear-gradient(90deg, rgba(225, 194, 117, 0.72), transparent);
+}
+
+.identity-scene__milestone-number {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  white-space: nowrap;
+  text-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+}
+
+.identity-scene__milestone-number strong {
+  font-family: var(--font-display);
+  font-size: clamp(5.8rem, 7.4vw, 7.7rem);
+  font-weight: 500;
+  line-height: 0.72;
+  letter-spacing: -0.065em;
+}
+
+.identity-scene__milestone-number span {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 1.8vw, 1.8rem);
+  font-style: italic;
+}
 
 /* Fecha: la información principal y la cuenta regresiva forman dos bloques equivalentes. */
 .date-scene {
