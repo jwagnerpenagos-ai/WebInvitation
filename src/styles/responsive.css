@@ -758,23 +758,32 @@
 }
 /* Ajuste vertical del número 03 */
 
+/* Posición definitiva del número 03 */
+.date-calendar__day {
+  position: relative;
+  display: block;
+}
+
 /* Computador */
-@media (min-width: 769px) {
+@media (min-width: 821px) {
   .date-calendar__day {
-    transform: translateY(-22px);
+    top: -28px;
+    margin-bottom: -28px;
   }
 }
 
 /* Celular */
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .date-calendar__day {
-    transform: translateY(-35px);
+    top: -22px;
+    margin-bottom: -22px;
   }
 }
 
 /* Celulares bajitos */
-@media (max-width: 768px) and (max-height: 720px) {
+@media (max-width: 820px) and (max-height: 720px) {
   .date-calendar__day {
-    transform: translateY(-45px);
+    top: -14px;
+    margin-bottom: -14px;
   }
 }
