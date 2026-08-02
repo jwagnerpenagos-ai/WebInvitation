@@ -769,7 +769,7 @@
 /* Celular */
 @media (max-width: 768px) {
   .date-calendar__day {
-    transform: translateY(-36px);
+    transform: translateY(-28px);
   }
 }
 
