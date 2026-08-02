@@ -201,9 +201,19 @@
   }
 
   .identity-scene {
-    align-items: flex-end;
-    justify-content: center;
-    padding: 0.5rem 0.1rem clamp(1rem, 2.5dvh, 1.45rem);
+    grid-template-rows: minmax(205px, 48%) minmax(275px, 52%);
+    padding: 0.2rem 0.1rem clamp(0.75rem, 1.8dvh, 1.1rem);
+  }
+
+  .identity-scene__vitral {
+    align-self: end;
+    width: clamp(165px, 42vw, 205px);
+    height: min(34dvh, 285px);
+  }
+
+  .identity-scene__vitral::before {
+    inset: 10% -14%;
+    filter: blur(16px);
   }
 
   .identity-scene__content {
@@ -211,43 +221,50 @@
   }
 
   .identity-scene__content::before {
-    inset: -18% -10% -18%;
-    background: radial-gradient(ellipse at center, rgba(36, 2, 10, 0.76), transparent 72%);
-    filter: blur(16px);
+    inset: -16% -8% -18%;
+    background: radial-gradient(ellipse at center, rgba(28, 1, 8, 0.78), transparent 72%);
+    filter: blur(15px);
   }
 
   .identity-scene__eyebrow {
-    margin-bottom: 0.35rem;
-    font-size: 0.58rem;
-    letter-spacing: 0.3em;
+    font-size: 0.57rem;
+    letter-spacing: 0.32em;
   }
 
-  .identity-scene__milestone { gap: 0.35rem; }
+  .identity-scene__divider--top {
+    width: 112px;
+    height: 20px;
+    margin: 0.12rem 0 0.08rem;
+  }
+
+  .identity-scene__milestone {
+    gap: 0.35rem;
+  }
 
   .identity-scene__milestone strong {
-    font-size: clamp(5.6rem, 25vw, 7rem);
-    line-height: 0.7;
+    font-size: clamp(5.5rem, 24vw, 6.7rem);
+    line-height: 0.8;
   }
 
   .identity-scene__milestone span {
-    margin-bottom: 0.48rem;
-    font-size: clamp(1.05rem, 4.8vw, 1.32rem);
+    margin-bottom: 0.52rem;
+    font-size: clamp(1rem, 4.6vw, 1.28rem);
   }
 
   .identity-scene h2 {
     display: grid;
-    gap: 0;
-    margin-top: 0.42rem;
-    font-size: clamp(3.75rem, 16.5vw, 4.8rem);
-    line-height: 0.78;
+    gap: 0.02em;
+    margin-top: 0.3rem;
+    font-size: clamp(3.35rem, 15vw, 4.35rem);
+    line-height: 0.82;
   }
 
   .identity-scene h2 span { display: block; }
 
-  .identity-scene__divider {
-    width: min(48vw, 175px);
-    height: 24px;
-    margin-top: 0.45rem;
+  .identity-scene__divider--bottom {
+    width: 132px;
+    height: 22px;
+    margin-top: 0.3rem;
   }
 
   .date-scene {
@@ -550,13 +567,16 @@
   .legend-scene__continue svg { width: 24px; height: 24px; }
 
   .identity-scene {
-    padding-bottom: 0.65rem;
+    grid-template-rows: minmax(155px, 43%) minmax(230px, 57%);
+    padding-bottom: 0.5rem;
   }
-  .identity-scene__eyebrow { margin-bottom: 0.2rem; font-size: 0.5rem; }
-  .identity-scene__milestone strong { font-size: 4.8rem; }
-  .identity-scene__milestone span { font-size: 0.92rem; }
-  .identity-scene h2 { margin-top: 0.28rem; font-size: 3.25rem; }
-  .identity-scene__divider { display: none; }
+  .identity-scene__vitral { width: 145px; height: 205px; }
+  .identity-scene__eyebrow { font-size: 0.48rem; }
+  .identity-scene__divider--top { width: 92px; height: 16px; }
+  .identity-scene__milestone strong { font-size: 4.65rem; }
+  .identity-scene__milestone span { margin-bottom: 0.42rem; font-size: 0.88rem; }
+  .identity-scene h2 { margin-top: 0.2rem; font-size: 3.05rem; }
+  .identity-scene__divider--bottom { display: none; }
 
   .date-scene__main h2 { font-size: 2.35rem; }
   .date-hero { margin-top: 0.18rem; padding-bottom: 0.3rem; }

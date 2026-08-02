@@ -337,7 +337,7 @@
   background: rgba(143, 33, 71, 0.06);
 }
 
-/* La portada utiliza fondos propios; el vitral ya está integrado en la imagen. */
+/* La portada combina un vitral circular de fondo con un vitral ovalado superpuesto. */
 .invitation-shell[data-current-scene='1'] .shell-background {
   background:
     linear-gradient(180deg, rgba(12, 1, 5, 0.08) 0%, rgba(12, 1, 5, 0.04) 46%, rgba(12, 1, 5, 0.34) 100%),
