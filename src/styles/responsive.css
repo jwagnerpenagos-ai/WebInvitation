@@ -756,3 +756,25 @@
     margin-bottom: 0.12rem;
   }
 }
+/* Ajuste vertical del número 03 */
+
+/* Computador */
+@media (min-width: 769px) {
+  .date-calendar__day {
+    transform: translateY(-16px);
+  }
+}
+
+/* Celular */
+@media (max-width: 768px) {
+  .date-calendar__day {
+    transform: translateY(-12px);
+  }
+}
+
+/* Celulares bajitos */
+@media (max-width: 768px) and (max-height: 720px) {
+  .date-calendar__day {
+    transform: translateY(-5px);
+  }
+}
