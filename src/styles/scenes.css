@@ -104,121 +104,89 @@
   height: 100%;
 }
 
-/* Portada: el vitral presenta la temática y el bloque tipográfico cuenta la celebración. */
+/* Portada: el fondo ya contiene el vitral. El texto se organiza como una
+   pieza independiente para evitar superposiciones y mantener la jerarquía. */
 .identity-scene {
-  grid-template-columns: minmax(320px, 0.9fr) minmax(500px, 1.1fr);
-  gap: clamp(2.5rem, 5vw, 5.25rem);
-  padding: clamp(0.5rem, 1.5vw, 1.5rem) clamp(1rem, 3.5vw, 4rem);
-}
-
-.stained-glass {
-  position: relative;
-  justify-self: center;
-  width: min(34vw, 430px);
-  height: min(62vh, 555px);
-}
-
-.stained-glass::before {
-  content: '';
-  position: absolute;
-  inset: 8% -4%;
-  z-index: -1;
-  background: radial-gradient(ellipse, rgba(198, 52, 74, 0.16), transparent 68%);
-  filter: blur(24px);
-}
-
-.stained-glass img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
   height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 24px 34px rgba(0, 0, 0, 0.36));
+  padding: 1rem 1.5rem clamp(1.5rem, 3.5vh, 2.6rem);
+  text-align: center;
 }
 
-.stained-glass__lit { opacity: 0; }
-
-.identity-scene__copy {
+.identity-scene__content {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-self: center;
-  width: min(100%, 700px);
-  padding: clamp(1rem, 2vw, 2rem) 0;
-  text-align: center;
+  width: min(100%, 980px);
+  color: var(--cream-50);
+  text-shadow: 0 12px 34px rgba(0, 0, 0, 0.7);
 }
 
-.identity-scene__copy::before {
+.identity-scene__content::before {
   content: '';
   position: absolute;
-  inset: 5% -8%;
+  inset: -20% -14% -24%;
   z-index: -1;
-  background: radial-gradient(ellipse at center, rgba(151, 16, 48, 0.2), transparent 72%);
-  filter: blur(22px);
+  background: radial-gradient(ellipse at center, rgba(43, 3, 12, 0.64), transparent 72%);
+  filter: blur(20px);
+  pointer-events: none;
 }
 
-.identity-scene__copy .scene-kicker {
-  margin-bottom: clamp(0.65rem, 1.4vh, 1rem);
-}
-
-.identity-scene h2 {
-  display: grid;
-  gap: 0.03em;
-  width: 100%;
-  margin: 0;
-  font-family: var(--font-script);
-  font-size: clamp(5.4rem, 7.1vw, 7.4rem);
-  font-weight: 400;
-  line-height: 0.82;
-  text-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
-}
-
-.identity-scene h2 span { display: block; }
-
-.identity-scene .ornamental-divider {
-  width: clamp(190px, 24vw, 280px);
-  margin: clamp(0.85rem, 1.8vh, 1.25rem) 0 0.45rem;
+.identity-scene__eyebrow {
+  margin: 0 0 clamp(0.45rem, 1.2vh, 0.8rem);
+  color: var(--gold-300);
+  font-size: clamp(0.68rem, 0.85vw, 0.86rem);
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
 }
 
 .identity-scene__milestone {
-  display: grid;
-  grid-template-columns: minmax(45px, 1fr) auto minmax(45px, 1fr);
-  align-items: center;
-  gap: clamp(0.8rem, 1.8vw, 1.35rem);
-  width: min(100%, 500px);
-  color: var(--gold-400);
-}
-
-.identity-scene__milestone-line {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(225, 194, 117, 0.72));
-}
-
-.identity-scene__milestone-line:last-child {
-  background: linear-gradient(90deg, rgba(225, 194, 117, 0.72), transparent);
-}
-
-.identity-scene__milestone-number {
   display: flex;
-  align-items: baseline;
-  gap: 0.45rem;
-  white-space: nowrap;
-  text-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(0.45rem, 1vw, 0.8rem);
+  color: var(--gold-300);
 }
 
-.identity-scene__milestone-number strong {
+.identity-scene__milestone strong {
   font-family: var(--font-display);
-  font-size: clamp(5.8rem, 7.4vw, 7.7rem);
+  font-size: clamp(7.4rem, 10vw, 10.2rem);
   font-weight: 500;
-  line-height: 0.72;
-  letter-spacing: -0.065em;
+  line-height: 0.68;
+  letter-spacing: -0.07em;
 }
 
-.identity-scene__milestone-number span {
+.identity-scene__milestone span {
+  margin-bottom: clamp(0.65rem, 1.2vh, 1rem);
   font-family: var(--font-display);
-  font-size: clamp(1.35rem, 1.8vw, 1.8rem);
+  font-size: clamp(1.45rem, 2vw, 2rem);
   font-style: italic;
+}
+
+.identity-scene h2 {
+  display: flex;
+  justify-content: center;
+  gap: 0.22em;
+  width: 100%;
+  margin: clamp(0.7rem, 1.5vh, 1.05rem) 0 0;
+  font-family: var(--font-script);
+  font-size: clamp(5rem, 7.1vw, 7rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+}
+
+.identity-scene h2 span { display: inline-block; }
+
+.identity-scene__divider {
+  width: clamp(190px, 23vw, 285px);
+  height: 38px;
+  margin: clamp(0.65rem, 1.4vh, 1rem) 0 0;
+  object-fit: cover;
 }
 
 /* Fecha: la información principal y la cuenta regresiva forman dos bloques equivalentes. */
