@@ -621,3 +621,34 @@
   .rsvp-scene__rose { display: none; }
   .rsvp-scene h2 { font-size: 3rem; }
 }
+
+/* Ajuste fino de portada: más protagonismo para el 15 y mayor separación del nombre. */
+@media (min-width: 769px) {
+  .identity-scene__milestone strong {
+    font-size: clamp(10.4rem, 14vw, 14.25rem);
+  }
+
+  .identity-scene h2 {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .identity-scene__milestone strong {
+    font-size: clamp(7.8rem, 33vw, 9.75rem);
+  }
+
+  .identity-scene h2 {
+    margin-top: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) and (max-height: 720px) {
+  .identity-scene__milestone strong {
+    font-size: clamp(6.35rem, 27vw, 7.6rem);
+  }
+
+  .identity-scene h2 {
+    margin-top: 0.65rem;
+  }
+}
