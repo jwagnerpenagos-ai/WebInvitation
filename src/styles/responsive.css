@@ -761,14 +761,14 @@
 /* Computador */
 @media (min-width: 769px) {
   .date-calendar__day {
-    transform: translateY(-16px);
+    transform: translateY(-18px);
   }
 }
 
 /* Celular */
 @media (max-width: 768px) {
   .date-calendar__day {
-    transform: translateY(-12px);
+    transform: translateY(-18px);
   }
 }
 
