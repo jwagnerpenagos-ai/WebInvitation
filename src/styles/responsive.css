@@ -772,10 +772,3 @@
     transform: translateY(-68px);
   }
 }
-
-/* Celulares bajitos */
-@media (max-height: 720px) {
-  .date-calendar__day {
-    transform: translateY(-68px);
-  }
-}
