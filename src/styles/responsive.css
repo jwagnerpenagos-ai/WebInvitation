@@ -767,7 +767,7 @@
 /* Computador */
 @media (min-width: 821px) {
   .date-calendar__day {
-    top: -28px;
+    top: -48px;
     margin-bottom: -48px;
   }
 }
@@ -775,7 +775,7 @@
 /* Celular */
 @media (max-width: 820px) {
   .date-calendar__day {
-    top: -22px;
+    top: -42px;
     margin-bottom: -42px;
   }
 }
