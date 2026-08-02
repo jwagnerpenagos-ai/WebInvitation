@@ -762,7 +762,7 @@
 /* Computador */
 @media (min-width: 769px) {
   .date-calendar__day {
-    transform: translateY(-24px);
+    transform: translateY(-78px);
   }
 }
 
