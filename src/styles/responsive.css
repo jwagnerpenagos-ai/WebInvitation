@@ -762,7 +762,7 @@
 /* Computador */
 @media (min-width: 769px) {
   .date-calendar__day {
-    transform: translateY(-48px);
+    transform: translateY(-38px);
   }
 }
 
@@ -774,7 +774,7 @@
 }
 
 /* Celulares bajitos */
-@media (max-width: 768px) and (max-height: 720px) {
+@media (max-height: 720px) {
   .date-calendar__day {
     transform: translateY(-5px);
   }
