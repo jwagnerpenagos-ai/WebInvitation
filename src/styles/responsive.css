@@ -775,6 +775,6 @@
 /* Celulares bajitos */
 @media (max-width: 768px) and (max-height: 720px) {
   .date-calendar__day {
-    transform: translateY(-5px);
+    transform: translateY(-45px);
   }
 }
