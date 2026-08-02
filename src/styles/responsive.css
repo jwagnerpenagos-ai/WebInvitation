@@ -768,7 +768,7 @@
 /* Celular */
 @media (max-width: 768px) {
   .date-calendar__day {
-    transform: translateY(-25px);
+    transform: translateY(-35px);
   }
 }
 
