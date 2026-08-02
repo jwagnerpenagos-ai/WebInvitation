@@ -350,10 +350,15 @@
     radial-gradient(circle at center, transparent 58%, rgba(8, 0, 3, 0.25) 100%);
 }
 
-.invitation-shell[data-current-scene='1'] .frame-corner,
-.invitation-shell[data-current-scene='1'] .frame-divider,
+/* La portada conserva el marco floral general. Solo se oculta el monograma
+   del encabezado porque el nombre ya es el protagonista de la escena. */
 .invitation-shell[data-current-scene='1'] .stage-header__monogram {
   opacity: 0;
+}
+
+.invitation-shell[data-current-scene='1'] .frame-corner,
+.invitation-shell[data-current-scene='1'] .frame-divider {
+  opacity: 1;
 }
 
 .invitation-shell[data-current-scene='1'] .ornamental-frame__line {
