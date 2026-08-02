@@ -769,6 +769,13 @@
 /* Celular */
 @media (max-width: 768px) {
   .date-calendar__day {
-    transform: translateY(-68px);
+    transform: translateY(-36px);
+  }
+}
+
+/* Celulares bajitos */
+@media (max-height: 720px) {
+  .date-calendar__day {
+    transform: translateY(-36px);
   }
 }
