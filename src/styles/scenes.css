@@ -245,161 +245,263 @@
   animation: continueArrow 1.55s ease-in-out 0.6s infinite;
 }
 
-/* Fecha: la información principal y la cuenta regresiva forman dos bloques equivalentes. */
+/* Fecha: calendario protagonista, itinerario claro y contador integrado. */
 .date-scene {
-  grid-template-columns: minmax(480px, 1.08fr) minmax(350px, 0.92fr);
-  gap: clamp(2.5rem, 5vw, 5rem);
-  padding-inline: clamp(0.5rem, 2vw, 2rem);
-}
-
-.date-scene__main {
-  width: 100%;
-  max-width: 660px;
-  justify-self: end;
-}
-
-.date-scene__main h2 { font-size: clamp(3.4rem, 5.1vw, 5rem); }
-
-.date-hero {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: minmax(320px, 0.82fr) minmax(430px, 1.18fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "heading heading"
+    "calendar itinerary"
+    "countdown countdown";
   align-items: center;
-  gap: clamp(1.1rem, 2.5vw, 2rem);
-  margin-top: 1rem;
-  padding: 0.6rem 0 1rem;
-  border-bottom: 1px solid rgba(140, 91, 67, 0.24);
+  column-gap: clamp(2.2rem, 5vw, 5rem);
+  row-gap: clamp(0.8rem, 1.8vh, 1.25rem);
+  padding: 0.2rem clamp(1rem, 3vw, 2.8rem) 0.35rem;
 }
 
-.date-hero__day {
-  color: var(--wine-700);
-  font-family: var(--font-display);
-  font-size: clamp(7.2rem, 10.5vw, 10rem);
-  font-weight: 500;
-  line-height: 0.72;
-  letter-spacing: -0.07em;
+.date-scene__heading {
+  grid-area: heading;
+  text-align: center;
 }
 
-.date-hero__copy {
-  display: grid;
-  align-content: center;
-  min-height: 100%;
-  padding-left: clamp(1rem, 2vw, 1.6rem);
-  border-left: 1px solid rgba(140, 91, 67, 0.24);
+.date-scene__heading h2 {
+  margin: 0;
+  font-size: clamp(2.75rem, 4.4vw, 4.25rem);
+  line-height: 0.95;
 }
 
-.date-hero__weekday {
-  color: var(--cherry-600);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-}
-
-.date-hero__month {
-  margin-top: 0.2rem;
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 4.4vw, 4.2rem);
-  font-weight: 600;
-  line-height: 0.92;
-}
-
-.date-hero__year {
-  margin-top: 0.35rem;
-  color: var(--muted);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.3em;
-}
-
-.event-schedule {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-top: 0.85rem;
-}
-
-.event-schedule__item {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: center;
-  gap: 0.75rem;
-  min-width: 0;
-  padding: 0.6rem 0;
-}
-
-.event-schedule__item + .event-schedule__item {
-  padding-left: 1rem;
-  border-left: 1px solid rgba(140, 91, 67, 0.22);
-}
-
-.event-schedule__icon {
+.date-calendar {
+  position: relative;
+  grid-area: calendar;
   display: grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
-  color: var(--cherry-600);
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(143, 33, 71, 0.12);
+  width: min(100%, 410px);
+  min-height: clamp(300px, 39vh, 370px);
+  padding: clamp(1.2rem, 2.5vw, 2rem);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.72), rgba(255, 250, 242, 0.26) 68%),
+    rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(177, 121, 83, 0.3);
+  border-radius: 34px;
+  box-shadow:
+    0 24px 55px rgba(111, 50, 61, 0.1),
+    inset 0 0 0 7px rgba(255, 255, 255, 0.22);
+  justify-self: end;
+  text-align: center;
+}
+
+.date-calendar::before,
+.date-calendar::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 58%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(174, 125, 74, 0.55), transparent);
+  transform: translateX(-50%);
+}
+
+.date-calendar::before { top: 24px; }
+.date-calendar::after { bottom: 24px; }
+
+.date-calendar__ornament {
+  position: absolute;
+  top: 17px;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  background: var(--gold-500);
   border-radius: 50%;
+  box-shadow: -12px 0 0 -2px rgba(174, 125, 74, 0.62), 12px 0 0 -2px rgba(174, 125, 74, 0.62);
+  transform: translateX(-50%) rotate(45deg);
 }
 
-.event-schedule__icon svg {
-  width: 21px;
-  height: 21px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.55;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.event-schedule__item small,
-.event-schedule__item strong { display: block; }
-
-.event-schedule__item small {
-  color: var(--muted);
-  font-size: 0.64rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
+.date-calendar__weekday {
+  margin: 0;
+  color: var(--cherry-600);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
 }
 
-.event-schedule__item strong {
-  margin-top: 0.18rem;
+.date-calendar__date {
+  display: grid;
+  justify-items: center;
+  margin-top: 0.15rem;
+}
+
+.date-calendar__day {
   color: var(--wine-700);
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 2.45vw, 2.2rem);
+  font-size: clamp(7.8rem, 10vw, 9.6rem);
+  font-weight: 500;
+  line-height: 0.76;
+  letter-spacing: -0.055em;
+}
+
+.date-calendar__month-year {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 0.4rem;
+}
+
+.date-calendar__month {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 3.6vw, 3.35rem);
   font-weight: 600;
   line-height: 1;
 }
 
-.countdown-panel {
-  display: grid;
-  align-content: center;
-  justify-items: center;
-  gap: 0.9rem;
-  width: 100%;
-  max-width: 430px;
-  padding-left: clamp(1.5rem, 3vw, 3rem);
-  border-left: 1px solid rgba(140, 91, 67, 0.18);
-  text-align: center;
+.date-calendar__year {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+}
+
+.date-calendar__caption {
+  margin: 1.1rem 0 0;
+  color: var(--cherry-600);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-style: italic;
+}
+
+.event-itinerary {
+  grid-area: itinerary;
+  width: min(100%, 580px);
   justify-self: start;
+}
+
+.event-itinerary__heading {
+  margin-bottom: clamp(1rem, 2.4vh, 1.6rem);
+}
+
+.event-itinerary__eyebrow {
+  margin: 0;
+  color: var(--cherry-600);
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.event-itinerary__heading h3 {
+  margin: 0.15rem 0 0;
+  color: var(--wine-700);
+  font-family: var(--font-display);
+  font-size: clamp(2.7rem, 4vw, 3.8rem);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.event-itinerary__list {
+  position: relative;
+  display: grid;
+  gap: clamp(1rem, 2.4vh, 1.5rem);
+}
+
+.event-itinerary__list::before {
+  content: '';
+  position: absolute;
+  top: 34px;
+  bottom: 34px;
+  left: 29px;
+  width: 1px;
+  background: linear-gradient(rgba(143, 33, 71, 0.15), rgba(143, 33, 71, 0.42), rgba(143, 33, 71, 0.15));
+}
+
+.event-itinerary__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 60px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  min-height: 96px;
+  padding: 0.7rem 0 0.7rem 0;
+  border-bottom: 1px solid rgba(143, 33, 71, 0.14);
+}
+
+.event-itinerary__icon {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  color: var(--cherry-600);
+  background: rgba(255, 249, 236, 0.92);
+  border: 1px solid rgba(174, 125, 74, 0.38);
+  border-radius: 50%;
+  box-shadow: 0 10px 25px rgba(112, 48, 64, 0.1);
+}
+
+.event-itinerary__icon svg {
+  width: 27px;
+  height: 27px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.45;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.event-itinerary__copy p {
+  margin: 0;
+  color: var(--wine-700);
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 2.6vw, 2.15rem);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.event-itinerary__copy span {
+  display: block;
+  margin-top: 0.28rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.event-itinerary__item time {
+  color: var(--cherry-600);
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 2.5vw, 2.05rem);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.countdown-panel {
+  grid-area: countdown;
+  display: grid;
+  grid-template-columns: auto minmax(430px, 1fr);
+  align-items: center;
+  gap: clamp(1.2rem, 3vw, 2.4rem);
+  width: min(100%, 900px);
+  padding: 0.72rem 0;
+  border-top: 1px solid rgba(143, 33, 71, 0.16);
+  border-bottom: 1px solid rgba(143, 33, 71, 0.16);
+  justify-self: center;
 }
 
 .countdown-panel__intro {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.85rem;
+  gap: 0.7rem;
 }
 
 .countdown-panel__intro > div { text-align: left; }
 
 .countdown-panel__intro span {
   color: var(--muted);
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
@@ -407,30 +509,38 @@
   margin: 0.05rem 0 0;
   color: var(--cherry-600);
   font-family: var(--font-display);
-  font-size: 1.65rem;
+  font-size: 1.4rem;
   font-style: italic;
   line-height: 1;
 }
 
 .countdown-panel__rose {
-  width: 105px;
-  height: 138px;
+  width: 50px;
+  height: 66px;
   object-fit: contain;
-  filter: drop-shadow(0 18px 24px rgba(67, 15, 30, 0.2));
+  filter: drop-shadow(0 10px 16px rgba(69, 19, 30, 0.18));
 }
 
 .countdown {
   display: grid;
-  grid-template-columns: repeat(4, minmax(58px, 1fr));
-  gap: 0.5rem;
-  width: min(100%, 390px);
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
 }
 
 .countdown > div {
-  padding: 0.7rem 0.28rem;
-  background: rgba(255, 255, 255, 0.58);
-  border: 1px solid rgba(143, 33, 71, 0.12);
-  border-radius: 15px;
+  position: relative;
+  padding: 0.25rem 0.35rem;
+  text-align: center;
+}
+
+.countdown > div + div::before {
+  content: '';
+  position: absolute;
+  top: 18%;
+  bottom: 18%;
+  left: 0;
+  width: 1px;
+  background: rgba(143, 33, 71, 0.18);
 }
 
 .countdown strong,
@@ -439,14 +549,15 @@
 .countdown strong {
   color: var(--wine-700);
   font-family: var(--font-display);
-  font-size: clamp(1.45rem, 2.7vw, 2.1rem);
+  font-size: clamp(1.45rem, 2.2vw, 1.9rem);
+  font-weight: 600;
 }
 
 .countdown span {
-  margin-top: 0.1rem;
+  margin-top: 0.04rem;
   color: var(--muted);
-  font-size: 0.58rem;
-  letter-spacing: 0.08em;
+  font-size: 0.52rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 

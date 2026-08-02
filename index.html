@@ -184,34 +184,58 @@
 
           <section class="scene scene--date" data-scene="2" data-theme="cream" aria-labelledby="scene-date-title" hidden>
             <div class="scene-layout date-scene">
-              <div class="date-scene__main" data-reveal>
+              <header class="date-scene__heading" data-reveal>
                 <p class="scene-kicker">Guarda la fecha</p>
                 <h2 id="scene-date-title">La celebración</h2>
+              </header>
 
-                <div class="date-hero">
-                  <strong class="date-hero__day" data-event-day>03</strong>
-                  <div class="date-hero__copy">
-                    <span class="date-hero__weekday" data-event-weekday>Sábado</span>
-                    <span class="date-hero__month" data-event-month>Octubre</span>
-                    <span class="date-hero__year" data-event-year>2026</span>
+              <section class="date-calendar" data-reveal aria-label="Fecha del evento">
+                <span class="date-calendar__ornament" aria-hidden="true"></span>
+                <p class="date-calendar__weekday" data-event-weekday>Sábado</p>
+                <div class="date-calendar__date">
+                  <strong class="date-calendar__day" data-event-day>03</strong>
+                  <div class="date-calendar__month-year">
+                    <span class="date-calendar__month" data-event-month>Octubre</span>
+                    <span class="date-calendar__year" data-event-year>2026</span>
                   </div>
                 </div>
+                <p class="date-calendar__caption">Una tarde para celebrar juntos</p>
+              </section>
 
-                <div class="event-schedule" aria-label="Horarios del evento">
-                  <div class="event-schedule__item">
-                    <span class="event-schedule__icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24"><path d="M12 3v18M7 7h10M8.5 12h7M9.5 17h5" /></svg>
-                    </span>
-                    <div><small>Eucaristía</small><strong data-event-ceremony-time>4:00 p. m.</strong></div>
-                  </div>
-                  <div class="event-schedule__item">
-                    <span class="event-schedule__icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24"><path d="M4 12h16M12 4v16" /><circle cx="12" cy="12" r="8" /></svg>
-                    </span>
-                    <div><small>Recepción</small><strong data-event-reception-time>5:00 p. m.</strong></div>
-                  </div>
+              <section class="event-itinerary" data-reveal aria-labelledby="itinerary-title">
+                <div class="event-itinerary__heading">
+                  <p class="event-itinerary__eyebrow">Programa del día</p>
+                  <h3 id="itinerary-title">Itinerario</h3>
                 </div>
-              </div>
+
+                <div class="event-itinerary__list">
+                  <article class="event-itinerary__item">
+                    <span class="event-itinerary__icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24">
+                        <path d="M5 21h14M7 21V10h10v11M9 10V7l3-3 3 3v3M10 14h4M12 12v5" />
+                      </svg>
+                    </span>
+                    <div class="event-itinerary__copy">
+                      <p>Eucaristía</p>
+                      <span>Ceremonia de acción de gracias</span>
+                    </div>
+                    <time data-event-ceremony-time>4:00 p. m.</time>
+                  </article>
+
+                  <article class="event-itinerary__item">
+                    <span class="event-itinerary__icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24">
+                        <path d="M4 19h16M6 19v-7h12v7M9 12V8h6v4M12 5v3M8 16h8" />
+                      </svg>
+                    </span>
+                    <div class="event-itinerary__copy">
+                      <p>Recepción</p>
+                      <span>Celebración, música y recuerdos</span>
+                    </div>
+                    <time data-event-reception-time>5:00 p. m.</time>
+                  </article>
+                </div>
+              </section>
 
               <aside class="countdown-panel" data-reveal>
                 <div class="countdown-panel__intro">

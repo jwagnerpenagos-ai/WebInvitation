@@ -22,7 +22,7 @@ export function bindInvitationContent(config) {
     frame.src = config.venue.mapsEmbedUrl;
   });
 
-  $('.date-hero')?.setAttribute(
+  $('.date-calendar')?.setAttribute(
     'aria-label',
     `${date.full}. Eucaristía a las ${config.schedule.ceremony}. Recepción a las ${config.schedule.reception}.`,
   );

@@ -276,102 +276,173 @@
   .date-scene {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      "heading"
+      "calendar"
+      "itinerary"
+      "countdown";
     align-content: center;
-    gap: clamp(1.35rem, 3.2dvh, 2rem);
-    padding: 0.3rem 0 0.75rem;
+    gap: clamp(0.55rem, 1.7dvh, 0.9rem);
+    padding: 0.15rem 0 0.45rem;
   }
 
-  .date-scene__main {
-    width: 100%;
-    text-align: center;
+  .date-scene__heading h2 {
+    font-size: clamp(2.15rem, 9vw, 2.8rem);
   }
 
-  .date-scene__main h2 { font-size: clamp(2.65rem, 10.8vw, 3.25rem); }
-
-  .date-hero {
-    grid-template-columns: minmax(94px, 0.76fr) minmax(132px, 1.24fr);
-    gap: 0.6rem;
+  .date-calendar {
+    grid-area: calendar;
     width: min(100%, 430px);
-    margin: 0.5rem auto 0;
-    padding: 0.3rem 0 0.65rem;
+    min-height: 0;
+    padding: 0.7rem 0.9rem 0.8rem;
+    border-radius: 24px;
+    justify-self: center;
   }
 
-  .date-hero__day {
-    font-size: clamp(5rem, 22vw, 6.2rem);
-    line-height: 0.72;
+  .date-calendar::before { top: 14px; }
+  .date-calendar::after { bottom: 14px; }
+  .date-calendar__ornament { top: 9px; }
+
+  .date-calendar__weekday {
+    font-size: 0.56rem;
+    letter-spacing: 0.27em;
   }
 
-  .date-hero__copy {
+  .date-calendar__date {
+    grid-template-columns: minmax(92px, 0.78fr) minmax(142px, 1.22fr);
+    align-items: center;
+    width: min(100%, 310px);
+    margin-top: 0.05rem;
+  }
+
+  .date-calendar__day {
+    font-size: clamp(5rem, 21vw, 6rem);
+    line-height: 0.78;
+  }
+
+  .date-calendar__month-year {
+    display: grid;
+    justify-items: start;
+    gap: 0.14rem;
+    margin: 0;
     padding-left: 0.75rem;
-    text-align: left;
+    border-left: 1px solid rgba(143, 33, 71, 0.18);
   }
 
-  .date-hero__weekday { font-size: 0.57rem; }
-  .date-hero__month { font-size: clamp(2rem, 8.8vw, 2.55rem); }
-  .date-hero__year { margin-top: 0.2rem; font-size: 0.57rem; }
+  .date-calendar__month {
+    font-size: clamp(2rem, 8.7vw, 2.55rem);
+  }
 
-  .event-schedule {
+  .date-calendar__year {
+    font-size: 0.56rem;
+    letter-spacing: 0.25em;
+  }
+
+  .date-calendar__caption {
+    display: none;
+  }
+
+  .event-itinerary {
+    grid-area: itinerary;
     width: min(100%, 430px);
-    margin: 0.45rem auto 0;
-    gap: 0.4rem;
+    justify-self: center;
   }
 
-  .event-schedule__item {
-    gap: 0.45rem;
+  .event-itinerary__heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 0.28rem;
+    padding-inline: 0.15rem;
+  }
+
+  .event-itinerary__eyebrow {
+    font-size: 0.49rem;
+    letter-spacing: 0.2em;
+  }
+
+  .event-itinerary__heading h3 {
+    font-size: clamp(1.75rem, 7.7vw, 2.15rem);
+  }
+
+  .event-itinerary__list {
+    gap: 0.12rem;
+  }
+
+  .event-itinerary__list::before {
+    top: 22px;
+    bottom: 22px;
+    left: 21px;
+  }
+
+  .event-itinerary__item {
+    grid-template-columns: 44px minmax(0, 1fr) auto;
+    gap: 0.62rem;
+    min-height: 58px;
     padding: 0.35rem 0;
-    text-align: left;
   }
 
-  .event-schedule__item + .event-schedule__item { padding-left: 0.6rem; }
-
-  .event-schedule__icon {
-    width: 34px;
-    height: 34px;
+  .event-itinerary__icon {
+    width: 42px;
+    height: 42px;
   }
 
-  .event-schedule__icon svg { width: 17px; height: 17px; }
-  .event-schedule__item small { font-size: 0.51rem; }
-  .event-schedule__item strong { font-size: 1.35rem; }
+  .event-itinerary__icon svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .event-itinerary__copy p {
+    font-size: clamp(1.25rem, 5.8vw, 1.55rem);
+  }
+
+  .event-itinerary__copy span {
+    display: none;
+  }
+
+  .event-itinerary__item time {
+    font-size: clamp(1.15rem, 5.2vw, 1.4rem);
+  }
 
   .countdown-panel {
-    display: grid;
-    gap: 0.55rem;
+    grid-area: countdown;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.7rem;
     width: min(100%, 430px);
-    max-width: none;
-    height: auto;
-    margin: 0 auto;
-    padding: 0.8rem 0 0;
-    border-top: 1px solid rgba(143, 33, 71, 0.15);
-    border-left: 0;
+    padding: 0.45rem 0;
     justify-self: center;
   }
 
   .countdown-panel__intro {
-    gap: 0.5rem;
+    gap: 0.38rem;
   }
 
-  .countdown-panel__intro > div { text-align: left; }
-  .countdown-panel__intro span { font-size: 0.5rem; }
-  .countdown-panel__intro p { font-size: 1.15rem; }
+  .countdown-panel__intro span {
+    font-size: 0.43rem;
+    letter-spacing: 0.14em;
+  }
+
+  .countdown-panel__intro p {
+    font-size: 1rem;
+  }
 
   .countdown-panel__rose {
-    width: 48px;
-    height: 65px;
-  }
-
-  .countdown {
-    width: 100%;
-    gap: 0.32rem;
+    width: 34px;
+    height: 46px;
   }
 
   .countdown > div {
-    padding: 0.46rem 0.15rem;
-    border-radius: 12px;
+    padding: 0.18rem 0.1rem;
   }
 
-  .countdown strong { font-size: 1.35rem; }
-  .countdown span { font-size: 0.5rem; }
+  .countdown strong {
+    font-size: clamp(1.1rem, 5vw, 1.35rem);
+  }
+
+  .countdown span {
+    font-size: 0.43rem;
+  }
 
   .location-scene {
     display: grid;
@@ -591,17 +662,36 @@
   .identity-scene__continue { width: 42px; height: 42px; margin-top: 0.2rem; }
   .identity-scene__continue svg { width: 23px; height: 23px; }
 
-  .date-scene__main h2 { font-size: 2.35rem; }
-  .date-hero { margin-top: 0.18rem; padding-bottom: 0.3rem; }
-  .date-hero__day { font-size: 4.45rem; }
-  .date-hero__month { font-size: 1.85rem; }
-  .event-schedule { margin-top: 0.18rem; }
-  .event-schedule__icon { display: none; }
-  .event-schedule__item { grid-template-columns: 1fr; }
-  .countdown-panel { gap: 0.35rem; padding-top: 0.45rem; }
-  .countdown-panel__rose { width: 38px; height: 50px; }
-  .countdown-panel__intro p { font-size: 1rem; }
-  .countdown > div { padding-block: 0.25rem; }
+  .date-scene {
+    gap: 0.35rem;
+    padding-bottom: 0.2rem;
+  }
+
+  .date-scene__heading h2 { font-size: 1.9rem; }
+  .date-scene__heading .scene-kicker { margin-bottom: 0.12rem; }
+
+  .date-calendar {
+    padding: 0.48rem 0.75rem 0.55rem;
+    border-radius: 19px;
+  }
+
+  .date-calendar__weekday { font-size: 0.48rem; }
+  .date-calendar__date { width: min(100%, 280px); }
+  .date-calendar__day { font-size: 4.35rem; }
+  .date-calendar__month { font-size: 1.8rem; }
+
+  .event-itinerary__heading { margin-bottom: 0.1rem; }
+  .event-itinerary__heading h3 { font-size: 1.55rem; }
+  .event-itinerary__item { min-height: 48px; padding: 0.2rem 0; }
+  .event-itinerary__icon { width: 36px; height: 36px; }
+  .event-itinerary__list::before { left: 18px; }
+  .event-itinerary__copy p { font-size: 1.15rem; }
+  .event-itinerary__item time { font-size: 1.08rem; }
+
+  .countdown-panel { padding: 0.25rem 0; }
+  .countdown-panel__rose { width: 28px; height: 38px; }
+  .countdown-panel__intro p { font-size: 0.9rem; }
+  .countdown strong { font-size: 1rem; }
 
   .location-scene { grid-template-rows: 125px auto; gap: 0.55rem; }
   .location-scene__map { min-height: 125px; border-radius: 16px; }
@@ -650,5 +740,19 @@
 
   .identity-scene h2 {
     margin-top: 3rem;
+  }
+}
+
+/* En pantallas angostas el calendario prescinde del ornamento superior para
+   conservar aire entre “Sábado” y el número, especialmente en móviles bajos. */
+@media (max-width: 820px) {
+  .date-calendar::before,
+  .date-calendar::after,
+  .date-calendar__ornament {
+    display: none;
+  }
+
+  .date-calendar__weekday {
+    margin-bottom: 0.12rem;
   }
 }
