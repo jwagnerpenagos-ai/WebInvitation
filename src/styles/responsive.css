@@ -768,7 +768,7 @@
 @media (min-width: 821px) {
   .date-calendar__day {
     top: -28px;
-    margin-bottom: -28px;
+    margin-bottom: -48px;
   }
 }
 
@@ -776,7 +776,7 @@
 @media (max-width: 820px) {
   .date-calendar__day {
     top: -22px;
-    margin-bottom: -22px;
+    margin-bottom: -42px;
   }
 }
 
