@@ -557,14 +557,14 @@
   .info-block__lead { font-size: 1.02rem !important; }
 
   .reserved-color {
-    gap: 0.55rem;
+    gap: 0.65rem;
     margin-top: 0.42rem;
     padding-top: 0.42rem;
   }
 
-  .reserved-color__swatch { width: 36px; height: 36px; }
   .reserved-color strong { font-size: 0.71rem; }
-  .reserved-color p { font-size: 0.64rem; }
+  .reserved-color__palette { gap: 0.45rem; }
+  .reserved-color__swatch { width: 34px; height: 34px; border-width: 2px; }
 
   .info-scene__rose { display: none; }
 
@@ -705,7 +705,8 @@
   .info-block h3 { font-size: 1.65rem; }
   .info-block p { font-size: 0.63rem; }
   .reserved-color { margin-top: 0.28rem; padding-top: 0.28rem; }
-  .reserved-color__swatch { width: 30px; height: 30px; }
+  .reserved-color__palette { gap: 0.35rem; }
+  .reserved-color__swatch { width: 29px; height: 29px; }
 
   .rsvp-scene__monogram,
   .rsvp-scene__rose { display: none; }
@@ -769,7 +770,7 @@
 /* Celular */
 @media (max-width: 768px) {
   .date-calendar__day {
-    transform: translateY(-26px);
+    transform: translateY(-24px);
   }
 }
 

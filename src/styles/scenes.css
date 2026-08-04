@@ -725,33 +725,48 @@
 }
 
 .reserved-color {
-  display: grid;
-  grid-template-columns: auto 1fr;
+  display: flex;
   align-items: center;
-  gap: 0.75rem;
+  justify-content: space-between;
+  gap: 1rem;
   margin-top: 0.85rem;
   padding-top: 0.85rem;
   border-top: 1px solid rgba(143, 33, 71, 0.15);
 }
 
-.reserved-color__swatch {
-  width: 48px;
-  height: 48px;
-  background: radial-gradient(circle at 35% 30%, #c44b78, #a33159 54%, #6f1936);
-  border: 3px solid rgba(255, 255, 255, 0.78);
-  border-radius: 50%;
-  box-shadow: 0 0 0 1px rgba(143, 33, 71, 0.2), 0 8px 18px rgba(86, 14, 38, 0.18);
-}
-
 .reserved-color strong {
   color: var(--wine-700);
   font-size: 0.82rem;
+  font-weight: 600;
 }
 
-.reserved-color p {
-  margin-top: 0.15rem;
-  font-size: 0.72rem;
-  line-height: 1.35;
+.reserved-color__palette {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.reserved-color__swatch {
+  display: block;
+  width: 42px;
+  height: 42px;
+  border: 3px solid rgba(255, 255, 255, 0.82);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 1px rgba(143, 33, 71, 0.2),
+    0 8px 18px rgba(86, 14, 38, 0.18);
+}
+
+.reserved-color__swatch--cherry {
+  background: radial-gradient(circle at 35% 30%, #d15a83, #a33159 55%, #6f1936);
+}
+
+.reserved-color__swatch--red {
+  background: radial-gradient(circle at 35% 30%, #df4d56, #b51f38 55%, #75101f);
+}
+
+.reserved-color__swatch--wine {
+  background: radial-gradient(circle at 35% 30%, #81324d, #54152d 58%, #2d0715);
 }
 
 .info-scene__rose {
