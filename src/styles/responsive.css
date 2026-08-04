@@ -142,10 +142,11 @@
 
   .legend-scene__content {
     justify-content: center;
-    width: calc(100% + 20px);
+    width: 100%;
     height: 100%;
-    margin-inline: -10px;
-    padding: 0.35rem 0;
+    margin-inline: 0;
+    padding: 0.35rem 8px;
+    box-sizing: border-box;
   }
 
   .legend-scene__emblem {
@@ -156,7 +157,8 @@
 
   .legend-scene__message {
     width: 100%;
-    padding: 0.8rem 0;
+    padding: 0.8rem 10px;
+    box-sizing: border-box;
   }
 
   .legend-scene__message p {
