@@ -7,11 +7,26 @@ export function setupRsvp(config) {
   const form = $('#rsvp-form');
   const nameInput = $('#rsvp-name');
   const guestCountField = $('#guest-count-field');
-  const guestSelect = $('#rsvp-guests');
+  const adultSelect = $('#rsvp-adults');
+  const childrenSelect = $('#rsvp-children');
 
-  if (!dialog || !openButton || !closeButton || !form || !nameInput || !guestCountField || !guestSelect) return;
+  if (
+    !dialog ||
+    !openButton ||
+    !closeButton ||
+    !form ||
+    !nameInput ||
+    !guestCountField ||
+    !adultSelect ||
+    !childrenSelect
+  ) return;
 
-  populateGuestOptions(guestSelect, config.rsvp.maxGuests);
+  populateNumberOptions(adultSelect, config.rsvp.maxAdults, 'adulto', 'adultos');
+  populateNumberOptions(childrenSelect, config.rsvp.maxChildren, 'niño', 'niños');
+
+  // Una confirmación suele incluir al menos a quien está diligenciando el formulario.
+  adultSelect.value = '1';
+  childrenSelect.value = '0';
 
   const closeDialog = () => {
     if (dialog.open) dialog.close();
@@ -20,7 +35,21 @@ export function setupRsvp(config) {
   const syncAttendance = () => {
     const attending = getAttendance(form) === 'yes';
     guestCountField.hidden = !attending;
-    guestSelect.disabled = !attending;
+    adultSelect.disabled = !attending;
+    childrenSelect.disabled = !attending;
+    clearGuestValidation(adultSelect);
+  };
+
+  const validateGuestBreakdown = () => {
+    const adults = parseCount(adultSelect.value);
+    const children = parseCount(childrenSelect.value);
+    const hasAttendees = adults + children > 0;
+
+    adultSelect.setCustomValidity(
+      hasAttendees ? '' : 'Indica al menos una persona entre adultos y niños.',
+    );
+
+    return hasAttendees;
   };
 
   openButton.addEventListener('click', () => {
@@ -33,19 +62,33 @@ export function setupRsvp(config) {
     if (event.target === dialog) closeDialog();
   });
 
-  $$('input[name="attendance"]', form).forEach((radio) => radio.addEventListener('change', syncAttendance));
+  $$('input[name="attendance"]', form).forEach((radio) => {
+    radio.addEventListener('change', syncAttendance);
+  });
+
+  [adultSelect, childrenSelect].forEach((select) => {
+    select.addEventListener('change', () => validateGuestBreakdown());
+  });
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    if (!form.reportValidity()) return;
 
     const attendance = getAttendance(form);
-    const guests = Number.parseInt(guestSelect.value, 10);
+    if (attendance === 'yes' && !validateGuestBreakdown()) {
+      adultSelect.reportValidity();
+      return;
+    }
+
+    if (!form.reportValidity()) return;
+
+    const adults = parseCount(adultSelect.value);
+    const children = parseCount(childrenSelect.value);
     const note = $('#rsvp-note')?.value.trim() ?? '';
     const message = buildWhatsappMessage({
       name: nameInput.value.trim(),
       attendance,
-      guests,
+      adults,
+      children,
       note,
       celebrant: config.celebrant,
     });
@@ -58,23 +101,41 @@ export function setupRsvp(config) {
   syncAttendance();
 }
 
-function populateGuestOptions(select, maxGuests) {
-  const safeMaximum = Math.max(1, Number.parseInt(maxGuests, 10) || 1);
-  for (let guests = 1; guests <= safeMaximum; guests += 1) {
+function populateNumberOptions(select, maximum, singular, plural) {
+  const safeMaximum = Math.max(1, Number.parseInt(maximum, 10) || 1);
+
+  for (let count = 0; count <= safeMaximum; count += 1) {
     const option = document.createElement('option');
-    option.value = String(guests);
-    option.textContent = `${guests} ${guests === 1 ? 'persona' : 'personas'}`;
+    option.value = String(count);
+    option.textContent = `${count} ${count === 1 ? singular : plural}`;
     select.append(option);
   }
+}
+
+function parseCount(value) {
+  return Math.max(0, Number.parseInt(value, 10) || 0);
+}
+
+function clearGuestValidation(select) {
+  select.setCustomValidity('');
 }
 
 function getAttendance(form) {
   return $('input[name="attendance"]:checked', form)?.value ?? 'yes';
 }
 
-function buildWhatsappMessage({ name, attendance, guests, note, celebrant }) {
+function formatAttendees(adults, children) {
+  const groups = [];
+
+  if (adults > 0) groups.push(`${adults} ${adults === 1 ? 'adulto' : 'adultos'}`);
+  if (children > 0) groups.push(`${children} ${children === 1 ? 'niño' : 'niños'}`);
+
+  return groups.join(' y ');
+}
+
+function buildWhatsappMessage({ name, attendance, adults, children, note, celebrant }) {
   const base = attendance === 'yes'
-    ? `¡Hola! Soy ${name}. Confirmo nuestra asistencia a los XV años de ${celebrant}. Asistiremos ${guests} ${guests === 1 ? 'persona' : 'personas'}.`
+    ? `¡Hola! Soy ${name}. Confirmo nuestra asistencia a los XV años de ${celebrant}. Asistiremos ${formatAttendees(adults, children)}.`
     : `¡Hola! Soy ${name}. Muchas gracias por la invitación a los XV años de ${celebrant}. Lamentablemente no podré asistir.`;
 
   return note ? `${base} Mensaje: ${note}` : base;

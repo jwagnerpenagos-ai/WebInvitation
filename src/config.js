@@ -19,6 +19,8 @@ export const invitationConfig = Object.freeze({
   rsvp: Object.freeze({
     // Formato internacional, sin “+”, espacios ni guiones.
     phone: '573000000000',
-    maxGuests: 6,
+    // Límites del selector; no representan cupos personalizados por invitación.
+    maxAdults: 10,
+    maxChildren: 10,
   }),
 });

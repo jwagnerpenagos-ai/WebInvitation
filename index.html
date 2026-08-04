@@ -301,7 +301,7 @@
                     <svg viewBox="0 0 24 24"><path d="M8 4 4 7l3 4 2-1v10h6V10l2 1 3-4-4-3c-1 2-7 2-8 0Z" /></svg>
                   </span>
                   <div class="info-block__copy">
-                    <p class="info-block__eyebrow">Etiqueta formal</p>
+                    <p class="info-block__eyebrow">Vestimenta formal</p>
                     <h3 id="dress-info-title">Código de vestimenta</h3>
                     <p>Puedes usar el color que prefieras, excepto el tono reservado para María Fernanda.</p>
                     <div class="reserved-color" aria-label="Colores reservados: cereza, rojo y vinotinto">
@@ -410,10 +410,20 @@
           <label class="attendance-option"><input type="radio" name="attendance" value="no" /><span>No podré asistir</span></label>
         </fieldset>
 
-        <label class="field" id="guest-count-field">
-          <span>Número total de asistentes</span>
-          <select id="rsvp-guests" name="guests" aria-label="Número total de asistentes"></select>
-        </label>
+        <fieldset class="guest-breakdown" id="guest-count-field">
+          <legend>¿Cuántas personas asistirán?</legend>
+          <div class="guest-breakdown__fields">
+            <label class="field guest-breakdown__field">
+              <span>Adultos</span>
+              <select id="rsvp-adults" name="adults" aria-label="Número de adultos"></select>
+            </label>
+            <label class="field guest-breakdown__field">
+              <span>Niños</span>
+              <select id="rsvp-children" name="children" aria-label="Número de niños"></select>
+            </label>
+          </div>
+          <p class="guest-breakdown__hint">Esto nos ayudará a organizar el menú infantil.</p>
+        </fieldset>
 
         <label class="field">
           <span>Mensaje adicional <small>(opcional)</small></span>
