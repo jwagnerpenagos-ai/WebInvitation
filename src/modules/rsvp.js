@@ -124,19 +124,36 @@ function getAttendance(form) {
   return $('input[name="attendance"]:checked', form)?.value ?? 'yes';
 }
 
-function formatAttendees(adults, children) {
-  const groups = [];
-
-  if (adults > 0) groups.push(`${adults} ${adults === 1 ? 'adulto' : 'adultos'}`);
-  if (children > 0) groups.push(`${children} ${children === 1 ? 'niño' : 'niños'}`);
-
-  return groups.join(' y ');
-}
-
 function buildWhatsappMessage({ name, attendance, adults, children, note, celebrant }) {
-  const base = attendance === 'yes'
-    ? `¡Hola! Soy ${name}. Confirmo nuestra asistencia a los XV años de ${celebrant}. Asistiremos ${formatAttendees(adults, children)}.`
-    : `¡Hola! Soy ${name}. Muchas gracias por la invitación a los XV años de ${celebrant}. Lamentablemente no podré asistir.`;
+  const heading = '🌹 *CONFIRMACIÓN DE ASISTENCIA* 🌹';
+  const greeting = `¡Hola! Soy *${name}*.`;
+  const optionalNote = note ? `\n\n📝 *Mensaje:* ${note}` : '';
 
-  return note ? `${base} Mensaje: ${note}` : base;
+  if (attendance === 'no') {
+    return [
+      heading,
+      '',
+      greeting,
+      '',
+      `Muchas gracias por la invitación a los *XV años de ${celebrant}* ✨`,
+      '',
+      'En esta ocasión no podré acompañarte, pero te deseo una celebración maravillosa. 💛',
+    ].join('\n') + optionalNote;
+  }
+
+  const total = adults + children;
+
+  return [
+    heading,
+    '',
+    greeting,
+    '',
+    `Confirmo la asistencia a los *XV años de ${celebrant}* ✨`,
+    '',
+    `👤 *Adultos:* ${adults}`,
+    `🧒 *Niños:* ${children}`,
+    `👥 *Total de asistentes:* ${total}`,
+    '',
+    '¡Será un gusto acompañarte en este día tan especial! 💛',
+  ].join('\n') + optionalNote;
 }
