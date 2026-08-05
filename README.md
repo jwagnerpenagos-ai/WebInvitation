@@ -1,6 +1,6 @@
 # Invitación XV · María Fernanda
 
-Invitación web estática organizada por escenas, optimizada para celular y computador y lista para desplegar en Vercel.
+Invitación web por escenas, optimizada para celular y computador y desplegada en Vercel.
 
 ## Flujo
 
@@ -9,14 +9,14 @@ Invitación web estática organizada por escenas, optimizada para celular y comp
 3. Portada de María Fernanda y sus 15 años
 4. Fecha y horarios
 5. Lugar
-6. Información: vestimenta y lluvia de sobres
-7. Confirmación por WhatsApp
+6. Información
+7. Confirmación
 
-La navegación principal se concentra en cuatro accesos persistentes: **Fecha**, **Lugar**, **Información** y **Confirmar**. Las escenas iniciales se recorren con gesto horizontal, flechas o teclado.
+La confirmación registra nombre, asistencia, adultos, niños y mensaje en Supabase. Después abre WhatsApp con el texto listo.
 
-## Configuración
+## Datos del evento
 
-Los datos que normalmente cambian están centralizados en `src/config.js`:
+Los datos editables están centralizados en `src/config.js`:
 
 ```js
 schedule: {
@@ -25,40 +25,51 @@ schedule: {
 },
 ```
 
-Antes de desplegar, reemplaza el teléfono de ejemplo:
+El teléfono debe ir en formato internacional, sin `+`, espacios ni guiones.
 
-```js
-phone: '573000000000',
+## Confirmaciones
+
+- Endpoint público: `POST /api/rsvp`
+- Panel privado: `/admin`
+- Base de datos: tabla `public.rsvp_confirmations`
+- Instalación: consulta `SUPABASE_SETUP.md`
+
+Las variables privadas se configuran únicamente en Vercel:
+
+```text
+SUPABASE_URL
+SUPABASE_SECRET_KEY
+ADMIN_PASSWORD
 ```
 
-Debe ir en formato internacional, sin `+`, espacios ni guiones.
+La llave secreta nunca debe agregarse a `src/config.js` ni al repositorio.
 
 ## Estructura
 
 ```text
+admin/                     Panel privado y exportación CSV
+api/                       Funciones de Vercel
 assets/enchanted/          Recursos visuales y audio
+server/                    Utilidades privadas de Supabase
+supabase/schema.sql        Creación de la tabla
 src/config.js              Datos del evento
-src/main.js                Inicialización
-src/modules/               Audio, contenido, contador, sobre, navegación y RSVP
+src/modules/               Lógica del cliente
 src/styles/                Estilos separados por responsabilidad
-index.html                 Estructura semántica de las escenas
+SUPABASE_SETUP.md          Guía de configuración
+index.html                 Invitación
 vercel.json                Configuración de despliegue
 ```
 
 ## Ejecución local
 
-El proyecto usa módulos ES, por lo que debe abrirse mediante un servidor local:
+Para revisar solo la interfaz estática:
 
 ```bash
 python -m http.server 8000
 ```
 
-Después abre `http://localhost:8000`.
+Para probar también `/api/rsvp` y `/api/admin`, configura `.env.local` y usa:
 
-
-## Ajustes de composición V6
-
-- Escenas centradas por contenido, sin usar espacios vacíos como separadores.
-- Mapa embebido y responsivo en la escena de ubicación.
-- Fecha y cuenta regresiva agrupadas como una sola composición.
-- Portada equilibrada en teléfonos altos, bajos y escritorio.
+```bash
+vercel dev
+```

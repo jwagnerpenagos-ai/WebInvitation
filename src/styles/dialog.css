@@ -173,3 +173,20 @@
     padding-inline: 0.65rem;
   }
 }
+
+.rsvp-form__status {
+  min-height: 1.25rem;
+  margin: 0.8rem 0 -0.45rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.rsvp-form__status[data-type='success'] { color: #28704a; }
+.rsvp-form__status[data-type='error'] { color: #a2273f; }
+
+.rsvp-form__submit:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}

@@ -9,6 +9,8 @@ export function setupRsvp(config) {
   const guestCountField = $('#guest-count-field');
   const adultSelect = $('#rsvp-adults');
   const childrenSelect = $('#rsvp-children');
+  const status = $('#rsvp-status');
+  const submitButton = form?.querySelector('button[type="submit"]');
 
   if (
     !dialog ||
@@ -18,13 +20,14 @@ export function setupRsvp(config) {
     !nameInput ||
     !guestCountField ||
     !adultSelect ||
-    !childrenSelect
+    !childrenSelect ||
+    !submitButton
   ) return;
 
   populateNumberOptions(adultSelect, config.rsvp.maxAdults, 'adulto', 'adultos');
   populateNumberOptions(childrenSelect, config.rsvp.maxChildren, 'niño', 'niños');
 
-  // Una confirmación suele incluir al menos a quien está diligenciando el formulario.
+  // Una confirmación suele incluir al menos a quien diligencia el formulario.
   adultSelect.value = '1';
   childrenSelect.value = '0';
 
@@ -38,6 +41,7 @@ export function setupRsvp(config) {
     adultSelect.disabled = !attending;
     childrenSelect.disabled = !attending;
     clearGuestValidation(adultSelect);
+    setStatus(status, '');
   };
 
   const validateGuestBreakdown = () => {
@@ -53,6 +57,7 @@ export function setupRsvp(config) {
   };
 
   openButton.addEventListener('click', () => {
+    setStatus(status, '');
     dialog.showModal();
     window.setTimeout(() => nameInput.focus(), 80);
   });
@@ -70,7 +75,7 @@ export function setupRsvp(config) {
     select.addEventListener('change', () => validateGuestBreakdown());
   });
 
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const attendance = getAttendance(form);
@@ -81,24 +86,59 @@ export function setupRsvp(config) {
 
     if (!form.reportValidity()) return;
 
-    const adults = parseCount(adultSelect.value);
-    const children = parseCount(childrenSelect.value);
-    const note = $('#rsvp-note')?.value.trim() ?? '';
-    const message = buildWhatsappMessage({
+    const submission = {
       name: nameInput.value.trim(),
       attendance,
-      adults,
-      children,
-      note,
-      celebrant: config.celebrant,
-    });
+      adults: attendance === 'yes' ? parseCount(adultSelect.value) : 0,
+      children: attendance === 'yes' ? parseCount(childrenSelect.value) : 0,
+      note: $('#rsvp-note')?.value.trim() ?? '',
+    };
+    const originalButtonContent = submitButton.innerHTML;
 
-    const url = `https://wa.me/${config.rsvp.phone}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
-    closeDialog();
+    setSubmitting(submitButton, true, 'Guardando confirmación…');
+    setStatus(status, 'Estamos registrando tu respuesta.');
+
+    try {
+      await saveConfirmation(submission);
+      setStatus(status, 'Confirmación guardada. Abriendo WhatsApp…', 'success');
+
+      const message = buildWhatsappMessage({
+        ...submission,
+        celebrant: config.celebrant,
+      });
+      const url = `https://wa.me/${config.rsvp.phone}?text=${encodeURIComponent(message)}`;
+
+      // Al navegar en la misma pestaña se evita que el navegador bloquee WhatsApp
+      // después de esperar la respuesta de Supabase.
+      window.setTimeout(() => {
+        window.location.href = url;
+        closeDialog();
+      }, 350);
+    } catch (error) {
+      console.error(error);
+      setStatus(
+        status,
+        error.message || 'No pudimos guardar tu confirmación. Intenta nuevamente.',
+        'error',
+      );
+      setSubmitting(submitButton, false, '', originalButtonContent);
+    }
   });
 
   syncAttendance();
+}
+
+async function saveConfirmation(submission) {
+  const response = await fetch('/api/rsvp', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(submission),
+  });
+  const result = await response.json().catch(() => ({}));
+
+  if (!response.ok || !result.ok) {
+    throw new Error(result.error || 'No pudimos guardar tu confirmación.');
+  }
 }
 
 function populateNumberOptions(select, maximum, singular, plural) {
@@ -129,22 +169,46 @@ function buildWhatsappMessage({ name, attendance, adults, children, note, celebr
 
   if (attendance === 'no') {
     return [
-      `Muchas gracias por la invitación a los XV años de ${celebrant}`,
+      '🌹 *RESPUESTA A LA INVITACIÓN* 🌹',
       '',
-      'En esta ocasión no podré acompañarte, pero te deseo una celebración maravillosa. <3',
+      `¡Hola! Soy *${name}*.`,
+      '',
+      `Muchas gracias por la invitación a los *XV años de ${celebrant}* ✨`,
+      '',
+      'En esta ocasión no podré acompañarte, pero te deseo una celebración maravillosa. 💛',
     ].join('\n') + optionalNote;
   }
 
   const total = adults + children;
 
   return [
-
-    `Confirmo la asistencia a los XV años de ${celebrant}`,
+    '🌹 *CONFIRMACIÓN DE ASISTENCIA* 🌹',
     '',
-    `-Adultos: ${adults}`,
-    `-Niños: ${children}`,
-    `-Total de asistentes: ${total}`,
+    `¡Hola! Soy *${name}*.`,
     '',
-    '¡Será un gusto acompañarte en este día tan especial! <3',
+    `Confirmo la asistencia a los *XV años de ${celebrant}* ✨`,
+    '',
+    `👤 *Adultos:* ${adults}`,
+    `🧒 *Niños:* ${children}`,
+    `👥 *Total de asistentes:* ${total}`,
+    '',
+    '¡Será un gusto acompañarte en este día tan especial! 💛',
   ].join('\n') + optionalNote;
+}
+
+function setSubmitting(button, submitting, text, originalContent = '') {
+  button.disabled = submitting;
+  button.setAttribute('aria-busy', String(submitting));
+
+  if (submitting) {
+    button.textContent = text;
+  } else if (originalContent) {
+    button.innerHTML = originalContent;
+  }
+}
+
+function setStatus(element, message, type = '') {
+  if (!element) return;
+  element.textContent = message;
+  element.dataset.type = type;
 }

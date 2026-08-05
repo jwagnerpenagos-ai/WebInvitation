@@ -397,7 +397,7 @@
         <button class="rsvp-dialog__close" id="close-rsvp" type="button" aria-label="Cerrar confirmación">×</button>
         <p class="scene-kicker">Confirmación</p>
         <h2 id="rsvp-dialog-title">¿Nos acompañas?</h2>
-        <p class="rsvp-form__intro">Completa estos datos y abriremos WhatsApp con el mensaje listo.</p>
+        <p class="rsvp-form__intro">Completa estos datos. Guardaremos tu respuesta y luego abriremos WhatsApp con el mensaje listo.</p>
 
         <label class="field">
           <span>Nombre de quien confirma</span>
@@ -430,8 +430,10 @@
           <textarea id="rsvp-note" name="note" rows="3" maxlength="180" placeholder="Algo que quieras contarle a María Fernanda"></textarea>
         </label>
 
+        <p class="rsvp-form__status" id="rsvp-status" role="status" aria-live="polite"></p>
+
         <button class="scene-cta rsvp-form__submit" type="submit">
-          Continuar en WhatsApp
+          Guardar y continuar en WhatsApp
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M14 7l5 5-5 5" /></svg>
         </button>
       </form>
