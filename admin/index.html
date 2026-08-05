@@ -4,78 +4,139 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex,nofollow" />
+    <meta name="theme-color" content="#26030d" />
     <title>Confirmaciones · María Fernanda</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Cormorant+Garamond:wght@600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;1,600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./admin.css" />
-    <script type="module" src="./admin.js"></script>
+    <!-- Rutas absolutas: /admin se sirve mediante un rewrite de Vercel. -->
+    <link rel="stylesheet" href="/admin/admin.css" />
+    <script type="module" src="/admin/admin.js"></script>
   </head>
   <body>
+    <div class="page-decoration page-decoration--left" aria-hidden="true"></div>
+    <div class="page-decoration page-decoration--right" aria-hidden="true"></div>
+
     <main class="admin-shell">
       <header class="admin-header">
-        <div>
-          <p class="eyebrow">XV años · María Fernanda</p>
-          <h1>Confirmaciones</h1>
-          <p class="subtitle">Resumen de adultos, niños y familias que respondieron.</p>
+        <div class="brand-block">
+          <div class="brand-emblem" aria-hidden="true">
+            <img src="/assets/enchanted/stained-glass/rose-emblem.png" alt="" />
+          </div>
+          <div>
+            <p class="eyebrow">XV años · María Fernanda</p>
+            <h1>Confirmaciones</h1>
+            <p class="subtitle">Resumen privado de las familias que respondieron.</p>
+          </div>
         </div>
-        <button class="secondary-button" id="logout-button" type="button" hidden>Cerrar sesión</button>
+        <button class="secondary-button" id="logout-button" type="button" hidden>
+          Cerrar sesión
+        </button>
       </header>
 
       <section class="login-card" id="login-card">
+        <div class="login-card__ornament" aria-hidden="true">MF</div>
         <form id="login-form">
-          <h2>Acceso privado</h2>
-          <p>Usa la contraseña configurada en Vercel.</p>
-          <label>
+          <p class="card-kicker">Panel privado</p>
+          <h2>Bienvenido</h2>
+          <p class="login-description">
+            Ingresa la contraseña configurada en Vercel para consultar las confirmaciones.
+          </p>
+          <label class="password-field">
             <span>Contraseña</span>
-            <input id="admin-password" type="password" autocomplete="current-password" required />
+            <input
+              id="admin-password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="••••••••••••"
+              required
+            />
           </label>
-          <button class="primary-button" type="submit">Ver confirmaciones</button>
+          <button class="primary-button" type="submit">
+            <span>Ver confirmaciones</span>
+          </button>
           <p class="form-message" id="login-message" role="status"></p>
         </form>
       </section>
 
-      <section id="dashboard" hidden>
-        <div class="stats" aria-label="Resumen de confirmaciones">
-          <article><span>Confirmaciones</span><strong id="stat-confirmations">0</strong></article>
-          <article><span>Adultos</span><strong id="stat-adults">0</strong></article>
-          <article><span>Niños</span><strong id="stat-children">0</strong></article>
-          <article class="featured"><span>Total asistentes</span><strong id="stat-total">0</strong></article>
-          <article><span>No asistirán</span><strong id="stat-declined">0</strong></article>
-        </div>
-
-        <div class="toolbar">
-          <label class="search-field">
-            <span class="sr-only">Buscar por nombre</span>
-            <input id="search-input" type="search" placeholder="Buscar por nombre…" />
-          </label>
-          <div class="toolbar-actions">
-            <button class="secondary-button" id="refresh-button" type="button">Actualizar</button>
-            <button class="primary-button" id="export-button" type="button">Descargar CSV</button>
+      <section class="dashboard" id="dashboard" hidden>
+        <div class="dashboard-intro">
+          <div>
+            <p class="card-kicker">Resumen general</p>
+            <h2>Asistencia registrada</h2>
           </div>
+          <p id="last-update">Los datos se consultan directamente desde Supabase.</p>
         </div>
 
-        <p class="dashboard-message" id="dashboard-message" role="status"></p>
+        <div class="stats" aria-label="Resumen de confirmaciones">
+          <article>
+            <span>Familias que asisten</span>
+            <strong id="stat-confirmations">0</strong>
+            <small>confirmaciones positivas</small>
+          </article>
+          <article>
+            <span>Adultos</span>
+            <strong id="stat-adults">0</strong>
+            <small>menús generales</small>
+          </article>
+          <article>
+            <span>Niños</span>
+            <strong id="stat-children">0</strong>
+            <small>menús infantiles</small>
+          </article>
+          <article class="featured">
+            <span>Total asistentes</span>
+            <strong id="stat-total">0</strong>
+            <small>personas confirmadas</small>
+          </article>
+          <article>
+            <span>No asistirán</span>
+            <strong id="stat-declined">0</strong>
+            <small>respuestas negativas</small>
+          </article>
+        </div>
 
-        <div class="table-card">
-          <table>
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Estado</th>
-                <th>Adultos</th>
-                <th>Niños</th>
-                <th>Total</th>
-                <th>Mensaje</th>
-                <th>Fecha</th>
-              </tr>
-            </thead>
-            <tbody id="confirmations-body"></tbody>
-          </table>
-          <p class="empty-state" id="empty-state" hidden>No hay confirmaciones para mostrar.</p>
+        <div class="content-card">
+          <div class="toolbar">
+            <label class="search-field">
+              <span class="sr-only">Buscar por nombre</span>
+              <span class="search-icon" aria-hidden="true">⌕</span>
+              <input id="search-input" type="search" placeholder="Buscar familia o invitado…" />
+            </label>
+            <div class="toolbar-actions">
+              <button class="secondary-button" id="refresh-button" type="button">Actualizar</button>
+              <button class="primary-button primary-button--compact" id="export-button" type="button">
+                Descargar CSV
+              </button>
+            </div>
+          </div>
+
+          <p class="dashboard-message" id="dashboard-message" role="status"></p>
+
+          <div class="table-card">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Estado</th>
+                  <th>Adultos</th>
+                  <th>Niños</th>
+                  <th>Total</th>
+                  <th>Mensaje</th>
+                  <th>Fecha</th>
+                </tr>
+              </thead>
+              <tbody id="confirmations-body"></tbody>
+            </table>
+            <div class="empty-state" id="empty-state" hidden>
+              <span aria-hidden="true">🌹</span>
+              <strong>No hay confirmaciones para mostrar</strong>
+              <p>Cuando alguien responda la invitación, aparecerá aquí.</p>
+            </div>
+          </div>
         </div>
       </section>
     </main>

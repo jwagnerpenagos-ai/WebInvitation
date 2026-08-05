@@ -11,6 +11,7 @@ const elements = {
   search: document.querySelector('#search-input'),
   body: document.querySelector('#confirmations-body'),
   empty: document.querySelector('#empty-state'),
+  lastUpdate: document.querySelector('#last-update'),
   stats: {
     confirmations: document.querySelector('#stat-confirmations'),
     adults: document.querySelector('#stat-adults'),
@@ -67,7 +68,11 @@ async function loadConfirmations({ firstLogin = false, silent = false } = {}) {
     elements.dashboard.hidden = false;
     elements.logout.hidden = false;
     elements.loginMessage.textContent = '';
-    setMessage(`Actualizado: ${new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' })}`);
+    const updateTime = new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' });
+    setMessage(`Datos actualizados a las ${updateTime}.`);
+    if (elements.lastUpdate) {
+      elements.lastUpdate.textContent = `${confirmations.length} respuesta${confirmations.length === 1 ? '' : 's'} registrada${confirmations.length === 1 ? '' : 's'} · ${updateTime}`;
+    }
     renderStats();
     renderTable();
   } catch (error) {
