@@ -148,12 +148,12 @@ function buildWhatsappMessage({ name, attendance, adults, children, note, celebr
     '',
     greeting,
     '',
-    `Confirmo la asistencia a los *XV años de ${celebrant}* ✨`,
+    `Confirmo la asistencia a los *XV años de ${celebrant}*`,
     '',
-    `👤 *Adultos:* ${adults}`,
-    `🧒 *Niños:* ${children}`,
-    `👥 *Total de asistentes:* ${total}`,
+    `-*Adultos:* ${adults}`,
+    `-*Niños:* ${children}`,
+    `-*Total de asistentes:* ${total}`,
     '',
-    '¡Será un gusto acompañarte en este día tan especial! 💛',
+    '¡Será un gusto acompañarte en este día tan especial! <3',
   ].join('\n') + optionalNote;
 }
