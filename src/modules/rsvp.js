@@ -125,19 +125,13 @@ function getAttendance(form) {
 }
 
 function buildWhatsappMessage({ name, attendance, adults, children, note, celebrant }) {
-  const heading = '🌹 *CONFIRMACIÓN DE ASISTENCIA* 🌹';
-  const greeting = `¡Hola! Soy *${name}*.`;
   const optionalNote = note ? `\n\n📝 *Mensaje:* ${note}` : '';
 
   if (attendance === 'no') {
     return [
-      heading,
+      `*Muchas gracias por la invitación a los XV años de ${celebrant}* ✨`,
       '',
-      greeting,
-      '',
-      `Muchas gracias por la invitación a los *XV años de ${celebrant}* ✨`,
-      '',
-      'En esta ocasión no podré acompañarte, pero te deseo una celebración maravillosa. 💛',
+      'En esta ocasión no podré acompañarte, pero te deseo una celebración maravillosa. <3',
     ].join('\n') + optionalNote;
   }
 
@@ -145,7 +139,7 @@ function buildWhatsappMessage({ name, attendance, adults, children, note, celebr
 
   return [
 
-    `Confirmo la asistencia a los *XV años de ${celebrant}*`,
+    `*Confirmo la asistencia a los XV años de ${celebrant}*`,
     '',
     `-*Adultos:* ${adults}`,
     `-*Niños:* ${children}`,
