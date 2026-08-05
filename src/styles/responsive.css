@@ -781,3 +781,27 @@
     transform: translateY(-18px);
   }
 }
+
+.identity-scene__milestone {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  width: max-content;
+  margin-inline: auto;
+}
+
+.identity-scene__years {
+  position: absolute;
+  left: 50%;
+  bottom: -1.25rem;
+  transform: translateX(-50%);
+
+  font-size: clamp(1.35rem, 4.8vw, 2rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+
+  color: inherit;
+  text-shadow: 0 3px 12px rgba(24, 1, 7, 0.6);
+}

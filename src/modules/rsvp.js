@@ -169,30 +169,30 @@ function buildWhatsappMessage({ name, attendance, adults, children, note, celebr
 
   if (attendance === 'no') {
     return [
-      '🌹 *RESPUESTA A LA INVITACIÓN* 🌹',
+      'RESPUESTA A LA INVITACIÓN',
       '',
-      `¡Hola! Soy *${name}*.`,
+      `¡Hola! Soy ${name}.`,
       '',
-      `Muchas gracias por la invitación a los *XV años de ${celebrant}* ✨`,
+      `Muchas gracias por la invitación a los *XV años de ${celebrant}*`,
       '',
-      'En esta ocasión no podré acompañarte, pero te deseo una celebración maravillosa. 💛',
+      'En esta ocasión no podré acompañarte, pero te deseo una celebración maravillosa.',
     ].join('\n') + optionalNote;
   }
 
   const total = adults + children;
 
   return [
-    '🌹 *CONFIRMACIÓN DE ASISTENCIA* 🌹',
+    '*CONFIRMACIÓN DE ASISTENCIA*',
     '',
-    `¡Hola! Soy *${name}*.`,
+    `¡Hola! Soy ${name}.`,
     '',
     `Confirmo la asistencia a los *XV años de ${celebrant}* ✨`,
     '',
-    `👤 *Adultos:* ${adults}`,
-    `🧒 *Niños:* ${children}`,
-    `👥 *Total de asistentes:* ${total}`,
+    `-Adultos: ${adults}`,
+    `-Niños: ${children}`,
+    `-Total de asistentes: ${total}`,
     '',
-    '¡Será un gusto acompañarte en este día tan especial! 💛',
+    '¡Será un gusto acompañarte en este día tan especial!',
   ].join('\n') + optionalNote;
 }
 
