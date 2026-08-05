@@ -129,7 +129,7 @@ function buildWhatsappMessage({ name, attendance, adults, children, note, celebr
 
   if (attendance === 'no') {
     return [
-      `*Muchas gracias por la invitación a los XV años de ${celebrant}* ✨`,
+      `Muchas gracias por la invitación a los XV años de ${celebrant}`,
       '',
       'En esta ocasión no podré acompañarte, pero te deseo una celebración maravillosa. <3',
     ].join('\n') + optionalNote;
@@ -139,11 +139,11 @@ function buildWhatsappMessage({ name, attendance, adults, children, note, celebr
 
   return [
 
-    `*Confirmo la asistencia a los XV años de ${celebrant}*`,
+    `Confirmo la asistencia a los XV años de ${celebrant}`,
     '',
-    `-*Adultos:* ${adults}`,
-    `-*Niños:* ${children}`,
-    `-*Total de asistentes:* ${total}`,
+    `-Adultos: ${adults}`,
+    `-Niños: ${children}`,
+    `-Total de asistentes: ${total}`,
     '',
     '¡Será un gusto acompañarte en este día tan especial! <3',
   ].join('\n') + optionalNote;
