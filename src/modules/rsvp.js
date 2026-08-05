@@ -144,10 +144,7 @@ function buildWhatsappMessage({ name, attendance, adults, children, note, celebr
   const total = adults + children;
 
   return [
-    heading,
-    '',
-    greeting,
-    '',
+
     `Confirmo la asistencia a los *XV años de ${celebrant}*`,
     '',
     `-*Adultos:* ${adults}`,
